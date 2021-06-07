@@ -20,6 +20,7 @@ export class PlantServerService {
     season: "",
     zone: "",
     perFoot: 0,
+    daysToHarvest: 0,
     xGarden: 0,
     yGarden: 0,
     col: 0,
@@ -31,6 +32,7 @@ export class PlantServerService {
     season: "",
     zone: "",
     perFoot: 0,
+    daysToHarvest: 0,
     xGarden: 0,
     yGarden: 0,
     col: 0,
@@ -46,7 +48,7 @@ export class PlantServerService {
 
   /**
    * 
-   * create a new plant
+   * save a new plant
    * 
    */
   newPlant(
@@ -55,26 +57,35 @@ export class PlantServerService {
     plantingSeason: string, 
     plantZone: string,
     perFoot: number,
+    daysToHarvest: number,
     xGarden: number,
     yGarden: number,
     col: number) {
-    this.postData.plant = plantName;
-    this.postData.garden = gardenName;
-    this.postData.season = plantingSeason;
-    this.postData.zone = plantZone;
-    this.postData.perFoot = perFoot;
-    this.postData.xGarden = xGarden;
-    this.postData.yGarden = yGarden;
-    this.postData.col = col;
-    //return as a promise
-    this.http.post(this.url, this.postData)
-      .subscribe(data => {
-      console.log(data);
+      this.postData.plant = plantName;
+      this.postData.garden = gardenName;
+      this.postData.season = plantingSeason;
+      this.postData.zone = plantZone;
+      this.postData.perFoot = perFoot;
+      this.postData.daysToHarvest = daysToHarvest;
+      this.postData.xGarden = xGarden;
+      this.postData.yGarden = yGarden;
+      this.postData.col = col;
+      //return as a promise
+      this.http.post(this.url, this.postData)
+        .subscribe(data => {
+        console.log(data);
     })
   }
 
   deleteOne(id: string) {
     return this.http.delete(this.url+'/'+id)
+  }
+
+  //delete all plants with a given name
+  //must store each garden in an array to do this
+  deleteGarden(gardenName: string) {
+    
+      
   }
 
 }

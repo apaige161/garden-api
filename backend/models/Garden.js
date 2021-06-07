@@ -23,6 +23,10 @@ const GardenSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    daysToHarvest: {
+        type: Number,
+        required: true,
+    },
     xGarden: {
         type: Number,
         required: true,

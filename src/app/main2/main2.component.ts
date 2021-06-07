@@ -77,13 +77,15 @@ export class Main2Component implements OnInit {
       plant: 'carrot',
       season: 'spring, fall',
       perFoot: 16,
+      daysToHarvest: 70,
       zone: '7b',
       col: 0
     },
     {
-      plant: 'rosemary',
-      season: 'spring',
-      perFoot: 1,
+      plant: 'chive',
+      season: 'spring, summer',
+      perFoot: 16,
+      daysToHarvest: 112,
       zone: '7b',
       col: 0
     },
@@ -91,6 +93,7 @@ export class Main2Component implements OnInit {
       plant: 'cabbage',
       season: 'summer',
       perFoot: 1,
+      daysToHarvest: 112,
       zone: '7b',
       col: 0
     },
@@ -98,6 +101,7 @@ export class Main2Component implements OnInit {
       plant: 'cucumber',
       season: 'spring, fall',
       perFoot: 1,
+      daysToHarvest: 42,
       zone: '7b',
       col: 0
     },
@@ -105,6 +109,7 @@ export class Main2Component implements OnInit {
       plant: 'hot pepper',
       season: 'summer',
       perFoot: 1,
+      daysToHarvest: 133,
       zone: '7b',
       col: 0
     },
@@ -112,6 +117,7 @@ export class Main2Component implements OnInit {
       plant: 'mild pepper',
       season: 'summer',
       perFoot: 1,
+      daysToHarvest: 133,
       zone: '7b',
       col: 0
     },
@@ -119,6 +125,7 @@ export class Main2Component implements OnInit {
       plant: 'bell pepper',
       season: 'summer',
       perFoot: 1,
+      daysToHarvest: 133,
       zone: '7b',
       col: 0
     },
@@ -126,6 +133,7 @@ export class Main2Component implements OnInit {
       plant: 'garlic',
       season: 'spring, fall',
       perFoot: 4,
+      daysToHarvest: 133,
       zone: '7b',
       col: 0
     },
@@ -133,6 +141,7 @@ export class Main2Component implements OnInit {
       plant: 'basil',
       season: 'spring, fall',
       perFoot: 2,
+      daysToHarvest: 84,
       zone: '7b',
       col: 0
     },
@@ -140,6 +149,7 @@ export class Main2Component implements OnInit {
       plant: 'leaf lettuce',
       season: 'spring, fall',
       perFoot: 16,
+      daysToHarvest: 133,
       zone: '7b',
       col: 0
     },
@@ -147,6 +157,7 @@ export class Main2Component implements OnInit {
       plant: 'head lettuce',
       season: 'spring, fall',
       perFoot: 1,
+      daysToHarvest: 49,
       zone: '7b',
       col: 0
     },
@@ -154,6 +165,7 @@ export class Main2Component implements OnInit {
       plant: 'arugula',
       season: 'spring, fall',
       perFoot: 16,
+      daysToHarvest: 49,
       zone: '7b',
       col: 0
     },
@@ -161,13 +173,7 @@ export class Main2Component implements OnInit {
       plant: 'kale',
       season: 'spring, fall',
       perFoot: 1,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'carrot',
-      season: 'spring, fall',
-      perFoot: 16,
+      daysToHarvest: 49,
       zone: '7b',
       col: 0
     },
@@ -175,6 +181,15 @@ export class Main2Component implements OnInit {
       plant: 'pole beans',
       season: 'spring, fall',
       perFoot: 1,
+      daysToHarvest: 56,
+      zone: '7b',
+      col: 0
+    },
+    {
+      plant: 'bush beans',
+      season: 'spring, fall',
+      perFoot: 1,
+      daysToHarvest: 70,
       zone: '7b',
       col: 0
     },
@@ -182,6 +197,7 @@ export class Main2Component implements OnInit {
       plant: 'spinach',
       season: 'spring, fall',
       perFoot: 9,
+      daysToHarvest: 49,
       zone: '7b',
       col: 0
     },
@@ -189,6 +205,7 @@ export class Main2Component implements OnInit {
       plant: 'parsnips',
       season: 'spring, fall',
       perFoot: 9,
+      daysToHarvest: 105,
       zone: '7b',
       col: 0
     },
@@ -196,6 +213,7 @@ export class Main2Component implements OnInit {
       plant: 'leeks',
       season: 'spring, fall',
       perFoot: 6,
+      daysToHarvest: 98,
       zone: '7b',
       col: 0
     },
@@ -203,6 +221,7 @@ export class Main2Component implements OnInit {
       plant: 'broccoli',
       season: 'spring, fall',
       perFoot: 1,
+      daysToHarvest: 112,
       zone: '7b',
       col: 0
     },
@@ -210,6 +229,7 @@ export class Main2Component implements OnInit {
       plant: 'cauliflower',
       season: 'spring, fall',
       perFoot: 1,
+      daysToHarvest: 98,
       zone: '7b',
       col: 0
     },
@@ -217,6 +237,7 @@ export class Main2Component implements OnInit {
       plant: 'bok choy',
       season: 'spring, fall',
       perFoot: 1,
+      daysToHarvest: 49,
       zone: '7b',
       col: 0
     },
@@ -224,6 +245,7 @@ export class Main2Component implements OnInit {
       plant: 'radishes',
       season: 'spring, fall',
       perFoot: 16,
+      daysToHarvest: 28,
       zone: '7b',
       col: 0
     },
@@ -231,6 +253,7 @@ export class Main2Component implements OnInit {
       plant: 'beets',
       season: 'spring, fall',
       perFoot: 9,
+      daysToHarvest: 56,
       zone: '7b',
       col: 0
     },
@@ -238,6 +261,7 @@ export class Main2Component implements OnInit {
       plant: 'peas',
       season: 'spring, fall',
       perFoot: 8,
+      daysToHarvest: 70,
       zone: '7b',
       col: 0
     },
@@ -245,6 +269,7 @@ export class Main2Component implements OnInit {
       plant: 'celery',
       season: 'spring, fall',
       perFoot: 1,
+      daysToHarvest: 115,
       zone: '7b',
       col: 0
     },
@@ -252,6 +277,7 @@ export class Main2Component implements OnInit {
       plant: 'parsley',
       season: 'spring, fall',
       perFoot: 2,
+      daysToHarvest: 98,
       zone: '7b',
       col: 0
     },
@@ -259,6 +285,7 @@ export class Main2Component implements OnInit {
       plant: 'swiss chard',
       season: 'spring, fall',
       perFoot: 2,
+      daysToHarvest: 56,
       zone: '7b',
       col: 0
     },
@@ -277,7 +304,7 @@ export class Main2Component implements OnInit {
 
   fourthCol: FullPlant[] = [];
   
-  gardenName:string;
+  gardenName:string = "New Garden";
 
 
 
@@ -318,7 +345,7 @@ export class Main2Component implements OnInit {
       
 
       for (let index = 0; index <= this.gardenNames.length; index++) {
-        console.log(index + ".) " + this.gardenNames[index]);
+        //console.log(index + ".) " + this.gardenNames[index]);
         
         if(this.gardenNames.length = 0) {
           this.saveDisable = false;
@@ -423,6 +450,7 @@ export class Main2Component implements OnInit {
     plant.plant = this.fullPlant[plantToAdd].plant;
     plant.season = this.fullPlant[plantToAdd].season;
     plant.perFoot = this.fullPlant[plantToAdd].perFoot;
+    plant.daysToHarvest = this.fullPlant[plantToAdd].daysToHarvest;
     plant.zone = this.fullPlant[plantToAdd].plant;
     plant.col = 0;
 
@@ -556,7 +584,16 @@ export class Main2Component implements OnInit {
     var sendToDb = this.firstCol.concat(this.secondCol, this.thirdCol, this.fourthCol)
 
     sendToDb.forEach(item => {
-      this.plantService.newPlant( item.plant, this.gardenName, item.season, item.zone, item.perFoot, this.xGardenMax, this.yGardenMax, item.col)
+      this.plantService.newPlant( 
+        item.plant, 
+        this.gardenName, 
+        item.season, 
+        item.zone, 
+        item.perFoot, 
+        item.daysToHarvest,
+        this.xGardenMax, 
+        this.yGardenMax, 
+        item.col)
     })
     
   }

@@ -69,6 +69,10 @@ export class GardensComponent implements OnInit {
       .subscribe(data => this.plants = data);
   }
 
+  deleteGarden() {
+    
+  }
+
   deletePlant(id:string) {
     this.plantService.deleteOne(id).subscribe( res => {
       //refresh list
@@ -98,7 +102,7 @@ export class GardensComponent implements OnInit {
     this.plants.forEach(item => {
       this.gardenNames.push(item.garden)
     });
-    console.log('added all garden names')
+    
   }
   
 
@@ -117,6 +121,8 @@ export class GardensComponent implements OnInit {
     ngOnInit() {
 
       this.allPlantsinit();
+      
+      
     }
 
 

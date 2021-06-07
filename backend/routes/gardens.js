@@ -74,10 +74,11 @@ router.post('/', async (req,res) => {
         season: req.body.season,
         zone: req.body.zone,
         perFoot : req.body.perFoot,
+        daysToHarvest : req.body.daysToHarvest,
         xGarden: req.body.xGarden,
         yGarden: req.body.yGarden,
         col: req.body.col,
-        
+
 
     });
 
