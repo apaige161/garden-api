@@ -1,0 +1,13 @@
+>ng serve
+
+>npm run start-server
+
+
+
+
+****BUG IN PAGINATION   
+    -is always showing user has more posts than in actuallity
+    -does not properly show the correct posts when items per page changes
+        -if 5 items per page is selected, only the last 2 will show up
+
+    -works properly with 2 posts at a time

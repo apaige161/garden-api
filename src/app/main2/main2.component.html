@@ -1,0 +1,222 @@
+
+<div class="">
+
+  <div class="main-banner col-lg-12">
+
+    <!-- main banner -->
+    <div class="row">
+
+      <!-- user to select size and see plants added -->
+      <div class="radio col-lg-12 "> <!-- new garden input -->
+
+        <!-- size sliders and name row -->
+        <div class="row">
+          <!-- slider to choose xGardenMax, yGardenMax -->
+          <div class="col-6">
+            <div class="row">
+
+              <!-- slider to choose xGardenMax -->
+              <div class="col-6">
+                <h1>Rows: {{xGardenMax}}</h1>
+                <mat-slider 
+                  #xGarden
+                  thumbLabel
+                  tickInterval="1"
+                  [(ngModel)]="xGardenMax" min="1" max="4" step="1"
+                  [disabled]="xGardenDisable" ></mat-slider>
+              </div>
+
+              <!-- slider to choose yGardenMax -->
+              <div class="col-6">
+                
+                <h1>Length: {{yGardenMax}}</h1>
+                <mat-slider 
+                  #yGarden
+                  thumbLabel
+                  tickInterval="1"
+                  vertical
+                  invert
+                  [(ngModel)]="yGardenMax"  min="1" max="8" step="1"
+                  [disabled]="yGardenDisable" ></mat-slider>
+              </div>
+
+            </div>
+          </div>
+          <!-- Garden name input form -->
+          <div class="col-6">
+            <h2>Name this garden:</h2>
+            <input type="text" class="form-control" #name 
+              required
+              [(ngModel)]="gardenName" >
+
+            <button mat-raised-button color="accent"
+              class="mt-1 plant-btn"
+              (click)="postToDb()"
+              (click)="canSave()"
+              (click)="resetProgress()"
+              [disabled]="saveDisable"
+              >Save</button>
+
+            <div *ngIf="gardenName">
+              <h4> {{gardenName | titlecase}} is the current garden!</h4>
+            </div>
+
+          </div>
+          <!-- plant list -->
+          <div class="col-12 plant-list">
+            <div class="row">
+              <div class="col-4 " *ngFor="let item of fullPlant; index as i">
+                
+                <button mat-raised-button color="primary" class="mb-3"
+                  (click)="this.totalPossiblePlants()"
+                  (click)="this.calculateProgress()"
+                  (click)="addToGarden(i)" 
+                  (click)="correctColumns()" 
+                  (click)="addToProgressBar()"
+                  (click)="disableGardenMax()"
+                  (click)="canSave()"
+                  [disabled]="disableAddPlants"
+                >
+                  {{item.plant | titlecase}}
+                </button>
+              </div>
+            </div>
+          </div><!-- plant list -->
+
+        </div>
+      
+
+
+        <!-- Creates a garden bed -->
+        <div class="row raised-bed">
+          
+          <!-- progress bar -->
+          <div class="progress-container col-12">
+            <h4>
+              <div>Progress {{progress | number: '1.0-0'}} %   </div>
+              <button (click)="resetProgress()" class="btn btn-primary">Reset Progress</button>
+            </h4>
+            <!-- Progress bar -->
+            <mat-progress-bar mode="determinate" [value]="progress" min="0"></mat-progress-bar><br>
+          </div>
+
+          <!-- 
+            
+            Displays the number of columns based on user input 
+          
+          -->
+
+          <mat-grid-list [cols]="xGardenMax" rowHeight="1:1">
+
+            <mat-grid-tile>
+              <!-- displays only when col 1 is displayed -->
+              <div class="col-3 raised-bed-col" >
+                <icon-seedling></icon-seedling>
+                <div 
+                  cdkDropList 
+                  #colOne="cdkDropList"
+                  [cdkDropListData]="firstCol"
+                  class="example-list" 
+                  (cdkDropListDropped)="drop($event)"
+                >
+                  <div class="example-box" 
+                    *ngFor="let item of firstCol" 
+                    cdkDrag
+                    popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
+                    [outsideClick]="true"
+                  >
+                        {{item.plant}}
+                  </div>
+                </div>
+                  <div *ngIf="firstCol.length > 0">
+                    <button (click)="clearColumn(firstCol)" (click)="calculateProgress()" class="btn btn-info mt-1">Remove Column</button>
+                  </div>
+              </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf="xGardenMax >= 2">
+              <!-- displays only when col 2 is displayed -->
+              <div class="col-3 raised-bed-col" >
+                <icon-seedling></icon-seedling>
+                <div 
+                  cdkDropList 
+                  #colTwo="cdkDropList"
+                  [cdkDropListData]="secondCol"
+                  class="example-list" 
+                  (cdkDropListDropped)="drop($event)"
+                >
+                  <div class="example-box" 
+                    *ngFor="let item of secondCol" 
+                    cdkDrag
+                    popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
+                    [outsideClick]="true"
+                  >
+                        {{item.plant}}
+                  </div>
+                </div>
+                  <div *ngIf="secondCol.length > 0">
+                    <button (click)="clearColumn(secondCol)" (click)="calculateProgress()" class="btn btn-info mb-1">Remove Column</button>
+                  </div>
+              </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf="xGardenMax >= 3">
+              <!-- displays only when col 3 is displayed -->
+              <div class="col-3 raised-bed-col" >
+                <icon-seedling></icon-seedling>
+                <div 
+                  cdkDropList 
+                  #colThree="cdkDropList"
+                  [cdkDropListData]="thirdCol"
+                  class="example-list" 
+                  (cdkDropListDropped)="drop($event)"
+                >
+                  <div class="example-box" 
+                    *ngFor="let item of thirdCol" 
+                    cdkDrag
+                    popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
+                    [outsideClick]="true"
+                  >
+                        {{item.plant}}
+                  </div>
+                </div>
+                  <div *ngIf="thirdCol.length > 0">
+                    <button (click)="clearColumn(thirdCol)" (click)="calculateProgress()" class="btn btn-info mb-1">Remove Column</button>
+                  </div>
+              </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf="xGardenMax >= 4">
+              <!-- displays only when col 4 is displayed -->
+              <div class="col-3 raised-bed-col" >
+                <icon-seedling></icon-seedling>
+                <div 
+                  cdkDropList 
+                  #colFour="cdkDropList"
+                  [cdkDropListData]="fourthCol"
+                  class="example-list" 
+                  (cdkDropListDropped)="drop($event)"
+                >
+                  <div class="example-box" 
+                    *ngFor="let item of fourthCol" 
+                    cdkDrag
+                    popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
+                    [outsideClick]="true"
+                  >
+                        {{item.plant}}
+                    </div>
+                </div>
+                  <div *ngIf="fourthCol.length > 0">
+                    <button (click)="clearColumn(fourthCol)" (click)="calculateProgress()" class="btn btn-info mb-1">Remove Column</button>
+                  </div>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div><!-- end of plant columns -->
+      </div>
+
+    </div><!-- end of main banner -->
+
+  </div>
+
+</div><!-- container-fluid-->

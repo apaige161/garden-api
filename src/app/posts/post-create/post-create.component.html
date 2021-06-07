@@ -1,0 +1,56 @@
+
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <!-- template driven form-->
+  <form [formGroup]="form" (submit)="onSAvePost()" *ngIf="!isLoading">
+    <mat-form-field color="primary">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Post Title"
+        formControlName="title"
+      >
+        <mat-error *ngIf="form.get('title').invalid">Please enter a post title, must be at least 3 characters</mat-error>
+    </mat-form-field>
+
+    <!-- file upload -->
+    <!-- 
+      input is hidden in DOM
+      button fires the action of filepicker
+      input sends image to service for handling on change of state
+      onImagePicked() accesses the changed value with $event
+    -->
+    <div>
+      <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+
+    <!-- image preview -->
+
+    <div class="img-prev" *ngIf="imgPrev !== '' && imgPrev && form.get('image').valid">
+      <!-- set source and alt dynamically -->
+      <img [src]="imgPrev" [alt]="form.value.title">
+    </div>
+
+    <mat-form-field  color="primary">
+      <mat-label>Post</mat-label>
+      <textarea
+        matInput
+        rows="4"
+        placeholder="Post Content"
+        formControlName="content"
+      >
+      </textarea>
+      <mat-error *ngIf="form.get('content').invalid">Post must be at least 10 characters</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit">Save Post
+    </button>
+  </form>
+
+</mat-card>
+
+

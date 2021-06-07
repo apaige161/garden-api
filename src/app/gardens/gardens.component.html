@@ -1,0 +1,190 @@
+
+
+
+<div class="row">
+
+    <div class="col-lg-6 col-md-12">
+        <div class="jumbotron">
+            <h1 class="display-4">User Gardens</h1>
+            <p class="lead">This is where you can see saved garden designs and print them out!</p>
+            <hr class="my-4">
+            <p>If the print preview shows uneven rows or any weird behavior, set the print margins to none.</p>
+            <p>Print margins will be under "more settings" >> "margins" select none </p>
+            <button
+                class="btn btn-success"
+                [useExistingCss]="true"
+                printSectionId="print-section"
+                ngxPrint>
+
+                Print Garden Layout
+
+            </button>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12">
+        <!-- filter and sort -->
+        <div class="mt-3 container utility-container">
+            <div class="button-container">
+            
+            </div>
+            
+
+            <div class="form-group ">
+              <div class="col-12">
+                  <label class="mt-3" for="gardens">Select A Garden</label>
+                  <select class="form-control" id="gardens"
+                      (click)=" getEachGardenNameOnce()" (click)="removeDuplicates(gardenNames)"
+                      required
+                      [(ngModel)]="Garden" name="gardens"
+                      #gardens="ngModel"
+                      placeholder="filter here">
+                  <option *ngFor="let singleGarden of singleGardenNames" [value]="singleGarden">{{singleGarden}}</option>
+                  </select>
+              </div>
+              <div class="col-2">
+                  <div class="row">
+                      <button (click)="onGardenFilterClear()" class="btn btn-primary m-2">Clear</button>
+                      <button (click)="deleteAllPlants()" class="btn btn-danger m-2">Delete All</button>
+                  </div>
+                  
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+  <!-- get back saved data -->
+  <!-- display a user's garden in rows/columns they entered-->
+  <!-- 4 column layout for saved gardens -->
+
+  <!-- TODO:// overflow is on scroll, weird but works for now-->
+  <div class="row saved-garden-grid pt-4" id="print-section">
+    <div class="col-12" >
+      <h1>Garden Name: {{Garden | titlecase}}</h1>
+    </div>
+    <!-- col 1 only-->
+    <div class="saved-garden-column" style="background-color:#aaa;" >
+      <div *ngFor="let plant of plants
+        | filter: Garden :'garden'
+        | sort: ['col'] : ['garden']
+        | sort:[SortByParam, SortDirection]">
+      
+        <!-- display first column -->
+        <div >
+          <div *ngIf="plant.col == 1" class="card" >
+            <div class="row">
+              <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
+            </div>
+
+            <!--
+            <div class="row">
+              <div class="col">
+                <div class="row">Planted from seed: True or False</div>
+                <div class="row">Planted from start: True or False</div>
+              </div>
+            </div>
+            -->
+            <div class="row">
+              Time to Harvest: 10 days
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- col 2 only-->
+    <div class="saved-garden-column" style="background-color:#aaa;">
+      <div *ngFor="let plant of plants
+        | filter: Garden :'garden'
+        | sort: ['col'] : ['garden']
+        | sort:[SortByParam, SortDirection]">
+      
+        <!-- display second column -->
+        <div >
+          <div *ngIf="plant.col == 2" class="card">
+            <div class="row">
+                <h4 >{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
+              </div>
+            <!--
+            <div class="row">
+              <div class="col">
+                <div class="row">Planted from seed: True or False</div>
+                <div class="row">Planted from start: True or False</div>
+              </div>
+            </div>
+            -->
+            <div class="row">
+              Time to Harvest: 10 days
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- col 3 only-->
+    <div class="saved-garden-column" style="background-color:#aaa;">
+      <div *ngFor="let plant of plants
+        | filter: Garden :'garden'
+        | sort: ['col'] : ['garden']
+        | sort:[SortByParam, SortDirection]">
+      
+        <!-- display third column -->
+        <div >
+          <div *ngIf="plant.col == 3" class="card">
+            <div class="row">
+                <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
+              </div>
+            <!--
+            <div class="row">
+              <div class="col">
+                <div class="row">Planted from seed: True or False</div>
+                <div class="row">Planted from start: True or False</div>
+              </div>
+            </div>
+            -->
+            <div class="row">
+              Time to Harvest: 10 days
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- col 4 only-->
+    <div class="saved-garden-column" style="background-color:#aaa;">
+      <div *ngFor="let plant of plants
+        | filter: Garden :'garden'
+        | sort: ['col'] : ['garden']
+        | sort:[SortByParam, SortDirection]">
+      
+        <!-- display fourth column -->
+        <div >
+          <div *ngIf="plant.col == 4" class="card">
+            <div class="row">
+                <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
+              </div>
+
+            <!--
+            <div class="row">
+              <div class="col">
+                <div class="row">Planted from seed: True or False</div>
+                <div class="row">Planted from start: True or False</div>
+              </div>
+            </div>
+            -->
+            <div class="row">
+              Time to Harvest: 10 days
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div><!-- 4 column layout for saved gardens-->
