@@ -83,6 +83,7 @@ router.post('/', async (req,res) => {
 
     });
 
+
     console.log(garden.owner);
     //save to database
     try{

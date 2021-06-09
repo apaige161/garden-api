@@ -7,13 +7,6 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatTableModule } from'@angular/material/table';
-import {MatGridListModule} from '@angular/material/grid-list';
-
-
-
 @Component({
   selector: 'app-main',
   templateUrl: './main2.component.html',
@@ -584,7 +577,7 @@ export class Main2Component implements OnInit {
     var sendToDb = this.firstCol.concat(this.secondCol, this.thirdCol, this.fourthCol)
 
     //this does not work and im not sure why
-    const currentOwner = "ME"
+    const currentOwner = localStorage.getItem("userEmail")
 
     sendToDb.forEach(item => {
       this.plantService.newPlant( 

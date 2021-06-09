@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 
 //hold the individual plant object
 const GardenSchema = mongoose.Schema({
+    owner: {
+        type: String,
+        required: true
+    },
     plant: {
         type: String,
         required: true,
