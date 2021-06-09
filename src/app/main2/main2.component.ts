@@ -328,8 +328,6 @@ export class Main2Component implements OnInit {
   
   canSave(){
     if((this.progress > 1) && (this.gardenName.length > 2)){
-      console.log("progress above 1 --disabled")
-      console.log("name is longer than 2 char --disabled")
 
       //this.removeDuplicates(this.gardenNames);
 
@@ -576,7 +574,7 @@ export class Main2Component implements OnInit {
 
     var sendToDb = this.firstCol.concat(this.secondCol, this.thirdCol, this.fourthCol)
 
-    //this does not work and im not sure why
+    //set owner property for each plant
     const currentOwner = localStorage.getItem("userEmail")
 
     sendToDb.forEach(item => {

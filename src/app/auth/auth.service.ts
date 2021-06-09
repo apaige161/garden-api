@@ -1,10 +1,30 @@
+
+
+
+/********************************************************************************
+ * 
+ * saves user nickname on sign up but does not do anything with it on login
+ * 
+ * does not extract it
+ * 
+ * how can i extract user's nickname without using it to sign in?????
+ * 
+ *********************************************************************************/
+
+
+
+
+
+
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthData } from './signup/auth-data.model';
+import { SignupAuthData } from './signup/signup/auth-data-signup';
 
-import { environment } from '../../environments/environment'
+import { environment } from '../../environments/environment';
 const BACKEND_URL = environment.apiUrl + "/user/";
 
 @Injectable({
@@ -17,6 +37,7 @@ export class AuthService {
   private tokenTimer: any;
   private userId: string;
   public userEmail: string;
+  public nickname: string;
 
   //will push authentication information to component
   //true or false is user authenticated
@@ -47,9 +68,9 @@ export class AuthService {
   }
 
   //send request to create new user
-  createUser(email:string, password:string) {
+  createUser(email:string, password:string, nickname: string) {
     //create new user using authdata model
-    const authData: AuthData = { email: email, password: password }
+    const authData: SignupAuthData = { email: email, password: password, nickname: nickname }
     //send data to backend and subscribe to the response
     //configured to be aware of token 
     //the api will send back a response with a token field of type string
@@ -86,6 +107,7 @@ export class AuthService {
           //extract userId from backend user route
           this.userId = response.userId;
           this.userEmail = response.userEmail;
+          //this.nickname = response.nickname;
 
           //set auth
           this.isAuthenticated = true;
@@ -181,6 +203,7 @@ export class AuthService {
     localStorage.removeItem('expiration');
     localStorage.removeItem('userId');
     localStorage.removeItem('userEmail');
+    localStorage.removeItem('nickname');
   }
 
   //local storage check

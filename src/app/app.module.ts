@@ -18,6 +18,10 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from'@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { NgxPrintModule } from 'ngx-print';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -69,6 +73,10 @@ import { PostsModule } from './posts/posts.module';
     FormsModule,
     NgbModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
   ],
   providers: 
     [

@@ -133,6 +133,6 @@ exports.deletePost = (req,res, next) => {
             //not autorized
             res.status(401).json({message: 'Not Authorized to delete this post, respect my authoriti'});
         }
-})
+    });
 
 }

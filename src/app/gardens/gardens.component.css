@@ -19,12 +19,12 @@
 }
 
 .saved-garden-grid {
-    background-color: crimson;
+    background-color:burlywood;
     align-items: center;
     text-align: center;
     justify-content: center;
     min-width: 100%;
-    padding-bottom: 5%;
+    padding-bottom: 0%;
 
 }
 
@@ -33,5 +33,9 @@
     width: 20%;
     align-items: center;
     text-align: center;
+    justify-content: center;
 }
   
+.progress-spinner {
+    width: 30%;
+  }

@@ -14,6 +14,9 @@ import { Component, OnInit } from '@angular/core';
 import { PlantServerService } from 'src/app/services/plant-server.service';
 import { SinglePlant } from 'src/app/models/single-plant';
 
+import {ThemePalette} from '@angular/material/core';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+
 @Component({
   selector: 'app-gardens',
   templateUrl: './gardens.component.html',
@@ -38,16 +41,11 @@ export class GardensComponent implements OnInit {
     SortByParam = 'garden';
     SortDirection = 'asc'
 
-    
-
-
-    
     //filter button logic
     onGardenFilter() {
       this.SearchGarden = this.Garden;
     }
     
-
     onGardenFilterClear() {
       this.SearchGarden = '';
       this.Garden = '';
@@ -69,6 +67,7 @@ export class GardensComponent implements OnInit {
       .subscribe(data => this.plants = data);
   }
 
+  //TODO:
   deleteGarden() {
     
   }
@@ -116,6 +115,49 @@ export class GardensComponent implements OnInit {
     this.singleGardenNames = [...uniqueSet];
     console.log('removed duplicate garden names')
   }
+
+
+  /**************************************************************************************
+  * 
+  * harvest progress logic
+  *  
+  **************************************************************************************/
+
+  //spinner logic
+
+
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'determinate';
+  value = 0;
+  diameter = 50;
+
+  //TODO: get date planted
+  datePicker = Date.now().toString();
+
+  getDateLog() {
+    console.log(this.datePicker)
+  }
+
+
+  //add days to harvest
+
+
+  //return the date plant should be ready
+
+
+  //calculate how many days are left and return a whole number to pass to spinner
+  
+
+
+   
+
+  /**************************************************************************************
+  * 
+  * END harvest progress spinner logic
+  *  
+  **************************************************************************************/
+
+
 
 
     ngOnInit() {

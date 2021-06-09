@@ -49,13 +49,16 @@
               required
               [(ngModel)]="gardenName" >
 
-            <button mat-raised-button color="accent"
-              class="mt-1 plant-btn"
-              (click)="postToDb()"
-              (click)="canSave()"
-              (click)="resetProgress()"
-              [disabled]="saveDisable"
-              >Save</button>
+            <a routerLink="/gardens">
+              <button mat-raised-button color="accent"
+                class="mt-1 plant-btn"
+                (click)="postToDb()"
+                (click)="canSave()"
+                (click)="resetProgress()"
+                [disabled]="saveDisable"
+
+                >Save</button>
+            </a>
 
             <div *ngIf="gardenName">
               <h4> {{gardenName | titlecase}} is the current garden!</h4>
@@ -208,7 +211,9 @@
                     </div>
                 </div>
                   <div *ngIf="fourthCol.length > 0">
-                    <button (click)="clearColumn(fourthCol)" (click)="calculateProgress()" class="btn btn-info mb-1">Remove Column</button>
+                    <button 
+                      (click)="clearColumn(fourthCol)" 
+                      (click)="calculateProgress()" class="btn btn-info mb-1">Remove Column</button>
                   </div>
               </div>
             </mat-grid-tile>

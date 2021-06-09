@@ -34,11 +34,12 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
     //send new user data to service >> to backend for validation
-    this.authService.createUser(form.value.email, form.value.password)
+    this.authService.createUser(form.value.email, form.value.password, form.value.nickname)
   }
 
   ngOnDestroy() {
     this.authStatusSub.unsubscribe();
   }
+
 
 }

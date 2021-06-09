@@ -8,14 +8,36 @@ const router = express.Router();
 //import model
 const Garden = require('../models/Garden');
 
-/** get all gardens 
- *  -gardens will only contain plants and garden name right now 
+/** 
+ * 
+ * get all gardens 
+ *  
 **/
 router.get('/', async (req,res) => {
     try{
 
         //var to store all garden data
         const gardens = await Garden.find();
+
+        //return response
+        res.json(gardens);
+
+    } catch(err) {
+        res.json({message: err});
+    }
+});
+
+/**
+ * 
+ * only fetch user's gardens
+ * --currently does not work properly
+ * 
+ */
+router.get('/onlyUserGarden', async (req,res) => {
+    try{
+
+        //var to store all garden data
+        const gardens = await Garden.find({owner: req.params.owner});
 
         //return response
         res.json(gardens);
@@ -83,8 +105,6 @@ router.post('/', async (req,res) => {
 
     });
 
-
-    console.log(garden.owner);
     //save to database
     try{
         const savedGarden = await garden.save();

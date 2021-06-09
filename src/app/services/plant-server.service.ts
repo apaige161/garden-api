@@ -48,6 +48,11 @@ export class PlantServerService {
     return this.http.get<SinglePlant[]>(this.url);
   }
 
+  //get only signed in user's plants
+  getMyPlants() {
+    return this.http.get<SinglePlant[]>(this.url + "/onlyUserGarden");
+  }
+
 
   /**
    * 
