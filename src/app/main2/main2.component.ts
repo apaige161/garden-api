@@ -583,8 +583,12 @@ export class Main2Component implements OnInit {
 
     var sendToDb = this.firstCol.concat(this.secondCol, this.thirdCol, this.fourthCol)
 
+    //this does not work and im not sure why
+    const currentOwner = "ME"
+
     sendToDb.forEach(item => {
       this.plantService.newPlant( 
+        currentOwner,
         item.plant, 
         this.gardenName, 
         item.season, 

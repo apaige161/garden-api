@@ -66,9 +66,10 @@ router.patch('/:postId', async (req, res) => {
 /** submit plant **/
 router.post('/', async (req,res) => {
 
-    //get garden data
+    //get plant data
     const garden = new Garden({
 
+        owner: req.body.owner,
         plant: req.body.plant,
         garden: req.body.garden,
         season: req.body.season,
@@ -82,6 +83,7 @@ router.post('/', async (req,res) => {
 
     });
 
+    console.log(garden.owner);
     //save to database
     try{
         const savedGarden = await garden.save();

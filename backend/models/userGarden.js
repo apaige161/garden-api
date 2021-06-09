@@ -1,13 +1,15 @@
 //single plant model
+const { stringify } = require('@angular/compiler/src/util');
 const mongoose = require('mongoose');
 
 //hold the individual plant object
-const GardenSchema = mongoose.Schema({
-    plant: {
+//child schema
+const PlantSchema = mongoose.Schema({
+    owner: {
         type: String,
-        required: true,
+        required: true
     },
-    garden: {
+    plant: {
         type: String,
         required: true,
     },
@@ -41,5 +43,19 @@ const GardenSchema = mongoose.Schema({
     }
 });
 
+//hold the entire user garden data
+const UserGardenSchema = mongoose.Schema({
+    owner: {
+        type: String,
+        required: true
+    },
+    gardenName: {
+        type: String,
+        required: true,
+    },
+    plants: [ PlantSchema ]
+})
+
 //export
-module.exports = mongoose.model('Garden', GardenSchema);
+module.exports = mongoose.model('Plant', PlantSchema);
+module.exports = mongoose.model('UserGarden', UserGardenSchema);

@@ -6,7 +6,10 @@ const mongoose = require('mongoose');
 
 const postsRoutes = require("./routes/posts");
 const userRoutes = require("./routes/user");
+//actually the individual plant
 const gardensRoute = require('./routes/gardens');
+//CRUD as a whole garden
+const userGardenRoute = require('./routes/userGarden');
 
 const app = express();
 
@@ -64,6 +67,9 @@ app.use("/api/user", userRoutes);
 
 //filter requested send to gardens
 app.use('/api/gardens', gardensRoute);
+
+//attempt to send an array of plants instead of one at a time
+app.use('/api/userGarden', userGardenRoute);
 
 
 module.exports = app;
