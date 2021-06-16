@@ -31,6 +31,10 @@ const GardenSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    datePlanted: {
+        type: Date,
+        required: true,
+    },
     xGarden: {
         type: Number,
         required: true,

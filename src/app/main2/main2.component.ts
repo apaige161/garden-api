@@ -6,6 +6,7 @@ import { PlantServerService } from '../services/plant-server.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-main',
@@ -44,6 +45,7 @@ export class Main2Component implements OnInit {
   yGardenDisable: boolean = false;
 
 
+  currentDate: Date = new Date();
   
 
   /*** Progress variables ***/
@@ -61,6 +63,8 @@ export class Main2Component implements OnInit {
   //used for error handling
   test = 0;
 
+   
+  
 
 
   //array to hold the plant objects
@@ -71,6 +75,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 16,
       daysToHarvest: 70,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -79,6 +84,7 @@ export class Main2Component implements OnInit {
       season: 'spring, summer',
       perFoot: 16,
       daysToHarvest: 112,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -87,12 +93,14 @@ export class Main2Component implements OnInit {
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 112,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
     {
       plant: 'cucumber',
       season: 'spring, fall',
+      datePlanted: this.currentDate,
       perFoot: 1,
       daysToHarvest: 42,
       zone: '7b',
@@ -103,6 +111,7 @@ export class Main2Component implements OnInit {
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 133,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -111,6 +120,7 @@ export class Main2Component implements OnInit {
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 133,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -119,6 +129,7 @@ export class Main2Component implements OnInit {
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 133,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -127,6 +138,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 4,
       daysToHarvest: 133,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -135,6 +147,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 2,
       daysToHarvest: 84,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -143,6 +156,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 16,
       daysToHarvest: 133,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -151,6 +165,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 49,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -159,6 +174,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 16,
       daysToHarvest: 49,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -167,6 +183,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 49,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -175,6 +192,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 56,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -183,6 +201,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 70,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -191,6 +210,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 9,
       daysToHarvest: 49,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -199,6 +219,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 9,
       daysToHarvest: 105,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -207,6 +228,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 6,
       daysToHarvest: 98,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -215,6 +237,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 112,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -223,6 +246,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 98,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -231,6 +255,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 49,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -239,6 +264,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 16,
       daysToHarvest: 28,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -247,6 +273,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 9,
       daysToHarvest: 56,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -255,6 +282,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 8,
       daysToHarvest: 70,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -263,6 +291,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 115,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -271,6 +300,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 2,
       daysToHarvest: 98,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -279,6 +309,7 @@ export class Main2Component implements OnInit {
       season: 'spring, fall',
       perFoot: 2,
       daysToHarvest: 56,
+      datePlanted: this.currentDate,
       zone: '7b',
       col: 0
     },
@@ -442,6 +473,7 @@ export class Main2Component implements OnInit {
     plant.season = this.fullPlant[plantToAdd].season;
     plant.perFoot = this.fullPlant[plantToAdd].perFoot;
     plant.daysToHarvest = this.fullPlant[plantToAdd].daysToHarvest;
+    plant.datePlanted = this.fullPlant[plantToAdd].datePlanted;
     plant.zone = this.fullPlant[plantToAdd].plant;
     plant.col = 0;
 
@@ -586,6 +618,7 @@ export class Main2Component implements OnInit {
         item.zone, 
         item.perFoot, 
         item.daysToHarvest,
+        this.currentDate,
         this.xGardenMax, 
         this.yGardenMax, 
         item.col)
@@ -695,6 +728,8 @@ export class Main2Component implements OnInit {
     
     this.totalPossiblePlants();
     this.calculateProgress();
+
+    this.currentDate = new Date();
 
     
   }

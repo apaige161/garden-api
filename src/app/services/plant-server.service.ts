@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PlantServerService {
 
+  today = new Date();
+
   plants: Observable<SinglePlant[]>;
 
   //inject http 
@@ -23,6 +25,7 @@ export class PlantServerService {
     zone: "",
     perFoot: 0,
     daysToHarvest: 0,
+    datePlanted: this.today,
     xGarden: 0,
     yGarden: 0,
     col: 0,
@@ -36,6 +39,7 @@ export class PlantServerService {
     zone: "",
     perFoot: 0,
     daysToHarvest: 0,
+    datePlanted: this.today,
     xGarden: 0,
     yGarden: 0,
     col: 0,
@@ -53,6 +57,7 @@ export class PlantServerService {
     return this.http.get<SinglePlant[]>(this.url + "/onlyUserGarden");
   }
 
+  
 
   /**
    * 
@@ -67,6 +72,7 @@ export class PlantServerService {
     plantZone: string,
     perFoot: number,
     daysToHarvest: number,
+    datePlanted: any,
     xGarden: number,
     yGarden: number,
     col: number) {
@@ -77,6 +83,7 @@ export class PlantServerService {
       this.postData.zone = plantZone;
       this.postData.perFoot = perFoot;
       this.postData.daysToHarvest = daysToHarvest;
+      this.postData.datePlanted = datePlanted;
       this.postData.xGarden = xGarden;
       this.postData.yGarden = yGarden;
       this.postData.col = col;
