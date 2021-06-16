@@ -165,6 +165,9 @@ export class GardensComponent implements OnInit {
       //set the object potential harvest date
       plant.dateToHarvest = harvestOnDate;
 
+
+
+
       //calculate days left til harvest
       //days til harvest - may be null
 
@@ -177,17 +180,16 @@ export class GardensComponent implements OnInit {
       } else {
         //calculate how many days are left until dateToHarvest
 
-        daysLeft = Math.round(plantedOn - harvestOnDate / oneDay);
+        daysLeft = Math.round( ( +plantedOn ) - ( +harvestOnDate ) / oneDay);
         //console.log(daysLeft + " --days left for-- " + plant.plant)
       }
 
+      /***************************************
+       * This is not the right calculation
+       **************************************/
       //calculate % out of 100 based on how many days are left to harvest
       this.value = Math.round((harvestIn / daysLeft) * 10)
-
-
-
-
-
+      console.log(this.value);
 
     });
   }
