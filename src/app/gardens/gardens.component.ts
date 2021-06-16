@@ -14,8 +14,10 @@ import { Component, OnInit } from '@angular/core';
 import { PlantServerService } from 'src/app/services/plant-server.service';
 import { SinglePlant } from 'src/app/models/single-plant';
 
-import {ThemePalette} from '@angular/material/core';
-import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+//import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 
 @Component({
   selector: 'app-gardens',
@@ -23,6 +25,7 @@ import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
   styleUrls: ['./gardens.component.css']
 })
 export class GardensComponent implements OnInit {
+
 
   constructor(private plantService: PlantServerService, private http: HttpClient) { }
 
@@ -113,7 +116,6 @@ export class GardensComponent implements OnInit {
 
     //convert back to an array
     this.singleGardenNames = [...uniqueSet];
-    console.log('removed duplicate garden names')
   }
 
 
@@ -124,25 +126,71 @@ export class GardensComponent implements OnInit {
   **************************************************************************************/
 
   //spinner logic
-
-
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'determinate';
-  value = 0;
+  value = 25; //out of 100
   diameter = 50;
 
   //TODO: get date planted
-  datePicker = Date.now().toString();
 
-  getDateLog() {
-    console.log(this.datePicker)
+  //run for each loop over selected garden items to capture date planted
+
+  //TODO: send updated values to DB or do this logic somewhere else
+    //--only do this for the selected garden to improve performance
+    //does not take long with a short number of gardens but will not scale
+  getEachDatePlanted() {
+
+    this.plants.forEach(plant => {
+
+      let plantedOn: Date;
+      let harvestIn: number;
+      let harvestOnDate: Date;
+      let daysLeft: number;
+
+      const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+
+      //parse JSON date into date -- JSON returns a string
+      plantedOn = new Date( plant.datePlanted );
+      harvestIn = plant.daysToHarvest;
+
+      
+      
+
+      //plantedOn + harvestIn = harvestOnDate
+      //add number of days to planting date
+      harvestOnDate = new Date();
+      //add days to harvest
+      harvestOnDate.setDate(plantedOn.getDate() + harvestIn);
+
+      //set the object potential harvest date
+      plant.dateToHarvest = harvestOnDate;
+
+      //calculate days left til harvest
+      //days til harvest - may be null
+
+      //execute this only if it has already been set
+      //TODO: do this pattern above too
+      if(plant.daysLeftToHarvest) {
+        daysLeft = plant.daysLeftToHarvest;
+      
+        //execute this if the value has not been set yet
+      } else {
+        //calculate how many days are left until dateToHarvest
+
+        daysLeft = Math.round(plantedOn - harvestOnDate / oneDay);
+        //console.log(daysLeft + " --days left for-- " + plant.plant)
+      }
+
+      //calculate % out of 100 based on how many days are left to harvest
+      this.value = Math.round((harvestIn / daysLeft) * 10)
+
+
+
+
+
+
+    });
   }
-
-
-  //add days to harvest
-
-
-  //return the date plant should be ready
 
 
   //calculate how many days are left and return a whole number to pass to spinner
@@ -163,7 +211,6 @@ export class GardensComponent implements OnInit {
     ngOnInit() {
 
       this.allPlantsinit();
-      
       
     }
 

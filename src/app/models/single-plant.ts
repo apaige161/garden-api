@@ -9,6 +9,12 @@ export interface SinglePlant {
     zone: string;
     perFoot: number;
     daysToHarvest: number;
+    datePlanted: Date;
+    
+    //add to server side as required: false
+    dateToHarvest: Date;
+    daysLeftToHarvest: number;
+
     xGarden: number;
     yGarden: number;
     col: number;
