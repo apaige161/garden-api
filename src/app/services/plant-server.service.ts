@@ -26,6 +26,9 @@ export class PlantServerService {
     perFoot: 0,
     daysToHarvest: 0,
     datePlanted: this.today,
+    dateToHarvest: null,
+    daysLeftToHarvest: null,
+    progressToHarvest: null,
     xGarden: 0,
     yGarden: 0,
     col: 0,
@@ -73,6 +76,9 @@ export class PlantServerService {
     perFoot: number,
     daysToHarvest: number,
     datePlanted: any,
+    dateToHarvest: Date,
+    daysLeftToHarvest: number,
+    progressToHarvest: number,
     xGarden: number,
     yGarden: number,
     col: number) {
@@ -84,6 +90,9 @@ export class PlantServerService {
       this.postData.perFoot = perFoot;
       this.postData.daysToHarvest = daysToHarvest;
       this.postData.datePlanted = datePlanted;
+      this.postData.dateToHarvest = dateToHarvest;
+      this.postData.daysLeftToHarvest = daysLeftToHarvest;
+      this.postData.progressToHarvest = progressToHarvest;
       this.postData.xGarden = xGarden;
       this.postData.yGarden = yGarden;
       this.postData.col = col;

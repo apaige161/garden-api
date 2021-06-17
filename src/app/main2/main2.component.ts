@@ -76,6 +76,9 @@ export class Main2Component implements OnInit {
       perFoot: 16,
       daysToHarvest: 70,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -85,6 +88,9 @@ export class Main2Component implements OnInit {
       perFoot: 16,
       daysToHarvest: 112,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -94,15 +100,21 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 112,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
     {
       plant: 'cucumber',
       season: 'spring, fall',
-      datePlanted: this.currentDate,
       perFoot: 1,
       daysToHarvest: 42,
+      datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -112,6 +124,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 133,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -121,6 +136,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 133,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -130,6 +148,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 133,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -139,6 +160,9 @@ export class Main2Component implements OnInit {
       perFoot: 4,
       daysToHarvest: 133,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -148,6 +172,9 @@ export class Main2Component implements OnInit {
       perFoot: 2,
       daysToHarvest: 84,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -157,6 +184,9 @@ export class Main2Component implements OnInit {
       perFoot: 16,
       daysToHarvest: 133,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -166,6 +196,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 49,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -175,6 +208,9 @@ export class Main2Component implements OnInit {
       perFoot: 16,
       daysToHarvest: 49,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -184,6 +220,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 49,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -193,6 +232,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 56,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -202,6 +244,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 70,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -211,6 +256,9 @@ export class Main2Component implements OnInit {
       perFoot: 9,
       daysToHarvest: 49,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -220,6 +268,9 @@ export class Main2Component implements OnInit {
       perFoot: 9,
       daysToHarvest: 105,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -229,6 +280,9 @@ export class Main2Component implements OnInit {
       perFoot: 6,
       daysToHarvest: 98,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -238,6 +292,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 112,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -247,6 +304,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 98,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -256,6 +316,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 49,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -265,6 +328,9 @@ export class Main2Component implements OnInit {
       perFoot: 16,
       daysToHarvest: 28,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -274,6 +340,9 @@ export class Main2Component implements OnInit {
       perFoot: 9,
       daysToHarvest: 56,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -283,6 +352,9 @@ export class Main2Component implements OnInit {
       perFoot: 8,
       daysToHarvest: 70,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -292,6 +364,9 @@ export class Main2Component implements OnInit {
       perFoot: 1,
       daysToHarvest: 115,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -301,6 +376,9 @@ export class Main2Component implements OnInit {
       perFoot: 2,
       daysToHarvest: 98,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -310,6 +388,9 @@ export class Main2Component implements OnInit {
       perFoot: 2,
       daysToHarvest: 56,
       datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
       zone: '7b',
       col: 0
     },
@@ -395,11 +476,11 @@ export class Main2Component implements OnInit {
 
 
 
-  /****************************
+  /*****************************************************************************************************
    * 
    * progress bar logic
    * 
-   ***************************/
+   ******************************************************************************************************/
   totalPossiblePlants(){
     this.spaceAvailable = this.xGardenMax * this.yGardenMax
   }
@@ -464,7 +545,11 @@ export class Main2Component implements OnInit {
 
   
 
-  /*add plants to columns here*/
+  /***************************************************************************************************
+   * 
+   * add plants to columns here
+   * 
+   **************************************************************************************************/
   addToGarden(plantToAdd: number) {
 
     //create a new object to push 
@@ -473,6 +558,7 @@ export class Main2Component implements OnInit {
     plant.season = this.fullPlant[plantToAdd].season;
     plant.perFoot = this.fullPlant[plantToAdd].perFoot;
     plant.daysToHarvest = this.fullPlant[plantToAdd].daysToHarvest;
+    //needed?, set in plant-server service
     plant.datePlanted = this.fullPlant[plantToAdd].datePlanted;
     plant.zone = this.fullPlant[plantToAdd].plant;
     plant.col = 0;
@@ -593,14 +679,15 @@ export class Main2Component implements OnInit {
   }
 
 
-  
-  //save information to the DB
 
-  /*****************
+  /*************************************************************************************************
    * 
-   * This is where I need to change sending each item to sending as an array
+   * Save data to the DB
    * 
-   ****************/
+   * 
+   * -This is where I need to change sending each item to sending as an array
+   * 
+   ***********************************************************************************************/
   
   postToDb(){
 
@@ -608,6 +695,9 @@ export class Main2Component implements OnInit {
 
     //set owner property for each plant
     const currentOwner = localStorage.getItem("userEmail")
+
+    //run date logic an set appropriate properties
+    this.getEachDatePlanted(sendToDb);
 
     sendToDb.forEach(item => {
       this.plantService.newPlant( 
@@ -619,6 +709,9 @@ export class Main2Component implements OnInit {
         item.perFoot, 
         item.daysToHarvest,
         this.currentDate,
+        item.dateToHarvest,
+        item.daysLeftToHarvest,
+        item.progressToHarvest,
         this.xGardenMax, 
         this.yGardenMax, 
         item.col)
@@ -627,17 +720,20 @@ export class Main2Component implements OnInit {
   }
   
 
-  /**
+  /***********************************************************************************************
    * 
    * get plants
    * 
-  */
+  ***********************************************************************************************/
 
    plants: SinglePlant[];
 
    readonly url = 'http://localhost:3000/api/gardens';
 
-   /****************START sort and filter*******************/
+  /***************************************************************************
+    * 
+    * START sort and filter
+  ***************************************************************************/
 
     Garden = 'full garden';
     SearchGarden = '';
@@ -671,7 +767,11 @@ export class Main2Component implements OnInit {
       }
     }
 
-    /****************END sort and filter*******************/
+  /****************************************************************
+  * 
+  * END sort and filter
+  * 
+  ****************************************************************/
 
    allPlantsinit() {
     this.plantService.getPlants()
@@ -699,16 +799,72 @@ export class Main2Component implements OnInit {
     this.allPlantsinit();
   }
 
-  //get each garden name
-  /*
-  getEachGardenNameOnce(){
-    //push all garden names to array
-    this.plants.forEach(item => {
-      this.gardenNames.push(item.garden)
-    });
-    console.log('added all garden names')
-  }
-  */
+
+  /**************************************************************************************
+  * 
+  * harvest progress logic
+  *   --send to db on creation
+  *  
+  **************************************************************************************/
+
+  //run for each loop over selected garden items to capture date planted
+
+  //TODO: send updated values to DB or do this logic somewhere else
+    //--only do this for the selected garden to improve performance
+    //does not take long with a short number of gardens but will not scale
+    getEachDatePlanted(plantArr) {
+
+      const today: Date = new Date();
+  
+      plantArr.forEach(plant => {
+
+        //set dateToHarvest, daysLeftToHarvest, progressToHarvest
+  
+        let plantedOn: Date;
+        let harvestIn: number;
+        let harvestOnDate: Date;
+  
+        const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  
+        //parse JSON date into date -- JSON returns a string
+        plantedOn = new Date( plant.datePlanted );
+  
+        //add number of days to planting date
+        harvestOnDate = new Date();
+        harvestOnDate.setDate(plantedOn.getDate() + plant.daysToHarvest);
+  
+        //set the object harvest date
+        plant.dateToHarvest = harvestOnDate;
+  
+        //get how many days til harvest
+        harvestIn = plant.daysToHarvest;
+  
+        //calculate how many days are left until dateToHarvest
+        const timeDiff = harvestOnDate.getTime() - today.getTime();
+        plant.daysLeftToHarvest = Math.round(timeDiff / oneDay);
+
+
+  
+  
+        //calculate how many days are left and return a whole number to pass to spinner
+        //calculate % out of 100 based on how many days are left to harvest
+        plant.progressToHarvest = Math.round((1 - (plant.daysLeftToHarvest / harvestIn)) * 100);
+  
+      });
+    }
+  
+  
+    
+    
+  
+  
+     
+  
+    /**************************************************************************************
+    * 
+    * END harvest progress spinner logic
+    *  
+    **************************************************************************************/
 
   //remove duplicates
   removeDuplicates(arr){

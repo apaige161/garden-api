@@ -7,6 +7,9 @@ export interface FullPlant {
     perFoot: number,
     daysToHarvest: number;
     datePlanted: Date;
+    dateToHarvest: Date;
+    daysLeftToHarvest: number;
+    progressToHarvest: number;
     zone: string,
     col: number,
 }

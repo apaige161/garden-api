@@ -119,11 +119,7 @@ export class GardensComponent implements OnInit {
   }
 
 
-  /**************************************************************************************
-  * 
-  * harvest progress logic
-  *  
-  **************************************************************************************/
+  
 
   //spinner logic
   color: ThemePalette = 'primary';
@@ -131,63 +127,8 @@ export class GardensComponent implements OnInit {
   value: number = 0; //out of 100
   diameter = 50;
 
-  //run for each loop over selected garden items to capture date planted
-
-  //TODO: send updated values to DB or do this logic somewhere else
-    //--only do this for the selected garden to improve performance
-    //does not take long with a short number of gardens but will not scale
-  getEachDatePlanted() {
-
-    const today: Date = new Date();
-
-    this.plants.forEach(plant => {
-
-      let plantedOn: Date;
-      let harvestIn: number;
-      let harvestOnDate: Date;
-      let daysLeft: number;
-
-      const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-
-      //parse JSON date into date -- JSON returns a string
-      plantedOn = new Date( plant.datePlanted );
-
-      //add number of days to planting date
-      harvestOnDate = new Date();
-      harvestOnDate.setDate(plantedOn.getDate() + plant.daysToHarvest);
-
-      //set the object harvest date
-      plant.dateToHarvest = harvestOnDate;
-
-      //get how many days til harvest
-      harvestIn = plant.daysToHarvest;
-
-      //calculate how many days are left until dateToHarvest
-      const timeDiff = harvestOnDate.getTime() - today.getTime();
-      daysLeft = Math.round(timeDiff / oneDay);
-
-
-      //calculate how many days are left and return a whole number to pass to spinner
-      //calculate % out of 100 based on how many days are left to harvest
-      //console.log(typeof harvestIn);
-      this.value = Math.round((1 - (daysLeft / harvestIn)) * 100);
-      //console.log(this.value);
-      plant.progressToHarvest = this.value;
-    });
-  }
-
 
   
-  
-
-
-   
-
-  /**************************************************************************************
-  * 
-  * END harvest progress spinner logic
-  *  
-  **************************************************************************************/
 
 
 
