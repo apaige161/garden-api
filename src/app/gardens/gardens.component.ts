@@ -162,16 +162,10 @@ export class GardensComponent implements OnInit {
       //get how many days til harvest
       harvestIn = plant.daysToHarvest;
 
-
-      /***************************************
-       * This is not the right calculation
-      **************************************/
-
       //calculate how many days are left until dateToHarvest
       const timeDiff = harvestOnDate.getTime() - today.getTime();
       daysLeft = Math.round(timeDiff / oneDay);
-      
-      console.log(daysLeft + " --days left for-- " + plant.plant)
+
 
       //calculate how many days are left and return a whole number to pass to spinner
       //calculate % out of 100 based on how many days are left to harvest

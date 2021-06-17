@@ -8,7 +8,7 @@
 
 .card {
     display: block;
-    max-height: 10vh;
+    
     padding: 32px;
     border: 1px solid black;
     border-radius: 8px;
@@ -29,7 +29,7 @@
 }
 
 .saved-garden-column {
-    float: left;
+    
     width: 20%;
     align-items: center;
     text-align: center;
