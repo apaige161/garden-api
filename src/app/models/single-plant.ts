@@ -14,6 +14,7 @@ export interface SinglePlant {
     //add to server side as required: false
     dateToHarvest: Date;
     daysLeftToHarvest: number;
+    progressToHarvest: number;
 
     xGarden: number;
     yGarden: number;

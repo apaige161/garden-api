@@ -80,43 +80,10 @@
         <div *ngIf="plant.col == 1" class="card" >
           <div class="row">
 
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <!-- <p>{{plant.owner}}</p> -->
-            <!-- date picker 
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="datePicker">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker [(ngModel)]="datePicker" ngDefaultControl (selectedChanged)="onDate($event)"></mat-datepicker>
-            </mat-form-field>
-            -->
-          </div>
-
-          <div class="row">
             <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
             <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
-
-            
-
-
-            Seed to Harvest: {{plant.daysToHarvest}} days
+            <p>Progress: {{plant.progressToHarvest}}%</p>
             
             <mat-progress-spinner
               class="progress-spinner"
@@ -125,10 +92,8 @@
               [value]="value"
               [diameter]="diameter">
             </mat-progress-spinner>
+
           </div>
-
-
-
         </div>
       </div>
     </div>
@@ -149,7 +114,9 @@
             </div>
 
           <div class="row">
-            Seed to Harvest: {{plant.daysToHarvest}} days
+            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
+            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
+            <p>Progress: {{plant.progressToHarvest}}%</p>
             <mat-progress-spinner
               class="progress-spinner"
               [color]="color"
@@ -182,7 +149,9 @@
             </div>
 
           <div class="row">
-            Seed to Harvest: {{plant.daysToHarvest}} days
+            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
+            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
+            <p>Progress: {{plant.progressToHarvest}}%</p>
             <mat-progress-spinner
               class="progress-spinner"
               [color]="color"
@@ -214,7 +183,9 @@
             </div>
 
           <div class="row">
-            Seed to Harvest: {{plant.daysToHarvest}} days
+            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
+            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
+            <p>Progress: {{plant.progressToHarvest}}%</p>
             <mat-progress-spinner
               class="progress-spinner"
               [color]="color"
@@ -223,12 +194,6 @@
               [diameter] = "diameter">
             </mat-progress-spinner>
           </div>
-
-
-
-
-
-
         </div>
       </div>
     </div>

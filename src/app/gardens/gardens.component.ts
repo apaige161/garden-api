@@ -128,10 +128,8 @@ export class GardensComponent implements OnInit {
   //spinner logic
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'determinate';
-  value = 25; //out of 100
+  value: number = 0; //out of 100
   diameter = 50;
-
-  //TODO: get date planted
 
   //run for each loop over selected garden items to capture date planted
 
@@ -139,6 +137,8 @@ export class GardensComponent implements OnInit {
     //--only do this for the selected garden to improve performance
     //does not take long with a short number of gardens but will not scale
   getEachDatePlanted() {
+
+    const today: Date = new Date();
 
     this.plants.forEach(plant => {
 
@@ -151,51 +151,39 @@ export class GardensComponent implements OnInit {
 
       //parse JSON date into date -- JSON returns a string
       plantedOn = new Date( plant.datePlanted );
-      harvestIn = plant.daysToHarvest;
 
-      
-      
-
-      //plantedOn + harvestIn = harvestOnDate
       //add number of days to planting date
       harvestOnDate = new Date();
-      //add days to harvest
-      harvestOnDate.setDate(plantedOn.getDate() + harvestIn);
+      harvestOnDate.setDate(plantedOn.getDate() + plant.daysToHarvest);
 
-      //set the object potential harvest date
+      //set the object harvest date
       plant.dateToHarvest = harvestOnDate;
 
+      //get how many days til harvest
+      harvestIn = plant.daysToHarvest;
 
-
-
-      //calculate days left til harvest
-      //days til harvest - may be null
-
-      //execute this only if it has already been set
-      //TODO: do this pattern above too
-      if(plant.daysLeftToHarvest) {
-        daysLeft = plant.daysLeftToHarvest;
-      
-        //execute this if the value has not been set yet
-      } else {
-        //calculate how many days are left until dateToHarvest
-
-        daysLeft = Math.round( ( +plantedOn ) - ( +harvestOnDate ) / oneDay);
-        //console.log(daysLeft + " --days left for-- " + plant.plant)
-      }
 
       /***************************************
        * This is not the right calculation
-       **************************************/
-      //calculate % out of 100 based on how many days are left to harvest
-      this.value = Math.round((harvestIn / daysLeft) * 10)
-      console.log(this.value);
+      **************************************/
 
+      //calculate how many days are left until dateToHarvest
+      const timeDiff = harvestOnDate.getTime() - today.getTime();
+      daysLeft = Math.round(timeDiff / oneDay);
+      
+      console.log(daysLeft + " --days left for-- " + plant.plant)
+
+      //calculate how many days are left and return a whole number to pass to spinner
+      //calculate % out of 100 based on how many days are left to harvest
+      //console.log(typeof harvestIn);
+      this.value = Math.round((1 - (daysLeft / harvestIn)) * 100);
+      //console.log(this.value);
+      plant.progressToHarvest = this.value;
     });
   }
 
 
-  //calculate how many days are left and return a whole number to pass to spinner
+  
   
 
 
