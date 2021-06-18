@@ -17,6 +17,9 @@ import { SinglePlant } from 'src/app/models/single-plant';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 //import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
+import { EditPlantComponent } from '../edit-plant/edit-plant.component';
+import { MoreInfoComponent } from '../more-info/more-info.component';
 
 
 @Component({
@@ -27,14 +30,18 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 export class GardensComponent implements OnInit {
 
 
-  constructor(private plantService: PlantServerService, private http: HttpClient) { }
+  constructor(private plantService: PlantServerService, private http: HttpClient, private matDialog: MatDialog) { }
 
 
   plants: SinglePlant[];
 
    readonly url = 'http://localhost:3000/api/gardens';
 
-   /****************START sort and filter*******************/
+  /*************************************************************************************************
+   * 
+  * START sort and filter
+  * 
+  **************************************************************************************************/
 
     Garden = 'full garden';
     SearchGarden = '';
@@ -129,6 +136,38 @@ export class GardensComponent implements OnInit {
 
 
   
+  /*******************************************************************************************
+  * 
+  * Dialog logic
+  * 
+  *******************************************************************************************/
+
+  //get plant data into here
+  openMoreInfo() {
+    let dialogRef = this.matDialog.open(MoreInfoComponent, {
+      data: {
+        number: 10
+      },
+      width: "500px",
+      height: "500px",
+      disableClose: true
+    });
+
+    /*
+    //opens an alert after closed
+    dialogRef.afterClosed().subscribe(
+      result => {
+        alert(result.number);
+      }
+    );
+    */
+  }
+
+  //get plant data into here
+  openEditPlant() {
+    this.matDialog.open(EditPlantComponent);
+  }
+
 
 
 

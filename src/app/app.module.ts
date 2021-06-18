@@ -22,6 +22,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 import { NgxPrintModule } from 'ngx-print';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -39,6 +41,8 @@ import { ErrorComponent } from './error/error.component';
 
 import { AngularMaterialModule } from './angular-material.module'
 import { PostsModule } from './posts/posts.module';
+import { MoreInfoComponent } from './more-info/more-info.component';
+import { EditPlantComponent } from './edit-plant/edit-plant.component';
 
 //services
 //import { PostService } from './services/post.service';
@@ -77,6 +81,7 @@ import { PostsModule } from './posts/posts.module';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    MatDialogModule,
   ],
   providers: 
     [
@@ -85,6 +90,6 @@ import { PostsModule } from './posts/posts.module';
     ], 
   bootstrap: [AppComponent],
   //tells angular this component will get used even though angular cant see it
-  entryComponents: [ErrorComponent],
+  entryComponents: [ErrorComponent, MoreInfoComponent, EditPlantComponent],
 })
 export class AppModule { }

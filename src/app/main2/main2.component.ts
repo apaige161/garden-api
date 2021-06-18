@@ -419,14 +419,14 @@ export class Main2Component implements OnInit {
   //holds the value of each column of plants
   savePlants: [FullPlant[]];
 
-  /********************************
+  /**************************************************************************************************************
   
     add a plant to garden when clicked on
 
     the button in the html gets the index of the item and sends it to be added as an index number
       from plants
   
-  *******************************/
+  *************************************************************************************************************/
 
   
   //save name from user input && store values
