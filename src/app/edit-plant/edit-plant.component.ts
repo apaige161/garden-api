@@ -11,7 +11,7 @@ export class EditPlantComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) 
-    public data: {number: number}, 
+    public data: {_id: string}, 
     private matDialogRef: MatDialogRef<EditPlantComponent>
     ) { }
 

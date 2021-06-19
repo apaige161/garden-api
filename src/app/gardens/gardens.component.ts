@@ -72,7 +72,7 @@ export class GardensComponent implements OnInit {
 
     /***************************************************************************************************
     * 
-    * Get mall plants
+    * Get all plants
     * 
     *****************************************************************************************************/
 
@@ -148,31 +148,22 @@ export class GardensComponent implements OnInit {
 
   //get plant data into here
   //pass ID as a param??
-  openMoreInfo() {
+  openMoreInfo(plantId: string) {
     let dialogRef = this.matDialog.open(MoreInfoComponent, {
       data: {
-        number: 10
+        _id: plantId
       },
       width: "500px",
       height: "500px",
       disableClose: true
     });
-
-    /*
-    //opens an alert after closed
-    dialogRef.afterClosed().subscribe(
-      result => {
-        alert(result.number);
-      }
-    );
-    */
   }
 
   //get plant data into here
-  openEditPlant() {
+  openEditPlant(plantId: string) {
     let dialogRef = this.matDialog.open(EditPlantComponent, {
       data: {
-        number: 10
+        _id: plantId
       },
       width: "500px",
       height: "500px",
@@ -182,13 +173,18 @@ export class GardensComponent implements OnInit {
 
 
 
+  /*******************************************************************************************
+  * 
+  * Lifecycle hooks
+  * 
+  *******************************************************************************************/
 
 
-    ngOnInit() {
+  ngOnInit() {
 
-      this.allPlantsinit();
-      
-    }
-
-
+    this.allPlantsinit();
+    
   }
+
+
+}

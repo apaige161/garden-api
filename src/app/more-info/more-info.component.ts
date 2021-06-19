@@ -1,5 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { PlantServerService } from '../services/plant-server.service';
 
 @Component({
   selector: 'app-more-info',
@@ -8,20 +9,28 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class MoreInfoComponent implements OnInit, OnDestroy {
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data: {number: number}, private matDialogRef: MatDialogRef<MoreInfoComponent> ) { }
+  constructor( 
+    @Inject(MAT_DIALOG_DATA) 
+    public data: {_id: string}, 
+    private matDialogRef: MatDialogRef<MoreInfoComponent>,
+    private plantService: PlantServerService
+  ) { }
 
   closeInfo() {
     this.matDialogRef.close();
   }
 
+  getSinglePlant(id: string) {
+    this.plantService.getOnePlant(id)
+  }
   
 
 
 
 
 
-  ngOnInit(): void {
-    //alert(this.data)
+  ngOnInit() {
+    console.log(this.getSinglePlant(this.data._id));
   }
 
   ngOnDestroy() {

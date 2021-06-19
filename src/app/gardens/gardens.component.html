@@ -82,6 +82,7 @@
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
             <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
             <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
+            <!--<p>id: {{plant._id}}</p>-->
             <p>Progress: {{plant.progressToHarvest}}%</p>
             
             <mat-progress-spinner
@@ -92,8 +93,8 @@
               [diameter]="diameter">
             </mat-progress-spinner>
 
-            <button mat-raised-button color="primary" (click)="openMoreInfo()">More Info</button>
-            <button mat-raised-button color="warn" (click)="openEditPlant()">Edit</button>
+            <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
+            <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
 
           </div>
@@ -128,8 +129,8 @@
               [diameter] = "diameter">
             </mat-progress-spinner>
 
-            <button mat-raised-button color="primary" (click)="openMoreInfo()">More Info</button>
-            <button mat-raised-button color="warn" (click)="openEditPlant()">Edit</button>
+            <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
+            <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
           </div>
 
@@ -167,8 +168,8 @@
               [diameter] = "diameter">
             </mat-progress-spinner>
 
-            <button mat-raised-button color="primary" (click)="openMoreInfo()">More Info</button>
-            <button mat-raised-button color="warn" (click)="openEditPlant()">Edit</button>
+            <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
+            <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
           </div>
 
@@ -205,8 +206,8 @@
               [diameter] = "diameter">
             </mat-progress-spinner>
 
-            <button mat-raised-button color="primary" (click)="openMoreInfo()">More Info</button>
-            <button mat-raised-button color="warn" (click)="openEditPlant()">Edit</button>
+            <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
+            <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
           </div>
         </div>
