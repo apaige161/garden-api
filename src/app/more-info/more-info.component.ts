@@ -1,5 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SinglePlant } from '../models/single-plant';
 import { PlantServerService } from '../services/plant-server.service';
 
 @Component({
@@ -20,8 +21,10 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.matDialogRef.close();
   }
 
+  singlePlant: any;
+
   getSinglePlant(id: string) {
-    this.plantService.getOnePlant(id)
+    return this.plantService.getOnePlant(id)
   }
   
 
@@ -30,7 +33,9 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    console.log(this.getSinglePlant(this.data._id));
+    //TODO: this returns an observable but im not subscribed to it
+    this.singlePlant = this.getSinglePlant(this.data._id);
+    console.log(this.singlePlant);
   }
 
   ngOnDestroy() {
