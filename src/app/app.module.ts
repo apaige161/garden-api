@@ -58,7 +58,8 @@ import { EditPlantComponent } from './edit-plant/edit-plant.component';
     GardensComponent,
     FilterPipe,
     SortPipe,
-    
+    MoreInfoComponent, 
+    EditPlantComponent
   ],
   imports: [
     BrowserModule,

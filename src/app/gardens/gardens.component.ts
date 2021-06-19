@@ -70,7 +70,11 @@ export class GardensComponent implements OnInit {
       }
     }
 
-    /****************END sort and filter*******************/
+    /***************************************************************************************************
+    * 
+    * Get mall plants
+    * 
+    *****************************************************************************************************/
 
    allPlantsinit() {
     this.plantService.getPlants()
@@ -143,6 +147,7 @@ export class GardensComponent implements OnInit {
   *******************************************************************************************/
 
   //get plant data into here
+  //pass ID as a param??
   openMoreInfo() {
     let dialogRef = this.matDialog.open(MoreInfoComponent, {
       data: {
@@ -165,7 +170,14 @@ export class GardensComponent implements OnInit {
 
   //get plant data into here
   openEditPlant() {
-    this.matDialog.open(EditPlantComponent);
+    let dialogRef = this.matDialog.open(EditPlantComponent, {
+      data: {
+        number: 10
+      },
+      width: "500px",
+      height: "500px",
+      disableClose: true
+    });
   }
 
 

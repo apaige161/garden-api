@@ -14,6 +14,8 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.matDialogRef.close();
   }
 
+  
+
 
 
 
