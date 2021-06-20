@@ -81,18 +81,13 @@
           <div class="row">
 
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <p>Progress: {{ plant.progressToHarvest }} %</p>
             <mat-progress-bar
               class="progress-bar-margin"
               mode="determinate" 
               [value]="plant.progressToHarvest">
             </mat-progress-bar>
-            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
-            <p>harvest in: {{ plant.daysLeftToHarvest}} days</p>
-            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
-
+            <p>Progress: {{ plant.progressToHarvest }} %</p>
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
-            <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
           </div>
         </div>
@@ -113,26 +108,15 @@
           <div class="row">
 
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <p>Progress: {{ plant.progressToHarvest }} %</p>
             <mat-progress-bar
               class="progress-bar-margin"
               mode="determinate" 
               [value]="plant.progressToHarvest">
             </mat-progress-bar>
-            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
-            <p>harvest in: {{ plant.daysLeftToHarvest}} days</p>
-            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
-
+            <p>Progress: {{ plant.progressToHarvest }} %</p>
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
-            <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
           </div>
-
-          
-
-
-
-
         </div>
       </div>
     </div>
@@ -151,18 +135,13 @@
           <div class="row">
             
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <p>Progress: {{ plant.progressToHarvest }} %</p>
             <mat-progress-bar
               class="progress-bar-margin"
               mode="determinate" 
               [value]="plant.progressToHarvest">
             </mat-progress-bar>
-            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
-            <p>harvest in: {{ plant.daysLeftToHarvest}} days</p>
-            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
-
+            <p>Progress: {{ plant.progressToHarvest }} %</p>
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
-            <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
           </div>
         </div>
@@ -183,18 +162,13 @@
           <div class="row">
           
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <p>Progress: {{ plant.progressToHarvest }} %</p>
             <mat-progress-bar
               class="progress-bar-margin"
               mode="determinate" 
               [value]="plant.progressToHarvest">
             </mat-progress-bar>
-            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
-            <p>harvest in: {{ plant.daysLeftToHarvest}} days</p>
-            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
-
+            <p>Progress: {{ plant.progressToHarvest }} %</p>
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
-            <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
           </div>
         </div>

@@ -26,6 +26,14 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   getSinglePlant(id: string) {
     return this.plantService.getOnePlant(id)
   }
+
+  editPlant() {
+    console.log("simulate opening date picker, choose new date, save")
+  }
+
+  updatePlant() {
+    console.log("simulated plant patch")
+  }
   
 
   ngOnInit() {
