@@ -2,6 +2,11 @@
 <!-- center this -->
 <div *ngIf="singlePlant">
     <h1>{{ singlePlant.plant | titlecase}}</h1>
+    <mat-progress-bar
+        class="progress-bar-margin"
+        mode="determinate" 
+        [value]="singlePlant.progressToHarvest">
+    </mat-progress-bar>
     <h4>Growing Season: {{ singlePlant.season }}</h4>
     <h4>Date Planted: {{ singlePlant.datePlanted | date : 'shortDate'}} 
         <!-- open date picker -->

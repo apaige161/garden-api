@@ -49,10 +49,10 @@ router.get('/onlyUserGarden', async (req,res) => {
 
 
 /** get specific plant by ID **/
-router.get('/:postId', async (req, res) => {
+router.get('/:plantId', async (req, res) => {
     try{
         //use model and find by ID
-        const post = await Garden.findById(req.params.postId);
+        const post = await Garden.findById(req.params.plantId);
         //give back the specific post
         res.json(post);
     } catch(err) {
@@ -62,23 +62,23 @@ router.get('/:postId', async (req, res) => {
 
 
 /** delete specific plant by ID **/
-router.delete('/:postId', async (req, res) => {
+router.delete('/:plantId', async (req, res) => {
     try{
         //use model and remove by ID targeting the _id param
-        const removedPost = await Garden.deleteOne({_id: req.params.postId});
+        const removedPost = await Garden.deleteOne({_id: req.params.plantId});
         res.json(removedPost);
     } catch(err) {
         res.json({message: err});
     }
 })
 
-/** update specific plant by ID **/
-router.patch('/:postId', async (req, res) => {
+/** update date planted specific plant by ID **/
+router.put('/:plantId', async (req, res) => {
     try{
         //use model and update by ID targeting the _id param
         //the first param of updateOne is to find the object, 
         //second is what to change it to
-        const updatedPost = await Garden.updateOne({_id: req.params.postId}, {$set: {plant: req.body.plant}});
+        const updatedPost = await Garden.updateOne({_id: req.params.plantId}, {$set: {plant: req.body.datePlanted}});
         res.json(updatedPost);
     } catch(err) {
         res.json({message: err});

@@ -87,6 +87,9 @@
               [value]="plant.progressToHarvest">
             </mat-progress-bar>
             <p>Progress: {{ plant.progressToHarvest }} %</p>
+            <p>seed to harvest {{ plant.daysToHarvest }}</p>
+            <p>days left {{ plant.daysLeftToHarvest }}</p>
+
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
 
           </div>

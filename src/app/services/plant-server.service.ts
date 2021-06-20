@@ -155,7 +155,6 @@ export class PlantServerService {
 
   /********************************************************************************************
   * 
-  * TODO:
   * Get single plant by Id
   * 
   ********************************************************************************************/
@@ -184,6 +183,11 @@ export class PlantServerService {
   * Patch single plant by Id
   * 
   ********************************************************************************************/
+
+  //get one plant
+  patchOnePlant(id: string) {
+    //return this.http.put()
+  }
 
 }
 
