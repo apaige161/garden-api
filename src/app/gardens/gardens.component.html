@@ -31,6 +31,7 @@
                   <label class="mt-3" for="gardens">Select A Garden</label>
                   <select class="form-control" id="gardens"
                       (click)=" getEachGardenNameOnce()" (click)="removeDuplicates(gardenNames)"
+                      (click)="getEachDatePlanted(plants)"
                       required
                       [(ngModel)]="Garden" name="gardens"
                       #gardens="ngModel"
@@ -80,22 +81,18 @@
           <div class="row">
 
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
-            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
-            <!--<p>id: {{plant._id}}</p>-->
             <p>Progress: {{ plant.progressToHarvest }} %</p>
-            
-            <mat-progress-spinner
-              class="progress-spinner"
-              [color]="color"
-              [mode]="mode"
-              [value]="plant.progressToHarvest"
-              [diameter]="diameter">
-            </mat-progress-spinner>
+            <mat-progress-bar
+              class="progress-bar-margin"
+              mode="determinate" 
+              [value]="plant.progressToHarvest">
+            </mat-progress-bar>
+            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
+            <p>harvest in: {{ plant.daysLeftToHarvest}} days</p>
+            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
 
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
             <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
-
 
           </div>
         </div>
@@ -114,25 +111,24 @@
       <div >
         <div *ngIf="plant.col == 2" class="card">
           <div class="row">
-              <h4 >{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            </div>
 
-          <div class="row">
-            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
-            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
+            <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
             <p>Progress: {{ plant.progressToHarvest }} %</p>
-            <mat-progress-spinner
-              class="progress-spinner"
-              [color]="color"
-              [mode]="mode"
-              [value]="plant.progressToHarvest"
-              [diameter] = "diameter">
-            </mat-progress-spinner>
+            <mat-progress-bar
+              class="progress-bar-margin"
+              mode="determinate" 
+              [value]="plant.progressToHarvest">
+            </mat-progress-bar>
+            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
+            <p>harvest in: {{ plant.daysLeftToHarvest}} days</p>
+            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
 
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
             <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
           </div>
+
+          
 
 
 
@@ -153,28 +149,22 @@
       <div >
         <div *ngIf="plant.col == 3" class="card">
           <div class="row">
-              <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            </div>
-
-          <div class="row">
-            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
-            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
+            
+            <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
             <p>Progress: {{ plant.progressToHarvest }} %</p>
-            <mat-progress-spinner
-              class="progress-spinner"
-              [color]="color"
-              [mode]="mode"
-              [value]="plant.progressToHarvest"
-              [diameter] = "diameter">
-            </mat-progress-spinner>
+            <mat-progress-bar
+              class="progress-bar-margin"
+              mode="determinate" 
+              [value]="plant.progressToHarvest">
+            </mat-progress-bar>
+            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
+            <p>harvest in: {{ plant.daysLeftToHarvest}} days</p>
+            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
 
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
             <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>
 
           </div>
-
-
-
         </div>
       </div>
     </div>
@@ -191,20 +181,17 @@
       <div >
         <div *ngIf="plant.col == 4" class="card">
           <div class="row">
-              <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            </div>
-
-          <div class="row">
-            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
-            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
+          
+            <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
             <p>Progress: {{ plant.progressToHarvest }} %</p>
-            <mat-progress-spinner
-              class="progress-spinner"
-              [color]="color"
-              [mode]="mode"
-              [value]="plant.progressToHarvest"
-              [diameter] = "diameter">
-            </mat-progress-spinner>
+            <mat-progress-bar
+              class="progress-bar-margin"
+              mode="determinate" 
+              [value]="plant.progressToHarvest">
+            </mat-progress-bar>
+            <p>planted on: {{ plant.datePlanted | date : 'shortDate' }}</p>
+            <p>harvest in: {{ plant.daysLeftToHarvest}} days</p>
+            <p>harvest on: {{ plant.dateToHarvest | date : 'shortDate'  }}</p>
 
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
             <button mat-raised-button color="warn" (click)="openEditPlant(plant._id)">Edit</button>

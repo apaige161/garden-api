@@ -697,7 +697,7 @@ export class Main2Component implements OnInit {
     const currentOwner = localStorage.getItem("userEmail")
 
     //run date logic an set appropriate properties
-    this.getEachDatePlanted(sendToDb);
+    this.setEachDatePlanted(sendToDb);
 
     sendToDb.forEach(item => {
       this.plantService.newPlant( 
@@ -726,46 +726,46 @@ export class Main2Component implements OnInit {
    * 
   ***********************************************************************************************/
 
-   plants: SinglePlant[];
+  plants: SinglePlant[];
 
-   readonly url = 'http://localhost:3000/api/gardens';
+  readonly url = 'http://localhost:3000/api/gardens';
 
   /***************************************************************************
     * 
     * START sort and filter
   ***************************************************************************/
 
-    Garden = 'full garden';
-    SearchGarden = '';
-    gardenNames = [];
-    singleGardenNames = [];
+  Garden = 'full garden';
+  SearchGarden = '';
+  gardenNames = [];
+  singleGardenNames = [];
 
-    SortByParam = 'garden';
-    SortDirection = 'asc'
+  SortByParam = 'garden';
+  SortDirection = 'asc'
 
-    
+  
 
 
-    
-    //filter button logic
-    onGardenFilter() {
-      this.SearchGarden = this.Garden;
+  
+  //filter button logic
+  onGardenFilter() {
+    this.SearchGarden = this.Garden;
+  }
+  
+
+  onGardenFilterClear() {
+    this.SearchGarden = '';
+    this.Garden = '';
+  }
+
+  //sort direction toggle
+  onSortDirection() {
+    if (this.SortDirection === 'desc') {
+      this.SortDirection = 'asc';
+    } else {
+      this.SortDirection = 'desc';
     }
-    
-
-    onGardenFilterClear() {
-      this.SearchGarden = '';
-      this.Garden = '';
-    }
-
-    //sort direction toggle
-    onSortDirection() {
-      if (this.SortDirection === 'desc') {
-        this.SortDirection = 'asc';
-      } else {
-        this.SortDirection = 'desc';
-      }
-    }
+  }
 
   /****************************************************************
   * 
@@ -773,7 +773,7 @@ export class Main2Component implements OnInit {
   * 
   ****************************************************************/
 
-   allPlantsinit() {
+  allPlantsinit() {
     this.plantService.getPlants()
       .subscribe(data => this.plants = data);
   }
@@ -803,7 +803,8 @@ export class Main2Component implements OnInit {
   /**************************************************************************************
   * 
   * harvest progress logic
-  *   --send to db on creation
+  *   --break up function
+  *     --move the progress calculations to gardens component
   *  
   **************************************************************************************/
 
@@ -812,7 +813,7 @@ export class Main2Component implements OnInit {
   //TODO: send updated values to DB or do this logic somewhere else
     //--only do this for the selected garden to improve performance
     //does not take long with a short number of gardens but will not scale
-    getEachDatePlanted(plantArr) {
+    setEachDatePlanted(plantArr) {
 
       const today: Date = new Date();
   
@@ -821,10 +822,8 @@ export class Main2Component implements OnInit {
         //set dateToHarvest, daysLeftToHarvest, progressToHarvest
   
         let plantedOn: Date;
-        let harvestIn: number;
+        
         let harvestOnDate: Date;
-  
-        const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   
         //parse JSON date into date -- JSON returns a string
         plantedOn = new Date( plant.datePlanted );
@@ -836,6 +835,15 @@ export class Main2Component implements OnInit {
         //set the object harvest date
         plant.dateToHarvest = harvestOnDate;
   
+
+
+        /******
+        * break up here??
+        ********/
+
+        let harvestIn: number;
+        const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+
         //get how many days til harvest
         harvestIn = plant.daysToHarvest;
   

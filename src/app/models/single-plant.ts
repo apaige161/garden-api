@@ -8,10 +8,9 @@ export interface SinglePlant {
     season: string;
     zone: string;
     perFoot: number;
+    
     daysToHarvest: number;
     datePlanted: Date;
-    
-    //add to server side as required: false
     dateToHarvest: Date;
     daysLeftToHarvest: number;
     progressToHarvest: number;

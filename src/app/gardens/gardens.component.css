@@ -39,3 +39,7 @@
 .progress-spinner {
     width: 30%;
   }
+
+.progress-bar-margin {
+    margin: 10px 0;
+}

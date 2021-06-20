@@ -1,4 +1,15 @@
-<p>More Info -- plant ID: {{data._id}}</p>
+
+<!-- center this -->
+<div *ngIf="singlePlant">
+    <h1>{{ singlePlant.plant | titlecase}}</h1>
+    <h4>Growing Season: {{ singlePlant.season }}</h4>
+    <h4>Date Planted: {{ singlePlant.datePlanted | date : 'shortDate'}}</h4>
+    <h4>Potential Days Until Harvest: {{ singlePlant.daysLeftToHarvest }}</h4>
+    <h4>Number Per Foot: {{ singlePlant.perFoot }}</h4>
+</div>
+
+
+
 
 <!-- import mat button here, no styles right now-->
 <button mat-raised-button color="warn" (click)="closeInfo()">Close</button>

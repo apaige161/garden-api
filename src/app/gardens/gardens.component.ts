@@ -144,6 +144,45 @@ export class GardensComponent implements OnInit {
   value: number = 0; //out of 100
   diameter = 50;
 
+  /**************************************************************************************
+  * 
+  * harvest progress logic
+  *  
+  **************************************************************************************/
+
+  //run for each loop over selected garden items to get date data
+
+  getEachDatePlanted(plantArr) {
+
+    const today: Date = new Date();
+
+    plantArr.forEach(plant => {
+
+      let plantedOn: Date;
+      let harvestOnDate: Date;
+      const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+
+      //get how many days til harvest
+      //harvestIn = plant.daysToHarvest;
+
+      //parse JSON date into date -- JSON returns a string
+      plantedOn = new Date( plant.datePlanted );
+
+      //add number of days to planting date
+      harvestOnDate = new Date();
+      harvestOnDate.setDate(plantedOn.getDate() + plant.daysToHarvest);
+
+      //calculate how many days are left until dateToHarvest
+      const timeDiff = harvestOnDate.getTime() - today.getTime();
+      plant.daysLeftToHarvest = Math.round(timeDiff / oneDay);
+
+      //calculate how many days are left and return a whole number to pass to spinner
+      //calculate % out of 100 based on how many days are left to harvest
+      plant.progressToHarvest = Math.round((1 - (plant.daysLeftToHarvest / plant.daysToHarvest)) * 100);
+
+    });
+  }
+
 
   
   /*******************************************************************************************

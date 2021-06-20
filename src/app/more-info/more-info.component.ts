@@ -28,14 +28,12 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   }
   
 
-
-
-
-
   ngOnInit() {
-    //TODO: this returns an observable but im not subscribed to it
-    this.singlePlant = this.getSinglePlant(this.data._id);
-    console.log(this.singlePlant);
+
+    this.getSinglePlant(this.data._id).subscribe(plant => {
+      this.singlePlant = plant
+    });
+
   }
 
   ngOnDestroy() {

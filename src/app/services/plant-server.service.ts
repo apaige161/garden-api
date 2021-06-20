@@ -160,9 +160,21 @@ export class PlantServerService {
   * 
   ********************************************************************************************/
 
-  //get all plants
+  //get one plant
   getOnePlant(id: string) {
-    return this.http.get<SinglePlant[]>(this.url+'/'+id);
+    return this.http.get<{
+      _id: number;
+      plant: string,
+      garden: string,
+      season: string,
+      zone: string,
+      perFoot: number,
+      daysToHarvest: number,
+      datePlanted: Date,
+      dateToHarvest: Date,
+      daysLeftToHarvest: number,
+      progressToHarvest: number,
+    }>(this.url+'/'+id);
   }
 
 
