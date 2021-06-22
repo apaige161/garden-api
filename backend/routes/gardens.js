@@ -1,18 +1,21 @@
 
-/***
+/**************************************************************************************************************
+ * 
  * file holds gardens routes
- */
+ * http://localhost:3000/api/gardens
+ * 
+ ***************************************************************************************************************/
 
 const express = require('express');
 const router = express.Router();
 //import model
 const Garden = require('../models/Garden');
 
-/** 
+/*************************************************************************************************************
  * 
  * get all gardens 
  *  
-**/
+****************************************************************************************************************/
 router.get('/', async (req,res) => {
     try{
 
@@ -27,12 +30,12 @@ router.get('/', async (req,res) => {
     }
 });
 
-/**
+/*********************************************************************************************************************
  * 
  * only fetch user's gardens
  * --currently does not work properly
  * 
- */
+ **********************************************************************************************************************/
 router.get('/onlyUserGarden', async (req,res) => {
     try{
 
@@ -48,7 +51,11 @@ router.get('/onlyUserGarden', async (req,res) => {
 });
 
 
-/** get specific plant by ID **/
+/**********************************************************************************************************************
+ * 
+ *  get specific plant by ID
+ * 
+ **********************************************************************************************************************/
 router.get('/:plantId', async (req, res) => {
     try{
         //use model and find by ID
@@ -61,31 +68,45 @@ router.get('/:plantId', async (req, res) => {
 })
 
 
-/** delete specific plant by ID **/
+/***********************************************************************************************************************
+ *  
+ * delete specific plant by ID
+ * 
+ ***********************************************************************************************************************/
 router.delete('/:plantId', async (req, res) => {
     try{
         //use model and remove by ID targeting the _id param
-        const removedPost = await Garden.deleteOne({_id: req.params.plantId});
-        res.json(removedPost);
+        const removedPlant = await Garden.deleteOne({_id: req.params.plantId});
+        res.json(removedPlant);
     } catch(err) {
         res.json({message: err});
     }
 })
 
-/** update date planted specific plant by ID **/
+/*************************************************************************************************************************
+ * 
+ * update date planted specific plant by ID
+ * 
+ *************************************************************************************************************************/
 router.put('/:plantId', async (req, res) => {
     try{
         //use model and update by ID targeting the _id param
         //the first param of updateOne is to find the object, 
         //second is what to change it to
-        const updatedPost = await Garden.updateOne({_id: req.params.plantId}, {$set: {plant: req.body.datePlanted}});
-        res.json(updatedPost);
+        const updatedPlant = await Garden.updateOne(
+            {_id: req.params.plantId}, 
+            {$set: {datePlanted: req.body.datePlanted}});
+        res.json(updatedPlant);
     } catch(err) {
         res.json({message: err});
     }
 })
 
-/** submit plant **/
+/***************************************************************************************************************************
+ * 
+ * submit plant
+ * 
+ ***************************************************************************************************************************/
 router.post('/', async (req,res) => {
 
     //get plant data

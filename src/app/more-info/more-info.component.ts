@@ -12,6 +12,8 @@ import { PlantServerService } from '../services/plant-server.service';
 export class MoreInfoComponent implements OnInit, OnDestroy {
 
   singlePlant: any;
+  newDate: string;
+  hideDatePicker: boolean = true;
 
   constructor( 
     @Inject(MAT_DIALOG_DATA) 
@@ -24,7 +26,9 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.matDialogRef.close();
   }
 
-  
+  toggleShowDatePicker() {
+    this.hideDatePicker = !this.hideDatePicker;
+  }
 
   getSinglePlant(id: string) {
     return this.plantService.getOnePlant(id)
@@ -32,6 +36,20 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
 
   editPlant() {
     console.log("simulate opening date picker, choose new date, save")
+  }
+
+
+  saveNewDate() {
+    this.singlePlant.datePlanted = this.newDate;
+    console.log("New date saved. New date is: " + this.singlePlant.datePlanted);
+    //send updated date -> service -> database to be stored
+    if(this.singlePlant.datePlanted) {
+      this.plantService.updateOnePlant(
+        this.singlePlant._id,
+        this.singlePlant.datePlanted,
+      )
+    }
+    
   }
 
   updatePlant() {

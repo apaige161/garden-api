@@ -8,10 +8,27 @@
         [value]="singlePlant.progressToHarvest">
     </mat-progress-bar>
     <h4>Growing Season: {{ singlePlant.season }}</h4>
-    <h4>Date Planted: {{ singlePlant.datePlanted | date : 'shortDate'}} 
-        <!-- open date picker -->
-        <button mat-raised-button color="primary" (click)="editPlant()">Edit</button>
-    </h4>
+    <h4>Date Planted: {{ singlePlant.datePlanted | date : 'shortDate'}} </h4>
+
+
+    <div *ngIf="hideDatePicker">
+        <h4>
+            
+            <button class="pl-3" mat-raised-button (click)="toggleShowDatePicker()" color="primary" >Edit</button>
+        </h4>
+
+    </div>
+    
+    <div *ngIf="!hideDatePicker">
+        <h4>Update date planted</h4>
+        
+        <mat-form-field>
+            <input matInput [matDatepicker]="myDatePicker" [(ngModel)]="newDate">
+            <mat-datepicker-toggle [for]="myDatePicker" matSuffix ></mat-datepicker-toggle>
+            <mat-datepicker #myDatePicker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
     <h4>Potential Days Until Harvest: {{ singlePlant.daysLeftToHarvest }}</h4>
     <h4>Number Per Foot: {{ singlePlant.perFoot }}</h4>
 </div>
@@ -19,5 +36,5 @@
 
 
 
-<button mat-raised-button color="primary" (click)="updatePlant()" (click)="closeInfo()">Save</button>
-<button mat-raised-button color="warn" (click)="closeInfo()">Close</button>
+
+<button mat-raised-button color="warn" (click)="closeInfo()" (click)="saveNewDate()">Close</button>

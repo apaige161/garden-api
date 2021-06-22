@@ -181,12 +181,26 @@ export class PlantServerService {
   * 
   * TODO:
   * Patch single plant by Id
+  *   --get new date from component and send new garden plant with that new value to backend
+  *   --create a new object with same same id to replace the item
   * 
   ********************************************************************************************/
 
   //get one plant
-  patchOnePlant(id: string) {
-    //return this.http.put()
+  updateOnePlant( id: string, datePlanted: Date) {
+  
+    let postData: any;
+
+    //create object to send
+    postData = {
+      id: id,
+      datePlanted: datePlanted,
+    }
+
+    //send to backend
+    this.http.put(this.url + "/" + id, postData).subscribe( result => {
+      console.log(result);
+    })
   }
 
 }

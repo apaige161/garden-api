@@ -2,7 +2,7 @@
 //interface to communicate with DB
 
 export interface SinglePlant {
-    _id: number;
+    _id: string;
     plant: string;
     garden: string;
     season: string;

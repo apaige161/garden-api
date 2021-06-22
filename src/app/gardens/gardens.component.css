@@ -56,3 +56,15 @@
 ::ng-deep .mat-progress-bar {
     border-radius: 2px;
 }
+
+.garden-info {
+    margin: 10px 0;
+}
+
+.clear-options {
+    margin: 10px 0;
+}
+
+.margin-left{
+    margin-left: 10px;
+}

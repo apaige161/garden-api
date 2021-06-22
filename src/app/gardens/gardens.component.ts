@@ -15,8 +15,7 @@ import { PlantServerService } from 'src/app/services/plant-server.service';
 import { SinglePlant } from 'src/app/models/single-plant';
 
 import { ThemePalette } from '@angular/material/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
-//import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 import { MatDialog } from '@angular/material/dialog';
 import { EditPlantComponent } from '../edit-plant/edit-plant.component';
 import { MoreInfoComponent } from '../more-info/more-info.component';
@@ -43,7 +42,7 @@ export class GardensComponent implements OnInit {
   * 
   **************************************************************************************************/
 
-    Garden = 'full garden';
+    Garden;
     SearchGarden = '';
     gardenNames = [];
     singleGardenNames = [];
@@ -87,9 +86,19 @@ export class GardensComponent implements OnInit {
   * Delete plants logic
   * 
   **************************************************************************************************************************/
-  //TODO:
-  deleteGarden() {
-    
+
+  deleteGarden(gardenToDelete) {
+
+    //loop over each plant and if the plant.garden == plant.gardenTodelete then delete
+    this.plants.forEach(plant => {
+      if(plant.garden == gardenToDelete) {
+        return this.http.delete(this.url+'/'+plant._id).subscribe(res => {
+
+        })
+      }
+    })
+    //refresh list
+    this.allPlantsinit();
   }
 
   deletePlant(id:string) {
@@ -134,15 +143,6 @@ export class GardensComponent implements OnInit {
     //convert back to an array
     this.singleGardenNames = [...uniqueSet];
   }
-
-
-  
-
-  //spinner logic
-  color: ThemePalette = 'primary';
-  mode: ProgressSpinnerMode = 'determinate';
-  value: number = 0; //out of 100
-  diameter = 50;
 
   /**************************************************************************************
   * 
