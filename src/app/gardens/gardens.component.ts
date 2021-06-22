@@ -147,6 +147,7 @@ export class GardensComponent implements OnInit {
   /**************************************************************************************
   * 
   * harvest progress logic
+  *   TODO: fix negative values on progressToHarvest
   *  
   **************************************************************************************/
 
@@ -178,7 +179,7 @@ export class GardensComponent implements OnInit {
 
       //calculate how many days are left and return a whole number to pass to spinner
       //calculate % out of 100 based on how many days are left to harvest
-      plant.progressToHarvest = Math.round((1 - (plant.daysLeftToHarvest / plant.daysToHarvest)) * 100);
+      plant.progressToHarvest = Math.round(( 1 - (plant.daysLeftToHarvest / plant.daysToHarvest)) * 100);
 
     });
   }

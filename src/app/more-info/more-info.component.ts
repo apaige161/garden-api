@@ -12,7 +12,7 @@ import { PlantServerService } from '../services/plant-server.service';
 export class MoreInfoComponent implements OnInit, OnDestroy {
 
   singlePlant: any;
-  newDate: string;
+  newDate: Date;
   hideDatePicker: boolean = true;
 
   constructor( 
@@ -34,14 +34,8 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     return this.plantService.getOnePlant(id)
   }
 
-  editPlant() {
-    console.log("simulate opening date picker, choose new date, save")
-  }
-
-
   saveNewDate() {
     this.singlePlant.datePlanted = this.newDate;
-    console.log("New date saved. New date is: " + this.singlePlant.datePlanted);
     //send updated date -> service -> database to be stored
     if(this.singlePlant.datePlanted) {
       this.plantService.updateOnePlant(
@@ -52,13 +46,10 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     
   }
 
-  updatePlant() {
-    console.log("simulated plant patch")
-  }
-
   /**************************************************************************************
   * 
   * harvest progress logic
+  *   TODO: fix negative values on progressToHarvest
   *  
   **************************************************************************************/
 
@@ -90,6 +81,10 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     //calculate % out of 100 based on how many days are left to harvest
     this.singlePlant.progressToHarvest = Math.round((1 - (this.singlePlant.daysLeftToHarvest / this.singlePlant.daysToHarvest)) * 100);
 
+    if(this.singlePlant.progressToHarvest >= 100) {
+      this.singlePlant.progressToHarvest = 100;
+    }
+
   };
 
   //progress bar logic
@@ -113,7 +108,6 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     //pass in data to be transfered
     this.matDialogRef.close(this.data)
 
-    //this.singlePlant.unsubscribe();
   }
 
 }
