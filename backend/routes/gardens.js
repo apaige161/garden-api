@@ -81,7 +81,7 @@ router.delete('/:plantId', async (req, res) => {
     } catch(err) {
         res.json({message: err});
     }
-})
+});
 
 /*************************************************************************************************************************
  * 
@@ -95,12 +95,42 @@ router.put('/:plantId', async (req, res) => {
         //second is what to change it to
         const updatedPlant = await Garden.updateOne(
             {_id: req.params.plantId}, 
-            {$set: {datePlanted: req.body.datePlanted}});
+            {$set: 
+                { 
+                    datePlanted: req.body.datePlanted,
+                    
+                }
+        });
+        console.log(updatedPlant);
         res.json(updatedPlant);
     } catch(err) {
         res.json({message: err});
     }
-})
+});
+
+/*************************************************************************************************************************
+ * 
+ * update harvest date specific plant by ID
+ * 
+ *************************************************************************************************************************/
+ router.put('/changeDateHarvested/:plantId', async (req, res) => {
+    try{
+        //use model and update by ID targeting the _id param
+        //the first param of updateOne is to find the object, 
+        //second is what to change it to
+        const updatedPlant = await Garden.updateOne(
+            {_id: req.params.plantId}, 
+            {$set: 
+                { 
+                    dateToHarvest: req.body.dateToHarvest
+                }
+        });
+        console.log(updatedPlant);
+        res.json(updatedPlant);
+    } catch(err) {
+        res.json({message: err});
+    }
+});
 
 /***************************************************************************************************************************
  * 

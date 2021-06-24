@@ -31,7 +31,7 @@
                   <label class="mt-3" for="gardens">Select A Garden</label>
                   <select class="form-control" id="gardens"
                       (click)="getEachGardenNameOnce()" (click)="removeDuplicates(gardenNames)"
-                      (click)="getEachDatePlanted(plants)"
+
                       required
                       [(ngModel)]="Garden" name="gardens"
                       #gardens="ngModel"
@@ -90,6 +90,10 @@
           <div class="row">
 
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
+            <p>date planted: {{plant.datePlanted | date: 'shortDate'}}</p>
+            <p>days to harvest: {{plant.daysToHarvest}}</p>
+            <p>days left til harvest {{plant.daysLeftToHarvest}}</p>
+            <p>harvest date: {{plant.dateToHarvest | date: 'shortDate'}}</p>
             <mat-progress-bar
               class="progress-bar-margin"
               mode="determinate" 
@@ -122,6 +126,10 @@
           <div class="row">
 
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
+            <p>date planted: {{plant.datePlanted | date: 'shortDate'}}</p>
+            <p>days to harvest: {{plant.daysToHarvest}}</p>
+            <p>days left til harvest {{plant.daysLeftToHarvest}}</p>
+            <p>harvest date: {{plant.dateToHarvest | date: 'shortDate'}}</p>
             <mat-progress-bar
               class="progress-bar-margin"
               mode="determinate" 
@@ -149,6 +157,12 @@
           <div class="row">
             
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
+            <p>date planted: {{plant.datePlanted | date: 'shortDate'}}</p>
+            <p>days to harvest: {{plant.daysToHarvest}}</p>
+            <p>days left til harvest {{plant.daysLeftToHarvest}}</p>
+            <p>harvest date: {{plant.dateToHarvest | date: 'shortDate'}}</p>
+
+            <p>progress: {{plant.progressToHarvest}}</p>
             <mat-progress-bar
               class="progress-bar-margin"
               mode="determinate" 
@@ -176,6 +190,10 @@
           <div class="row">
           
             <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
+            <p>date planted: {{plant.datePlanted | date: 'shortDate'}}</p>
+            <p>days to harvest: {{plant.daysToHarvest}}</p>
+            <p>days left til harvest {{plant.daysLeftToHarvest}}</p>
+            <p>harvest date: {{plant.dateToHarvest | date: 'shortDate'}}</p>
             <mat-progress-bar
               class="progress-bar-margin"
               mode="determinate" 

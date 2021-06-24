@@ -804,7 +804,6 @@ export class Main2Component implements OnInit {
   * 
   * harvest progress logic
   *   --break up function
-  *     --move the progress calculations to gardens component
   *  
   **************************************************************************************/
 
@@ -820,6 +819,8 @@ export class Main2Component implements OnInit {
       plantArr.forEach(plant => {
 
         //set dateToHarvest, daysLeftToHarvest, progressToHarvest
+
+        const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   
         let plantedOn: Date;
         
@@ -841,11 +842,9 @@ export class Main2Component implements OnInit {
         * break up here??
         ********/
 
-        let harvestIn: number;
-        const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+        
 
-        //get how many days til harvest
-        harvestIn = plant.daysToHarvest;
+
   
         //calculate how many days are left until dateToHarvest
         const timeDiff = harvestOnDate.getTime() - today.getTime();
@@ -856,7 +855,10 @@ export class Main2Component implements OnInit {
   
         //calculate how many days are left and return a whole number to pass to spinner
         //calculate % out of 100 based on how many days are left to harvest
-        plant.progressToHarvest = Math.round((1 - (plant.daysLeftToHarvest / harvestIn)) * 100);
+        plant.progressToHarvest = 0;
+
+        console.log("harvest date: " + plant.dateToHarvest);
+        console.log("progress: " + plant.progressToHarvest + " should be 0 here");
   
       });
     }
@@ -894,6 +896,7 @@ export class Main2Component implements OnInit {
     this.calculateProgress();
 
     this.currentDate = new Date();
+    console.log(this.currentDate);
 
     
   }

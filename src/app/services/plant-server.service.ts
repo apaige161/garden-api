@@ -187,18 +187,37 @@ export class PlantServerService {
   ********************************************************************************************/
 
   //get one plant
-  updateOnePlant( id: string, datePlanted: Date) {
+  updateOnePlantPlanted( id: string, datePlanted: Date) {
   
     let postData: any;
 
     //create object to send
     postData = {
       id: id,
-      datePlanted: datePlanted,
+      datePlanted: datePlanted
+      
     }
 
     //send to backend
     this.http.put(this.url + "/" + id, postData).subscribe( result => {
+      console.log(result);
+    })
+  }
+
+  //get one plant
+  updateOnePlantHarvested( id: string,  dateToHarvest: Date ) {
+  
+    let postData: any;
+
+    //create object to send
+    postData = {
+      id: id,
+      dateToHarvest: dateToHarvest
+      
+    }
+
+    //send to backend
+    this.http.put(this.url + "/changeDateHarvested/" + id, postData).subscribe( result => {
       console.log(result);
     })
   }

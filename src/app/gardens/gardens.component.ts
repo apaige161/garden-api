@@ -28,11 +28,18 @@ import { MoreInfoComponent } from '../more-info/more-info.component';
 })
 export class GardensComponent implements OnInit {
 
-
-  constructor(private plantService: PlantServerService, private http: HttpClient, private matDialog: MatDialog) { }
-
-
+  //holds all plants
   plants: SinglePlant[];
+
+  constructor(private plantService: PlantServerService, private http: HttpClient, private matDialog: MatDialog) { 
+
+    this.allPlantsinit();
+
+    
+  }
+
+
+  
 
    readonly url = 'http://localhost:3000/api/gardens';
 
@@ -49,6 +56,9 @@ export class GardensComponent implements OnInit {
 
     SortByParam = 'garden';
     SortDirection = 'asc'
+
+    today: Date = new Date();
+    oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
     //filter button logic
     onGardenFilter() {
@@ -72,12 +82,22 @@ export class GardensComponent implements OnInit {
   /*************************************************************************************************************************
   * 
   * Get all plants
+  *   -set data
   * 
   **************************************************************************************************************************/
 
    allPlantsinit() {
     this.plantService.getPlants()
-      .subscribe(data => this.plants = data);
+      .subscribe(data =>  {
+        //set data
+        this.plants = data
+
+        console.log(this.plants);
+
+        this.getEachDatePlanted(this.plants);
+
+      })
+      
   }
 
 
@@ -159,22 +179,22 @@ export class GardensComponent implements OnInit {
 
     plantArr.forEach(plant => {
 
-      let plantedOn: Date;
-      let harvestOnDate: Date;
+      console.log(typeof plant.dateToHarvest);
+
       const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
       //get how many days til harvest
       //harvestIn = plant.daysToHarvest;
 
       //parse JSON date into date -- JSON returns a string
-      plantedOn = new Date( plant.datePlanted );
+      plant.datePlanted = new Date( plant.datePlanted );
 
       //add number of days to planting date
-      harvestOnDate = new Date();
-      harvestOnDate.setDate(plantedOn.getDate() + plant.daysToHarvest);
+      plant.dateToHarvest = new Date();
+      plant.dateToHarvest.setDate(plant.datePlanted.getDate() + plant.daysToHarvest);
 
       //calculate how many days are left until dateToHarvest
-      const timeDiff = harvestOnDate.getTime() - today.getTime();
+      const timeDiff = Math.abs( today.getTime() - plant.dateToHarvest.getTime() );
       plant.daysLeftToHarvest = Math.round(timeDiff / oneDay);
 
       //calculate how many days are left and return a whole number to pass to spinner
@@ -228,7 +248,8 @@ export class GardensComponent implements OnInit {
 
   ngOnInit() {
 
-    this.allPlantsinit();
+    //this.allPlantsinit();
+    
     
   }
 
