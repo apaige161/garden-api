@@ -28,8 +28,8 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   //pagination
   totalPosts = 0;
-  postsPerPage = 2;
-  pageSizeOptions = [1, 2, 3, 5];
+  postsPerPage = 5;
+  pageSizeOptions = [5, 10, 15, 20];
   currentPage = 1;
 
   constructor(public postService: PostService, private authService: AuthService) {}

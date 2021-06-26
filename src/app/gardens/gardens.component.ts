@@ -202,6 +202,12 @@ export class GardensComponent implements OnInit {
         plant.daysLeftToHarvest = 0;
       }
 
+      if(plant.plant == "empty") {
+        plant.progressToHarvest = 0;
+        plant.dateToHarvest = today;
+        plant.daysLeftToHarvest = 0;
+      }
+
     });
   }
 

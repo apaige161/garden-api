@@ -72,6 +72,18 @@ export class Main2Component implements OnInit {
   //TODO: move these objects to the api 
   fullPlant: FullPlant[] = [
     {
+      plant: 'empty',
+      season: 'spring, summer, fall',
+      perFoot: 1,
+      daysToHarvest: 0,
+      datePlanted: this.currentDate,
+      dateToHarvest: null,
+      daysLeftToHarvest: null,
+      progressToHarvest: null,
+      zone: '7b',
+      col: 0
+    },
+    {
       plant: 'carrot',
       season: 'spring, fall',
       perFoot: 16,
