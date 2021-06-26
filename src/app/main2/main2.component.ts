@@ -4,6 +4,7 @@ import { SinglePlant } from '../models/single-plant';
 import { FullPlant } from '../models/full-plant';
 import { PlantServerService } from '../services/plant-server.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { addDays, differenceInDays, startOfDay   } from 'date-fns'
 
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { DatePipe } from '@angular/common';
@@ -791,8 +792,7 @@ export class Main2Component implements OnInit {
 
     //loop over each id and send the request
     this.plants.forEach(data => {
-      return this.http.delete(this.url+'/'+data._id).subscribe(res => {
-        console.log(data._id+" deleted")
+      this.plantService.deleteOne(this.url+'/'+data._id).subscribe(res => {
       })
     })
     //refresh list
@@ -803,13 +803,12 @@ export class Main2Component implements OnInit {
   /**************************************************************************************
   * 
   * harvest progress logic
-  *   --break up function
   *  
   **************************************************************************************/
 
   //run for each loop over selected garden items to capture date planted
 
-  //TODO: send updated values to DB or do this logic somewhere else
+  //TODO: send updated values to DB or do this logic somewhere else --done
     //--only do this for the selected garden to improve performance
     //does not take long with a short number of gardens but will not scale
     setEachDatePlanted(plantArr) {
@@ -817,48 +816,22 @@ export class Main2Component implements OnInit {
       const today: Date = new Date();
   
       plantArr.forEach(plant => {
-
-        //set dateToHarvest, daysLeftToHarvest, progressToHarvest
-
-        const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  
-        let plantedOn: Date;
-        
-        let harvestOnDate: Date;
   
         //parse JSON date into date -- JSON returns a string
-        plantedOn = new Date( plant.datePlanted );
+        plant.datePlanted = startOfDay(today);
   
         //add number of days to planting date
-        harvestOnDate = new Date();
-        harvestOnDate.setDate(plantedOn.getDate() + plant.daysToHarvest);
-  
-        //set the object harvest date
-        plant.dateToHarvest = harvestOnDate;
-  
-
-
-        /******
-        * break up here??
-        ********/
-
-        
-
-
+        plant.dateToHarvest = new Date();
+        plant.dateToHarvest = addDays(plant.datePlanted, plant.daysToHarvest);
   
         //calculate how many days are left until dateToHarvest
-        const timeDiff = harvestOnDate.getTime() - today.getTime();
-        plant.daysLeftToHarvest = Math.round(timeDiff / oneDay);
+        //how many days are between today and expected harvest date
+        plant.daysLeftToHarvest = differenceInDays(plant.dateToHarvest.getTime(), today.getTime())
 
-
-  
-  
         //calculate how many days are left and return a whole number to pass to spinner
         //calculate % out of 100 based on how many days are left to harvest
         plant.progressToHarvest = 0;
 
-        console.log("harvest date: " + plant.dateToHarvest);
-        console.log("progress: " + plant.progressToHarvest + " should be 0 here");
   
       });
     }

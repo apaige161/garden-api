@@ -44,6 +44,8 @@ import { PostsModule } from './posts/posts.module';
 import { MoreInfoComponent } from './more-info/more-info.component';
 import { EditPlantComponent } from './edit-plant/edit-plant.component';
 
+import { DateFnsModule } from 'ngx-date-fns';
+
 //services
 //import { PostService } from './services/post.service';
 
@@ -83,6 +85,7 @@ import { EditPlantComponent } from './edit-plant/edit-plant.component';
     MatInputModule,
     MatNativeDateModule,
     MatDialogModule,
+    DateFnsModule.forRoot(),
   ],
   providers: 
     [

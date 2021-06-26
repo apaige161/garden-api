@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { SinglePlant } from '../models/single-plant';
 import { PlantServerService } from '../services/plant-server.service';
+import { addDays, differenceInDays  } from 'date-fns'
 
 @Component({
   selector: 'app-more-info',
@@ -79,27 +80,27 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
 
     const today: Date = new Date();
 
-    console.log(typeof plant.dateToHarvest);
-
-    const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-
-    //get how many days til harvest
-    //harvestIn = plant.daysToHarvest;
-
     //parse JSON date into date -- JSON returns a string
     plant.datePlanted = new Date( plant.datePlanted );
 
     //add number of days to planting date
     plant.dateToHarvest = new Date();
-    plant.dateToHarvest.setDate(plant.datePlanted.getDate() + plant.daysToHarvest);
+    plant.dateToHarvest = addDays(plant.datePlanted, plant.daysToHarvest);
 
     //calculate how many days are left until dateToHarvest
-    const timeDiff = Math.abs( today.getTime() - plant.dateToHarvest.getTime() );
-    plant.daysLeftToHarvest = Math.round(timeDiff / oneDay);
+    //how many days are between today and expected harvest date
+    plant.daysLeftToHarvest = differenceInDays(plant.dateToHarvest.getTime(), today.getTime())
 
     //calculate how many days are left and return a whole number to pass to spinner
     //calculate % out of 100 based on how many days are left to harvest
     plant.progressToHarvest = Math.round(( 1 - (plant.daysLeftToHarvest / plant.daysToHarvest)) * 100);
+
+    if(plant.daysLeftToHarvest <= 0) {
+      plant.progressToHarvest = 100;
+      plant.dateToHarvest = today;
+      plant.daysLeftToHarvest = 0;
+    }
+
 
   }
 
@@ -112,11 +113,11 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.plantSubscription = this.getSinglePlant(this.data._id).subscribe(plant => {
-      console.log(plant);
+      //console.log(plant);
       this.singlePlant = plant
       //console.log(this.singlePlant);
       this.getPlantProgress(this.singlePlant);
-      //console.log(this.singlePlant);
+      console.log(this.singlePlant);
     });
 
     

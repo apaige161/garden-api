@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlantServerService } from 'src/app/services/plant-server.service';
 import { SinglePlant } from 'src/app/models/single-plant';
 
-import { ThemePalette } from '@angular/material/core';
+import { addDays, differenceInDays  } from 'date-fns'
 
 import { MatDialog } from '@angular/material/dialog';
 import { EditPlantComponent } from '../edit-plant/edit-plant.component';
@@ -92,7 +92,7 @@ export class GardensComponent implements OnInit {
         //set data
         this.plants = data
 
-        console.log(this.plants);
+        //console.log(this.plants);
 
         this.getEachDatePlanted(this.plants);
 
@@ -179,27 +179,26 @@ export class GardensComponent implements OnInit {
 
     plantArr.forEach(plant => {
 
-      console.log(typeof plant.dateToHarvest);
-
-      const oneDay: number = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-
-      //get how many days til harvest
-      //harvestIn = plant.daysToHarvest;
-
       //parse JSON date into date -- JSON returns a string
       plant.datePlanted = new Date( plant.datePlanted );
 
       //add number of days to planting date
       plant.dateToHarvest = new Date();
-      plant.dateToHarvest.setDate(plant.datePlanted.getDate() + plant.daysToHarvest);
+      plant.dateToHarvest = addDays(plant.datePlanted, plant.daysToHarvest);
 
       //calculate how many days are left until dateToHarvest
-      const timeDiff = Math.abs( today.getTime() - plant.dateToHarvest.getTime() );
-      plant.daysLeftToHarvest = Math.round(timeDiff / oneDay);
+      //how many days are between today and expected harvest date
+      plant.daysLeftToHarvest = differenceInDays(plant.dateToHarvest.getTime(), today.getTime())
 
       //calculate how many days are left and return a whole number to pass to spinner
       //calculate % out of 100 based on how many days are left to harvest
       plant.progressToHarvest = Math.round(( 1 - (plant.daysLeftToHarvest / plant.daysToHarvest)) * 100);
+
+      if(plant.daysLeftToHarvest <= 0) {
+        plant.progressToHarvest = 100;
+        plant.dateToHarvest = today;
+        plant.daysLeftToHarvest = 0;
+      }
 
     });
   }
