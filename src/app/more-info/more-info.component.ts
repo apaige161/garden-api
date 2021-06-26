@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { SinglePlant } from '../models/single-plant';
 import { PlantServerService } from '../services/plant-server.service';
-import { addDays, differenceInDays  } from 'date-fns'
+import { addDays, differenceInDays, startOfDay  } from 'date-fns'
 
 @Component({
   selector: 'app-more-info',
@@ -82,9 +82,11 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
 
     //parse JSON date into date -- JSON returns a string
     plant.datePlanted = new Date( plant.datePlanted );
+    plant.datePlanted = startOfDay(plant.datePlanted);
 
     //add number of days to planting date
     plant.dateToHarvest = new Date();
+    plant.dateToHarvest = startOfDay(plant.dateToHarvest);
     plant.dateToHarvest = addDays(plant.datePlanted, plant.daysToHarvest);
 
     //calculate how many days are left until dateToHarvest

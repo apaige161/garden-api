@@ -7,7 +7,8 @@
         mode="determinate" 
         [value]="singlePlant.progressToHarvest">
     </mat-progress-bar>
-    <h4>Growing Season: {{ singlePlant.season }}</h4>
+    <h4>Planting Season: {{ singlePlant.season }}</h4>
+    <h4>Number Per Foot: {{ singlePlant.perFoot }}</h4>
     <h4>Date Planted: {{ singlePlant.datePlanted | date : 'shortDate'}} </h4>
 
 
@@ -28,13 +29,11 @@
             <mat-datepicker #myDatePicker></mat-datepicker>
         </mat-form-field>
     </div>
-    <h4>progress: {{singlePlant.progressToHarvest}}</h4>
-    <h4>days left: {{singlePlant.daysLeftToHarvest}}</h4>
-    <h4>original days to harvest (from seed): {{singlePlant.daysToHarvest}}</h4>
-    <h4>harvest on this date: {{ singlePlant.dateToHarvest | date: 'shortDate'}}</h4>
 
-    <h4>Potential Days Until Harvest: {{ singlePlant.daysLeftToHarvest }}</h4>
-    <h4>Number Per Foot: {{ singlePlant.perFoot }}</h4>
+    <h4>Days left until harvest: {{singlePlant.daysLeftToHarvest}}</h4>
+    <h4>Days to harvest (from seed): {{singlePlant.daysToHarvest}}</h4>
+    <h4>Harvest on this date: {{ singlePlant.dateToHarvest | date: 'shortDate'}}</h4>
+    
 </div>
 
 

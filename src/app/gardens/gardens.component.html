@@ -89,21 +89,27 @@
         <div *ngIf="plant.col == 1" class="card" >
           <div class="row">
 
-            <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <p>date planted: {{plant.datePlanted | date: 'shortDate'}}</p>
-            <p>days to harvest: {{plant.daysToHarvest}}</p>
-            <p>days left til harvest {{plant.daysLeftToHarvest}}</p>
-            <p>harvest date: {{plant.dateToHarvest | date: 'shortDate'}}</p>
-            <mat-progress-bar
-              class="progress-bar-margin"
-              mode="determinate" 
-              [value]="plant.progressToHarvest">
-            </mat-progress-bar>
-            <p>Progress: {{ plant.progressToHarvest }} %</p>
-            <!--
-            <p>seed to harvest {{ plant.daysToHarvest }}</p>
-            <p>days left {{ plant.daysLeftToHarvest }}</p>
-            -->
+            <h4>{{plant.plant | titlecase}}</h4>
+
+            <!-- displays green bar if ready to harvest -->
+            <div *ngIf="plant.progressToHarvest == 100">
+              <mat-progress-bar
+                class="progress-bar-margin"
+                mode="determinate" 
+                [value]="plant.progressToHarvest">
+              </mat-progress-bar>
+              <p>Progress: {{ plant.progressToHarvest }} %</p>
+            </div>
+
+            <div *ngIf="plant.progressToHarvest != 100">
+              <mat-progress-bar
+                class="progress-bar-margin"
+                [color]="color"
+                mode="determinate" 
+                [value]="plant.progressToHarvest">
+              </mat-progress-bar>
+              <p>Progress: {{ plant.progressToHarvest }} %</p>
+            </div>
 
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
 
@@ -125,17 +131,27 @@
         <div *ngIf="plant.col == 2" class="card">
           <div class="row">
 
-            <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <p>date planted: {{plant.datePlanted | date: 'shortDate'}}</p>
-            <p>days to harvest: {{plant.daysToHarvest}}</p>
-            <p>days left til harvest {{plant.daysLeftToHarvest}}</p>
-            <p>harvest date: {{plant.dateToHarvest | date: 'shortDate'}}</p>
-            <mat-progress-bar
-              class="progress-bar-margin"
-              mode="determinate" 
-              [value]="plant.progressToHarvest">
-            </mat-progress-bar>
-            <p>Progress: {{ plant.progressToHarvest }} %</p>
+            <h4>{{plant.plant | titlecase}}</h4>
+            <!-- displays green bar if ready to harvest -->
+            <div *ngIf="plant.progressToHarvest == 100">
+              <mat-progress-bar
+                class="progress-bar-margin"
+                mode="determinate" 
+                [value]="plant.progressToHarvest">
+              </mat-progress-bar>
+              <p>Progress: {{ plant.progressToHarvest }} %</p>
+            </div>
+
+            <div *ngIf="plant.progressToHarvest != 100">
+              <mat-progress-bar
+                class="progress-bar-margin"
+                [color]="color"
+                mode="determinate" 
+                [value]="plant.progressToHarvest">
+              </mat-progress-bar>
+              <p>Progress: {{ plant.progressToHarvest }} %</p>
+            </div>
+
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
 
           </div>
@@ -156,17 +172,27 @@
         <div *ngIf="plant.col == 3" class="card">
           <div class="row">
             
-            <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <p>date planted: {{plant.datePlanted | date: 'shortDate'}}</p>
-            <p>days to harvest: {{plant.daysToHarvest}}</p>
-            <p>days left til harvest {{plant.daysLeftToHarvest}}</p>
-            <p>harvest date: {{plant.dateToHarvest | date: 'shortDate'}}</p>
-            <mat-progress-bar
-              class="progress-bar-margin"
-              mode="determinate" 
-              [value]="plant.progressToHarvest">
-            </mat-progress-bar>
-            <p>Progress: {{ plant.progressToHarvest }} %</p>
+            <h4>{{plant.plant | titlecase}}</h4>
+            <!-- displays green bar if ready to harvest -->
+            <div *ngIf="plant.progressToHarvest == 100">
+              <mat-progress-bar
+                class="progress-bar-margin"
+                mode="determinate" 
+                [value]="plant.progressToHarvest">
+              </mat-progress-bar>
+              <p>Progress: {{ plant.progressToHarvest }} %</p>
+            </div>
+
+            <div *ngIf="plant.progressToHarvest != 100">
+              <mat-progress-bar
+                class="progress-bar-margin"
+                [color]="color"
+                mode="determinate" 
+                [value]="plant.progressToHarvest">
+              </mat-progress-bar>
+              <p>Progress: {{ plant.progressToHarvest }} %</p>
+            </div>
+
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
 
           </div>
@@ -187,17 +213,27 @@
         <div *ngIf="plant.col == 4" class="card">
           <div class="row">
           
-            <h4>{{plant.plant | titlecase}} x  {{plant.perFoot}}</h4>
-            <p>date planted: {{plant.datePlanted | date: 'shortDate'}}</p>
-            <p>days to harvest: {{plant.daysToHarvest}}</p>
-            <p>days left til harvest {{plant.daysLeftToHarvest}}</p>
-            <p>harvest date: {{plant.dateToHarvest | date: 'shortDate'}}</p>
-            <mat-progress-bar
-              class="progress-bar-margin"
-              mode="determinate" 
-              [value]="plant.progressToHarvest">
-            </mat-progress-bar>
-            <p>Progress: {{ plant.progressToHarvest }} %</p>
+            <h4>{{plant.plant | titlecase}}</h4>
+
+            <!-- displays green bar if ready to harvest -->
+            <div *ngIf="plant.progressToHarvest == 100">
+              <mat-progress-bar
+                class="progress-bar-margin"
+                mode="determinate" 
+                [value]="plant.progressToHarvest">
+              </mat-progress-bar>
+              <p>Progress: {{ plant.progressToHarvest }} %</p>
+            </div>
+
+            <div *ngIf="plant.progressToHarvest != 100">
+              <mat-progress-bar
+                class="progress-bar-margin"
+                [color]="color"
+                mode="determinate" 
+                [value]="plant.progressToHarvest">
+              </mat-progress-bar>
+              <p>Progress: {{ plant.progressToHarvest }} %</p>
+            </div>
             <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
 
           </div>

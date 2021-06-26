@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlantServerService } from 'src/app/services/plant-server.service';
 import { SinglePlant } from 'src/app/models/single-plant';
 
-import { addDays, differenceInDays  } from 'date-fns'
+import { addDays, differenceInDays, startOfDay  } from 'date-fns'
 
 import { MatDialog } from '@angular/material/dialog';
 import { EditPlantComponent } from '../edit-plant/edit-plant.component';
@@ -181,9 +181,11 @@ export class GardensComponent implements OnInit {
 
       //parse JSON date into date -- JSON returns a string
       plant.datePlanted = new Date( plant.datePlanted );
+      plant.datePlanted = startOfDay(plant.datePlanted);
 
       //add number of days to planting date
       plant.dateToHarvest = new Date();
+      plant.dateToHarvest = startOfDay(plant.dateToHarvest);
       plant.dateToHarvest = addDays(plant.datePlanted, plant.daysToHarvest);
 
       //calculate how many days are left until dateToHarvest
@@ -203,6 +205,14 @@ export class GardensComponent implements OnInit {
     });
   }
 
+
+  //progress bar
+  color = 'accent';
+
+
+  //change progress bar color 
+
+  
 
   
   /*******************************************************************************************
