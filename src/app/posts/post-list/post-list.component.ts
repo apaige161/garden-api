@@ -31,6 +31,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   postsPerPage = 5;
   pageSizeOptions = [5, 10, 15, 20];
   currentPage = 1;
+  username: string;
 
   constructor(public postService: PostService, private authService: AuthService) {}
 
@@ -55,6 +56,11 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.totalPosts = postData.postCount;
       this.posts = postData.posts;
 
+      //get username instead of email
+      this.posts.forEach(post => {
+        post.creatorEmail = this.getUser(post.creatorEmail)
+      });
+
     });
 
     //check for authorization
@@ -66,7 +72,13 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.userIsAuthenticated = isAuthenticated;
       //listen for switched user login, set userId again if changed
       this.userId = this.authService.getUserId();
+      
     });
+  }
+
+  //remove characters after the @ symbol to get username
+  getUser(userEmail) {
+    return userEmail.split("@")[0];
   }
 
   //pagination

@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges {
     if(this.userEmail) {
       this.user = this.userEmail.split("@")[0];
     }
-    
   }
 
   ngOnInit() {
