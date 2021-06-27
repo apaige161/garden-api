@@ -23,14 +23,17 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   //remove characters after the @ symbol to get username
-  getUser(userEmail) {
-    this.user = userEmail.split("@")[0];
+  getUser() {
+    if(this.userEmail) {
+      this.user = this.userEmail.split("@")[0];
+    }
+    
   }
 
   ngOnInit() {
 
     this.getCurrentUser();
-    this.getUser(this.userEmail)
+    this.getUser();
 
     //call auth service to load data
     this.userIsAuthenticated = this.authService.getAuth();
@@ -51,7 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges() {
-
+    //TODO: get user name needs to be in here, 
   }
 
   ngOnDestroy() {
