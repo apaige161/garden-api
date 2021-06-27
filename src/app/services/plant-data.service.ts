@@ -14,9 +14,10 @@ export class PlantDataService {
 
   constructor() { }
 
-  vegatables: FullPlant[] = [
+  plants: FullPlant[] = [
     {
       plant: 'empty',
+      plantType: 'vegatable',
       season: 'spring, summer, fall, winter',
       perFoot: 1,
       daysToHarvest: 0,
@@ -29,6 +30,7 @@ export class PlantDataService {
     },
     {
       plant: 'beans, bush',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 70,
@@ -41,6 +43,7 @@ export class PlantDataService {
     },
     {
       plant: 'beans, pole',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 56,
@@ -53,6 +56,7 @@ export class PlantDataService {
     },
     {
       plant: 'beets',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 9,
       daysToHarvest: 56,
@@ -65,6 +69,7 @@ export class PlantDataService {
     },
     {
       plant: 'broccoli',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 112,
@@ -77,6 +82,7 @@ export class PlantDataService {
     },
     {
       plant: 'cabbage',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 112,
@@ -89,6 +95,7 @@ export class PlantDataService {
     },
     {
       plant: 'carrot',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 16,
       daysToHarvest: 70,
@@ -101,6 +108,7 @@ export class PlantDataService {
     },
     {
       plant: 'cauliflower',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 98,
@@ -113,6 +121,7 @@ export class PlantDataService {
     },
     {
       plant: 'chard, swiss',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 2,
       daysToHarvest: 56,
@@ -125,6 +134,7 @@ export class PlantDataService {
     },
     {
       plant: 'corn',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: 4,
       daysToHarvest: 63,
@@ -137,6 +147,7 @@ export class PlantDataService {
     },
     {
       plant: 'cucumber',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 1,
       daysToHarvest: 42,
@@ -149,6 +160,7 @@ export class PlantDataService {
     },
     {
       plant: 'eggplant',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 133,
@@ -161,6 +173,7 @@ export class PlantDataService {
     },
     {
       plant: 'leeks',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 6,
       daysToHarvest: 98,
@@ -173,6 +186,7 @@ export class PlantDataService {
     },
     {
       plant: 'lettuce, leaf',
+      plantType: 'vegatable',
       season: 'spring, summer, fall, winter',
       perFoot: 16,
       daysToHarvest: 49,
@@ -185,6 +199,7 @@ export class PlantDataService {
     },
     {
       plant: 'lettuce, head',
+      plantType: 'vegatable',
       season: 'spring, summer, fall, winter',
       perFoot: 1,
       daysToHarvest: 49,
@@ -197,6 +212,7 @@ export class PlantDataService {
     },
     {
       plant: 'melon',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: .5,
       daysToHarvest: 84,
@@ -209,6 +225,7 @@ export class PlantDataService {
     },
     {
       plant: 'okra',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 84,
@@ -221,6 +238,7 @@ export class PlantDataService {
     },
     {
       plant: 'onion',
+      plantType: 'vegatable',
       season: 'spring, summer',
       perFoot: 1,
       daysToHarvest: 140,
@@ -233,6 +251,7 @@ export class PlantDataService {
     },
     {
       plant: 'parsley',
+      plantType: 'vegatable',
       season: 'spring, summer, fall, winter',
       perFoot: 1,
       daysToHarvest: 98,
@@ -245,6 +264,7 @@ export class PlantDataService {
     },
     {
       plant: 'parsnips',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 9,
       daysToHarvest: 105,
@@ -257,6 +277,7 @@ export class PlantDataService {
     },
     {
       plant: 'pea, sugar snap',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 8,
       daysToHarvest: 70,
@@ -269,6 +290,7 @@ export class PlantDataService {
     },
     {
       plant: 'pepper, hot',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 133,
@@ -281,6 +303,7 @@ export class PlantDataService {
     },
     {
       plant: 'pepper, mild',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 133,
@@ -293,6 +316,7 @@ export class PlantDataService {
     },
     {
       plant: 'pepper, bell',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 133,
@@ -305,6 +329,7 @@ export class PlantDataService {
     },
     {
       plant: 'potato',
+      plantType: 'vegatable',
       season: 'spring, summer, fall',
       perFoot: 1,
       daysToHarvest: 84,
@@ -317,6 +342,7 @@ export class PlantDataService {
     },
     {
       plant: 'pumpkin, vine',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: .5,
       daysToHarvest: 84,
@@ -329,6 +355,7 @@ export class PlantDataService {
     },
     {
       plant: 'radish',
+      plantType: 'vegatable',
       season: 'spring, summer, fall',
       perFoot: 16,
       daysToHarvest: 28,
@@ -341,6 +368,7 @@ export class PlantDataService {
     },
     {
       plant: 'spinach',
+      plantType: 'vegatable',
       season: 'spring, summer, fall',
       perFoot: 9,
       daysToHarvest: 49,
@@ -353,6 +381,7 @@ export class PlantDataService {
     },
     {
       plant: 'strawberry',
+      plantType: 'vegatable',
       season: 'spring, fall',
       perFoot: 4,
       daysToHarvest: 70,
@@ -365,6 +394,7 @@ export class PlantDataService {
     },
     {
       plant: 'squash, vine',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: .5,
       daysToHarvest: 28,
@@ -377,6 +407,7 @@ export class PlantDataService {
     },
     {
       plant: 'tomato, vine',
+      plantType: 'vegatable',
       season: 'summer',
       perFoot: 1,
       daysToHarvest: 28,
@@ -387,11 +418,9 @@ export class PlantDataService {
       zone: '7b',
       col: 0
     },
-
-  ];
-  herbs: FullPlant[] = [
     {
       plant: 'empty',
+      plantType: 'herb',
       season: 'spring, summer, fall, winter',
       perFoot: 1,
       daysToHarvest: 0,
@@ -404,6 +433,7 @@ export class PlantDataService {
     },
     {
       plant: 'basil',
+      plantType: 'herb',
       season: 'spring, fall',
       perFoot: 2,
       daysToHarvest: 84,
@@ -416,6 +446,7 @@ export class PlantDataService {
     },
     {
       plant: 'chive',
+      plantType: 'herb',
       season: 'spring, summer',
       perFoot: 16,
       daysToHarvest: 112,
@@ -428,6 +459,7 @@ export class PlantDataService {
     },
     {
       plant: 'cilantro',
+      plantType: 'herb',
       season: 'late spring, summer',
       perFoot: 1,
       daysToHarvest: 35,
@@ -440,6 +472,7 @@ export class PlantDataService {
     },
     {
       plant: 'mint',
+      plantType: 'herb',
       season: 'spring, summer, fall',
       perFoot: 1,
       daysToHarvest: 35,
@@ -452,6 +485,7 @@ export class PlantDataService {
     },
     {
       plant: 'oregano',
+      plantType: 'herb',
       season: 'spring, summer, fall',
       perFoot: 1,
       daysToHarvest: 112,
@@ -462,11 +496,9 @@ export class PlantDataService {
       zone: '7b',
       col: 0
     },
-
-  ];
-  flowers: FullPlant[] = [
     {
       plant: 'empty',
+      plantType: 'flower',
       season: 'spring, summer, fall, winter',
       perFoot: 1,
       daysToHarvest: 0,
@@ -479,6 +511,7 @@ export class PlantDataService {
     },
     {
       plant: 'dahlia, small',
+      plantType: 'flower',
       season: 'summer, fall',
       perFoot: 4,
       daysToHarvest: 70,
@@ -491,6 +524,7 @@ export class PlantDataService {
     },
     {
       plant: 'dahlia, medium',
+      plantType: 'flower',
       season: 'summer, fall',
       perFoot: 1,
       daysToHarvest: 70,
@@ -503,6 +537,7 @@ export class PlantDataService {
     },
     {
       plant: 'dusty miller',
+      plantType: 'flower',
       season: 'late spring, summer, fall',
       perFoot: 4,
       daysToHarvest: 105,
@@ -515,6 +550,7 @@ export class PlantDataService {
     },
     {
       plant: 'marigold',
+      plantType: 'flower',
       season: 'summer, fall',
       perFoot: 1,
       daysToHarvest: 70,
@@ -527,6 +563,7 @@ export class PlantDataService {
     },
     {
       plant: 'pansy',
+      plantType: 'flower',
       season: 'spring, summer, fall',
       perFoot: 4,
       daysToHarvest: 140,
@@ -539,6 +576,7 @@ export class PlantDataService {
     },
     {
       plant: 'petunia',
+      plantType: 'flower',
       season: 'late spring, summer, early fall',
       perFoot: 4,
       daysToHarvest: 98,
@@ -551,6 +589,7 @@ export class PlantDataService {
     },
     {
       plant: 'salvia',
+      plantType: 'flower',
       season: 'late spring, summer, early fall',
       perFoot: 4,
       daysToHarvest: 98,
@@ -563,5 +602,4 @@ export class PlantDataService {
     },
 
   ];
-
 }

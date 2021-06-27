@@ -11,9 +11,11 @@ const router = express.Router();
 //import model
 const Garden = require('../models/Garden');
 
+
 /*************************************************************************************************************
  * 
  * get all gardens 
+ *  -TODO: only return gardens for current user
  *  
 ****************************************************************************************************************/
 router.get('/', async (req,res) => {
@@ -144,6 +146,7 @@ router.post('/', async (req,res) => {
 
         owner: req.body.owner,
         plant: req.body.plant,
+        plantType: req.body.plantType,
         garden: req.body.garden,
         season: req.body.season,
         zone: req.body.zone,

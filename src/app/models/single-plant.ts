@@ -4,6 +4,7 @@
 export interface SinglePlant {
     _id: string;
     plant: string;
+    plantType: string;
     garden: string;
     season: string;
     zone: string;

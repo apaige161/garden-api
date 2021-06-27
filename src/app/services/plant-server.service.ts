@@ -20,6 +20,7 @@ export class PlantServerService {
   postData = {
     owner: "",
     plant: "default",
+    plantType: "",
     garden: "default",
     season: "",
     zone: "",
@@ -38,6 +39,7 @@ export class PlantServerService {
     _id: "",
     owner: "",
     plant: "",
+    plantType: "",
     season: "",
     zone: "",
     perFoot: 0,
@@ -70,6 +72,7 @@ export class PlantServerService {
   newPlant(
     owner: string,
     plantName: string, 
+    plantType: string,
     gardenName: string, 
     plantingSeason: string, 
     plantZone: string,
@@ -84,6 +87,7 @@ export class PlantServerService {
     col: number) {
       this.postData.owner = owner;
       this.postData.plant = plantName;
+      this.postData.plantType = plantType;
       this.postData.garden = gardenName;
       this.postData.season = plantingSeason;
       this.postData.zone = plantZone;
@@ -112,6 +116,7 @@ export class PlantServerService {
   ********************************************************************************************/
   newGarden(
     plantName: string, 
+    plantType: string,
     gardenName: string, 
     plantingSeason: string, 
     plantZone: string,
@@ -121,6 +126,7 @@ export class PlantServerService {
     yGarden: number,
     col: number) {
       this.postData.plant = plantName;
+      this.postData.plantType = plantType;
       this.postData.garden = gardenName;
       this.postData.season = plantingSeason;
       this.postData.zone = plantZone;
@@ -164,6 +170,7 @@ export class PlantServerService {
     return this.http.get<{
       _id: number;
       plant: string,
+      plantType: string,
       garden: string,
       season: string,
       zone: string,

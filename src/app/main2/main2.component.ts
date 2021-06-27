@@ -8,6 +8,7 @@ import { addDays, differenceInDays, startOfDay   } from 'date-fns'
 
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { DatePipe } from '@angular/common';
+import { PlantDataService } from '../services/plant-data.service';
 
 @Component({
   selector: 'app-main',
@@ -29,7 +30,8 @@ export class Main2Component implements OnInit {
 
   constructor(private plantService: PlantServerService, 
     private http: HttpClient, 
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute,
+    private plantData: PlantDataService) {
     
    }
 
@@ -69,346 +71,8 @@ export class Main2Component implements OnInit {
 
 
   //array to hold the plant objects
-  //TODO: move these objects to the api 
-  fullPlant: FullPlant[] = [
-    {
-      plant: 'empty',
-      season: 'spring, summer, fall',
-      perFoot: 1,
-      daysToHarvest: 0,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'carrot',
-      season: 'spring, fall',
-      perFoot: 16,
-      daysToHarvest: 70,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'chive',
-      season: 'spring, summer',
-      perFoot: 16,
-      daysToHarvest: 112,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'cabbage',
-      season: 'summer',
-      perFoot: 1,
-      daysToHarvest: 112,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'cucumber',
-      season: 'spring, fall',
-      perFoot: 1,
-      daysToHarvest: 42,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'hot pepper',
-      season: 'summer',
-      perFoot: 1,
-      daysToHarvest: 133,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'mild pepper',
-      season: 'summer',
-      perFoot: 1,
-      daysToHarvest: 133,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'bell pepper',
-      season: 'summer',
-      perFoot: 1,
-      daysToHarvest: 133,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'garlic',
-      season: 'spring, fall',
-      perFoot: 4,
-      daysToHarvest: 133,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'basil',
-      season: 'spring, fall',
-      perFoot: 2,
-      daysToHarvest: 84,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'leaf lettuce',
-      season: 'spring, fall',
-      perFoot: 16,
-      daysToHarvest: 133,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'head lettuce',
-      season: 'spring, fall',
-      perFoot: 1,
-      daysToHarvest: 49,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'arugula',
-      season: 'spring, fall',
-      perFoot: 16,
-      daysToHarvest: 49,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'kale',
-      season: 'spring, fall',
-      perFoot: 1,
-      daysToHarvest: 49,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'pole beans',
-      season: 'spring, fall',
-      perFoot: 1,
-      daysToHarvest: 56,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'bush beans',
-      season: 'spring, fall',
-      perFoot: 1,
-      daysToHarvest: 70,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'spinach',
-      season: 'spring, fall',
-      perFoot: 9,
-      daysToHarvest: 49,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'parsnips',
-      season: 'spring, fall',
-      perFoot: 9,
-      daysToHarvest: 105,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'leeks',
-      season: 'spring, fall',
-      perFoot: 6,
-      daysToHarvest: 98,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'broccoli',
-      season: 'spring, fall',
-      perFoot: 1,
-      daysToHarvest: 112,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'cauliflower',
-      season: 'spring, fall',
-      perFoot: 1,
-      daysToHarvest: 98,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'bok choy',
-      season: 'spring, fall',
-      perFoot: 1,
-      daysToHarvest: 49,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'radishes',
-      season: 'spring, fall',
-      perFoot: 16,
-      daysToHarvest: 28,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'beets',
-      season: 'spring, fall',
-      perFoot: 9,
-      daysToHarvest: 56,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'peas',
-      season: 'spring, fall',
-      perFoot: 8,
-      daysToHarvest: 70,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'celery',
-      season: 'spring, fall',
-      perFoot: 1,
-      daysToHarvest: 115,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'parsley',
-      season: 'spring, fall',
-      perFoot: 2,
-      daysToHarvest: 98,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-    {
-      plant: 'swiss chard',
-      season: 'spring, fall',
-      perFoot: 2,
-      daysToHarvest: 56,
-      datePlanted: this.currentDate,
-      dateToHarvest: null,
-      daysLeftToHarvest: null,
-      progressToHarvest: null,
-      zone: '7b',
-      col: 0
-    },
-
-  ];
+  //TODO: get plants from api
+  fullPlant: FullPlant[] = this.plantData.plants;
 
   //arrays where plants can be stored
   
@@ -568,12 +232,13 @@ export class Main2Component implements OnInit {
     //create a new object to push 
     let plant = Object.create(this.fullPlant);
     plant.plant = this.fullPlant[plantToAdd].plant;
+    plant.plantType = this.fullPlant[plantToAdd].plantType;
     plant.season = this.fullPlant[plantToAdd].season;
     plant.perFoot = this.fullPlant[plantToAdd].perFoot;
     plant.daysToHarvest = this.fullPlant[plantToAdd].daysToHarvest;
     //needed?, set in plant-server service
     plant.datePlanted = this.fullPlant[plantToAdd].datePlanted;
-    plant.zone = this.fullPlant[plantToAdd].plant;
+    plant.zone = this.fullPlant[plantToAdd].zone;
     plant.col = 0;
 
     if( (this.xGardenMax * this.yGardenMax) 
@@ -716,6 +381,7 @@ export class Main2Component implements OnInit {
       this.plantService.newPlant( 
         currentOwner,
         item.plant, 
+        item.plantType,
         this.gardenName, 
         item.season, 
         item.zone, 

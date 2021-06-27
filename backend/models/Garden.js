@@ -11,6 +11,10 @@ const GardenSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    plantType: {
+        type: String,
+        required: true,
+    },
     garden: {
         type: String,
         required: true,
