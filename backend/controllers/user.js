@@ -17,7 +17,6 @@ exports.createUser = (req,res,next) => {
             email: req.body.email,
             //encrypt password
             password: hash,
-            nickname: req.body.nickname
         });
 
     user.save()

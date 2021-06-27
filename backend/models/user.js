@@ -16,10 +16,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    nickname: {
-        type: String,
-        required: true
-    },
+
 });
 
 //will throw an error if user trys to use an email that is already in use

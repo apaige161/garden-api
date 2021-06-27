@@ -68,9 +68,9 @@ export class AuthService {
   }
 
   //send request to create new user
-  createUser(email:string, password:string, nickname: string) {
+  createUser(email:string, password:string ) {
     //create new user using authdata model
-    const authData: SignupAuthData = { email: email, password: password, nickname: nickname }
+    const authData: AuthData = { email: email, password: password }
     //send data to backend and subscribe to the response
     //configured to be aware of token 
     //the api will send back a response with a token field of type string

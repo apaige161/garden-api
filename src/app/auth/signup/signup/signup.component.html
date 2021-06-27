@@ -17,12 +17,6 @@
             <mat-error *ngIf="passwordInput.invalid">Please enter a valid password</mat-error>
         </mat-form-field>
 
-        <mat-form-field  color="primary">
-            <mat-label>Nickname</mat-label>
-            <input matInput name="nickname" ngModel type="nickname" placeholder="nickname" #nicknameInput="ngModel" required>
-            <mat-error *ngIf="passwordInput.invalid">Please enter a valid password</mat-error>
-        </mat-form-field>
-
         <button
             mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Sign Up
         </button>
