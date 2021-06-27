@@ -4,7 +4,7 @@
         <a routerLink="/">Community Garden</a>
     </span>
     <span *ngIf="userIsAuthenticated" class="spacer"> 
-        <a routerLink="/">{{userEmail}}</a>
+        <a routerLink="/">{{user | titlecase}}</a>
     </span>
     <span class="spacer"></span>
     <ul>

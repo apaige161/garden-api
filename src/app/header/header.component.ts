@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges {
   userIsAuthenticated: boolean = false;
 
   userEmail: string;
+  user: string;
 
   private authListenerSubs: Subscription
 
@@ -21,9 +22,15 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges {
     return this.userEmail = localStorage.getItem("userEmail");
   }
 
+  //remove characters after the @ symbol to get username
+  getUser(userEmail) {
+    this.user = userEmail.split("@")[0];
+  }
+
   ngOnInit() {
 
     this.getCurrentUser();
+    this.getUser(this.userEmail)
 
     //call auth service to load data
     this.userIsAuthenticated = this.authService.getAuth();

@@ -168,6 +168,8 @@ export class AuthService {
     this.userId = null;
     //reset userEmail
     this.userEmail = null;
+    //reset nickname
+    //this.userNickname = null;
     //clear local storage
     this.clearAuthData();
     //redirect user
