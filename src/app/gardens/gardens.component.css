@@ -30,15 +30,24 @@
 
 .saved-garden-column {
     
-    width: 20%;
+    width: 25%;
     align-items: center;
     text-align: center;
     justify-content: center;
 }
-  
-.progress-spinner {
-    width: 30%;
-  }
+
+.card-container {
+    margin-bottom: 10px;
+    margin-bottom: 10px;
+
+    
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .progress-bar-margin {
     margin: 10px 0;
