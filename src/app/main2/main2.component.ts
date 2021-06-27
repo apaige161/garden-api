@@ -37,18 +37,21 @@ export class Main2Component implements OnInit {
 
 
   @Input()
+
   title = 'my-garden';
+  currentDate: Date = new Date();
 
   //max number of square feet
   xGardenMax: number = 4;
   yGardenMax: number = 4;
 
   xGardenDisable: boolean = false;
-  
   yGardenDisable: boolean = false;
 
 
-  currentDate: Date = new Date();
+  
+
+  
   
 
   /*** Progress variables ***/
@@ -56,25 +59,23 @@ export class Main2Component implements OnInit {
   plantsInProposedGarden = 0;
   progress = 0;
 
-  //100% progress
-  //full: boolean;
-
   factor = 0;
-  //disabled = true
   disableAddPlants = true;
 
   //used for error handling
   test = 0;
 
-   
-  
+  //arrays to hold the plant objects
+  vegatablesArr: FullPlant[] = this.plantData.vegatables;
+  herbsArr: FullPlant[] = this.plantData.herbs;
+  flowersArr: FullPlant[] = this.plantData.flowers;
 
-
-  //array to hold the plant objects
-  //TODO: get plants from api
-  fullPlant: FullPlant[] = this.plantData.plants;
+  //radio button properties
+  favoritePlantType: string = 'vegatables'
+  plantTypes: string[] = ['vegatables', 'herbs', 'flowers'];
 
   //arrays where plants can be stored
+  fullPlant: FullPlant[] = [];
   
   //staging area
 
@@ -225,21 +226,50 @@ export class Main2Component implements OnInit {
   /***************************************************************************************************
    * 
    * add plants to columns here
+   *  TODO: replace fullPlant with: vegtables, herbs, or flowers 
+   *    -depending on which list is being selected
    * 
    **************************************************************************************************/
-  addToGarden(plantToAdd: number) {
+  addToGarden(plantToAdd: number, plantType: string) {
 
     //create a new object to push 
-    let plant = Object.create(this.fullPlant);
-    plant.plant = this.fullPlant[plantToAdd].plant;
-    plant.plantType = this.fullPlant[plantToAdd].plantType;
-    plant.season = this.fullPlant[plantToAdd].season;
-    plant.perFoot = this.fullPlant[plantToAdd].perFoot;
-    plant.daysToHarvest = this.fullPlant[plantToAdd].daysToHarvest;
-    //needed?, set in plant-server service
-    plant.datePlanted = this.fullPlant[plantToAdd].datePlanted;
-    plant.zone = this.fullPlant[plantToAdd].zone;
-    plant.col = 0;
+    let plant: any = Object.create(this.fullPlant);
+
+    if(plantType === 'vegatables') {
+      plant = {
+        plant: this.vegatablesArr[plantToAdd].plant,
+        plantType: this.vegatablesArr[plantToAdd].plantType,
+        season: this.vegatablesArr[plantToAdd].season,
+        perFoot: this.vegatablesArr[plantToAdd].perFoot,
+        daysToHarvest: this.vegatablesArr[plantToAdd].daysToHarvest,
+        datePlanted: this.currentDate,
+        zone: this.vegatablesArr[plantToAdd].zone,
+        col: 0,
+      }
+    } else if (plantType === 'herbs') {
+      plant = {
+        plant: this.herbsArr[plantToAdd].plant,
+        plantType: this.herbsArr[plantToAdd].plantType,
+        season: this.herbsArr[plantToAdd].season,
+        perFoot: this.herbsArr[plantToAdd].perFoot,
+        daysToHarvest: this.herbsArr[plantToAdd].daysToHarvest,
+        datePlanted: this.currentDate,
+        zone: this.herbsArr[plantToAdd].zone,
+        col: 0,
+      }
+    } else if (plantType === 'flowers') {
+      plant = {
+        plant: this.flowersArr[plantToAdd].plant,
+        plantType: this.flowersArr[plantToAdd].plantType,
+        season: this.flowersArr[plantToAdd].season,
+        perFoot: this.flowersArr[plantToAdd].perFoot,
+        daysToHarvest: this.flowersArr[plantToAdd].daysToHarvest,
+        datePlanted: this.currentDate,
+        zone: this.flowersArr[plantToAdd].zone,
+        col: 0,
+      }
+    }
+    
 
     if( (this.xGardenMax * this.yGardenMax) 
       > (this.firstCol.length 
@@ -398,6 +428,7 @@ export class Main2Component implements OnInit {
     
   }
   
+
 
   /***********************************************************************************************
    * 

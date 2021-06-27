@@ -18,6 +18,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   newDate: Date;
   hideDatePicker: boolean = true;
   plantSubscription: Subscription;
+  addAWeekModified: boolean = false;
 
   constructor( 
     @Inject(MAT_DIALOG_DATA) 
@@ -69,10 +70,29 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   /**************************************************************************************
   * 
   * harvest progress logic
-  *   TODO: fix negative values on progressToHarvest
-  *   TODO: harvest date is never updated
+  *   TODO: fix addOneWeek
+  *   -code updates and send request to change the date, then it gets changed back
   *  
   **************************************************************************************/
+
+  addOneWeek(plant) {
+
+    //add 7 days
+    plant.dateToHarvest = new Date( plant.dateToHarvest );
+    plant.dateToHarvest = addDays(plant.dateToHarvest, 7);
+
+    //set
+
+    console.log("updating harvest date");
+    //save to DB
+    this.plantService.updateOnePlantHarvested(
+      plant._id,
+      plant.dateToHarvest
+    )
+    console.log("updated harvest date to: " + plant.dateToHarvest);
+
+    this.addAWeekModified = true;
+  }
 
   //run for each loop over selected garden items to get date data
 
@@ -83,7 +103,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     //parse JSON date into date -- JSON returns a string
     plant.datePlanted = new Date( plant.datePlanted );
     plant.datePlanted = startOfDay(plant.datePlanted);
-
+    
     //add number of days to planting date
     plant.dateToHarvest = new Date();
     plant.dateToHarvest = startOfDay(plant.dateToHarvest);

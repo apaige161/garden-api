@@ -31,7 +31,6 @@
                   <label class="mt-3" for="gardens">Select A Garden</label>
                   <select class="form-control" id="gardens"
                       (click)="getEachGardenNameOnce()" (click)="removeDuplicates(gardenNames)"
-
                       required
                       [(ngModel)]="Garden" name="gardens"
                       #gardens="ngModel"

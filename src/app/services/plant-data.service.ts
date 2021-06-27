@@ -14,7 +14,7 @@ export class PlantDataService {
 
   constructor() { }
 
-  plants: FullPlant[] = [
+  vegatables: FullPlant[] = [
     {
       plant: 'empty',
       plantType: 'vegatable',
@@ -418,6 +418,9 @@ export class PlantDataService {
       zone: '7b',
       col: 0
     },
+  ];
+
+  herbs: FullPlant[] = [
     {
       plant: 'empty',
       plantType: 'herb',
@@ -496,6 +499,9 @@ export class PlantDataService {
       zone: '7b',
       col: 0
     },
+  ];
+
+  flowers: FullPlant[] = [
     {
       plant: 'empty',
       plantType: 'flower',
@@ -600,6 +606,5 @@ export class PlantDataService {
       zone: '7b',
       col: 0
     },
-
-  ];
+  ]
 }

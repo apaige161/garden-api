@@ -23,6 +23,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 import { NgxPrintModule } from 'ngx-print';
@@ -85,6 +86,7 @@ import { DateFnsModule } from 'ngx-date-fns';
     MatInputModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatRadioModule,
     DateFnsModule.forRoot(),
   ],
   providers: 
