@@ -72,10 +72,6 @@
                 >Save</button>
             </a>
 
-            <div *ngIf="gardenName">
-              <h4> {{gardenName | titlecase}} is the current garden!</h4>
-            </div>
-
           </div>
           <!-- plant list -->
           <div class="col-12 plant-list">
@@ -157,7 +153,8 @@
           <div class="progress-container col-12">
             <h4>
               <div>Progress {{progress | number: '1.0-0'}} %   </div>
-              <button (click)="resetProgress()" class="btn btn-primary">Reset Progress</button>
+
+              <button mat-raised-button color="accent" (click)="resetProgress()">Reset Progress</button>
             </h4>
             <!-- Progress bar -->
             <mat-progress-bar mode="determinate" [value]="progress" min="0"></mat-progress-bar><br>
@@ -192,7 +189,12 @@
                   </div>
                 </div>
                   <div *ngIf="firstCol.length > 0">
-                    <button (click)="clearColumn(firstCol)" (click)="calculateProgress()" class="btn btn-info mt-1">Remove Column</button>
+                    <button 
+                      mat-raised-button color="warn" 
+                      class="mt-1"
+                      (click)="clearColumn(firstCol)" 
+                      (click)="calculateProgress()"
+                    >Remove Column</button>
                   </div>
               </div>
             </mat-grid-tile>
@@ -218,7 +220,12 @@
                   </div>
                 </div>
                   <div *ngIf="secondCol.length > 0">
-                    <button (click)="clearColumn(secondCol)" (click)="calculateProgress()" class="btn btn-info mb-1">Remove Column</button>
+                    <button 
+                      mat-raised-button color="warn" 
+                      class="mt-1"
+                      (click)="clearColumn(secondCol)" 
+                      (click)="calculateProgress()"
+                    >Remove Column</button>
                   </div>
               </div>
             </mat-grid-tile>
@@ -244,7 +251,12 @@
                   </div>
                 </div>
                   <div *ngIf="thirdCol.length > 0">
-                    <button (click)="clearColumn(thirdCol)" (click)="calculateProgress()" class="btn btn-info mb-1">Remove Column</button>
+                    <button 
+                      mat-raised-button color="warn" 
+                      class="mt-1"
+                      (click)="clearColumn(thirdCol)" 
+                      (click)="calculateProgress()"
+                    >Remove Column</button>
                   </div>
               </div>
             </mat-grid-tile>
@@ -271,8 +283,11 @@
                 </div>
                   <div *ngIf="fourthCol.length > 0">
                     <button 
+                      mat-raised-button color="warn" 
+                      class="mt-1"
                       (click)="clearColumn(fourthCol)" 
-                      (click)="calculateProgress()" class="btn btn-info mb-1">Remove Column</button>
+                      (click)="calculateProgress()"
+                    >Remove Column</button>
                   </div>
               </div>
             </mat-grid-tile>

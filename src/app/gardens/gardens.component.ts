@@ -236,7 +236,7 @@ export class GardensComponent implements OnInit {
         _id: plantId
       },
       width: "500px",
-      height: "500px",
+      height: "600px",
       disableClose: true
     });
   }
