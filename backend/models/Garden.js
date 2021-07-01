@@ -31,6 +31,10 @@ const GardenSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    growthModifier: {
+        type: Number,
+        required: true,
+    },
     daysToHarvest: {
         type: Number,
         required: true,

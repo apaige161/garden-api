@@ -48,6 +48,7 @@ export class Main2Component implements OnInit {
   xGardenDisable: boolean = false;
   yGardenDisable: boolean = false;
 
+  growthModifier: number = 1;
 
   
 
@@ -240,6 +241,7 @@ export class Main2Component implements OnInit {
         plant: this.vegatablesArr[plantToAdd].plant,
         plantType: this.vegatablesArr[plantToAdd].plantType,
         season: this.vegatablesArr[plantToAdd].season,
+        growthModifier: this.vegatablesArr[plantToAdd].growthModifier,
         perFoot: this.vegatablesArr[plantToAdd].perFoot,
         daysToHarvest: this.vegatablesArr[plantToAdd].daysToHarvest,
         datePlanted: this.currentDate,
@@ -251,6 +253,7 @@ export class Main2Component implements OnInit {
         plant: this.herbsArr[plantToAdd].plant,
         plantType: this.herbsArr[plantToAdd].plantType,
         season: this.herbsArr[plantToAdd].season,
+        growthModifier: this.herbsArr[plantToAdd].growthModifier,
         perFoot: this.herbsArr[plantToAdd].perFoot,
         daysToHarvest: this.herbsArr[plantToAdd].daysToHarvest,
         datePlanted: this.currentDate,
@@ -262,6 +265,7 @@ export class Main2Component implements OnInit {
         plant: this.flowersArr[plantToAdd].plant,
         plantType: this.flowersArr[plantToAdd].plantType,
         season: this.flowersArr[plantToAdd].season,
+        growthModifier: this.flowersArr[plantToAdd].growthModifier,
         perFoot: this.flowersArr[plantToAdd].perFoot,
         daysToHarvest: this.flowersArr[plantToAdd].daysToHarvest,
         datePlanted: this.currentDate,
@@ -416,6 +420,7 @@ export class Main2Component implements OnInit {
         item.season, 
         item.zone, 
         item.perFoot, 
+        this.growthModifier,
         item.daysToHarvest,
         this.currentDate,
         item.dateToHarvest,
@@ -531,6 +536,8 @@ export class Main2Component implements OnInit {
   
         //add number of days to planting date
         plant.dateToHarvest = new Date();
+
+        plant.daysToHarvest = Math.round(plant.daysToHarvest / plant.growthModifier )
         plant.dateToHarvest = addDays(plant.datePlanted, plant.daysToHarvest);
   
         //calculate how many days are left until dateToHarvest

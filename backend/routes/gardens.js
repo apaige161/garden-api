@@ -151,6 +151,7 @@ router.post('/', async (req,res) => {
         season: req.body.season,
         zone: req.body.zone,
         perFoot : req.body.perFoot,
+        growthModifier: req.body.growthModifier,
         daysToHarvest : req.body.daysToHarvest,
         datePlanted: req.body.datePlanted,
         dateToHarvest: req.body.dateToHarvest,

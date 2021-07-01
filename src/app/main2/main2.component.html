@@ -10,7 +10,7 @@
       <div class="radio col-lg-12 "> <!-- new garden input -->
 
         <!-- size sliders and name row -->
-        <div class="row">
+        <div class="row top-container">
           <!-- slider to choose xGardenMax, yGardenMax -->
           <div class="col-6">
             <div class="row">
@@ -38,6 +38,18 @@
                   invert
                   [(ngModel)]="yGardenMax"  min="1" max="8" step="1"
                   [disabled]="yGardenDisable" ></mat-slider>
+              </div>
+
+              <!-- slider to choose growthModifier -->
+              <div class="col-6">
+                
+                <h1>Growing conditions: {{growthModifier * 100}} %</h1>
+                <mat-slider 
+                  #yGarden
+                  thumbLabel
+                  tickInterval=".1"
+                  [(ngModel)]="growthModifier"  min=".5" max="1" step=".1"
+                  ></mat-slider>
               </div>
 
             </div>
@@ -157,7 +169,7 @@
           
           -->
 
-          <mat-grid-list [cols]="xGardenMax" rowHeight="1:1">
+          <mat-grid-list [cols]="xGardenMax" rowHeight="1:1" >
 
             <mat-grid-tile>
               <!-- displays only when col 1 is displayed -->

@@ -31,6 +31,7 @@
         </mat-form-field>
     </div>
 
+    <h4>Growth conditions: {{singlePlant.growthModifier * 100}} %</h4>
     <h4>Days left until harvest: {{singlePlant.daysLeftToHarvest}}</h4>
     <h4>Days to harvest (from seed): {{singlePlant.daysToHarvest}}</h4>
     <h4>Harvest on this date: {{ singlePlant.dateToHarvest | date: 'shortDate'}}</h4>

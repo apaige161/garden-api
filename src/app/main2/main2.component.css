@@ -12,6 +12,7 @@
 }
 
 
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -31,19 +32,23 @@
 
 .radio {
   width: 100%;
-  height: 90vh;
-  border: dotted tomato 5px;
+  height: 70vh;
   padding: 2rem;
   align-items: center;
   text-align: center;
-  background: orange;
   color: black;
 }
 
 .raised-bed-col{
-  text-align: center;
-  margin-bottom: 10px;
+  height: 20vh;
+
+  padding-top: 0%;
   width: 90%;
+}
+
+.mat-grid-tile .mat-figure {
+  justify-content: flex-start !important ;
+  align-items: flex-start !important;
 }
 
 .plant-list{

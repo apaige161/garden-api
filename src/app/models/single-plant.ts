@@ -10,6 +10,7 @@ export interface SinglePlant {
     zone: string;
     perFoot: number;
     
+    growthModifier: number;
     daysToHarvest: number;
     datePlanted: Date;
     dateToHarvest: Date;

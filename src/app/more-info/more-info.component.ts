@@ -104,7 +104,8 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     plant.datePlanted = new Date( plant.datePlanted );
     plant.datePlanted = startOfDay(plant.datePlanted);
     
-    //add number of days to planting date
+    //add number of days to planting date, factor in growth conditions
+    plant.daysToHarvest = Math.round(plant.daysToHarvest / plant.growthModifier )
     plant.dateToHarvest = new Date();
     plant.dateToHarvest = startOfDay(plant.dateToHarvest);
     plant.dateToHarvest = addDays(plant.datePlanted, plant.daysToHarvest);

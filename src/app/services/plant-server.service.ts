@@ -25,6 +25,7 @@ export class PlantServerService {
     season: "",
     zone: "",
     perFoot: 0,
+    growthModifier: 1,
     daysToHarvest: 0,
     datePlanted: this.today,
     dateToHarvest: null,
@@ -43,6 +44,7 @@ export class PlantServerService {
     season: "",
     zone: "",
     perFoot: 0,
+    growthModifier: 1,
     daysToHarvest: 0,
     datePlanted: this.today,
     xGarden: 0,
@@ -67,7 +69,7 @@ export class PlantServerService {
   /********************************************************************************************
   * 
   * save a new plant
-  * 
+  *  
   ********************************************************************************************/
   newPlant(
     owner: string,
@@ -77,6 +79,7 @@ export class PlantServerService {
     plantingSeason: string, 
     plantZone: string,
     perFoot: number,
+    growthModifier: number,
     daysToHarvest: number,
     datePlanted: any,
     dateToHarvest: Date,
@@ -92,6 +95,7 @@ export class PlantServerService {
       this.postData.season = plantingSeason;
       this.postData.zone = plantZone;
       this.postData.perFoot = perFoot;
+      this.postData.growthModifier = growthModifier;
       this.postData.daysToHarvest = daysToHarvest;
       this.postData.datePlanted = datePlanted;
       this.postData.dateToHarvest = dateToHarvest;
@@ -175,6 +179,7 @@ export class PlantServerService {
       season: string,
       zone: string,
       perFoot: number,
+      growthModifier: number,
       daysToHarvest: number,
       datePlanted: Date,
       dateToHarvest: Date,

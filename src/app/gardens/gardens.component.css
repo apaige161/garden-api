@@ -1,6 +1,5 @@
 
 .utility-container{
-    background: rgba(218, 146, 52, 0.87);
 
     width: 100%;
 }
@@ -19,7 +18,6 @@
 }
 
 .saved-garden-grid {
-    background-color:rgba(218, 146, 52, 0.87);
     align-items: center;
     text-align: center;
     justify-content: center;
