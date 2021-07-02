@@ -16,8 +16,8 @@
             <div class="row">
 
               <!-- slider to choose xGardenMax -->
-              <div class="col-6">
-                <h1>Rows: {{xGardenMax}}</h1>
+              <div class="col-4">
+                <h3>Width: {{xGardenMax}} ft</h3>
                 <mat-slider 
                   #xGarden
                   thumbLabel
@@ -27,9 +27,9 @@
               </div>
 
               <!-- slider to choose yGardenMax -->
-              <div class="col-6">
+              <div class="col-4">
                 
-                <h1>Length: {{yGardenMax}}</h1>
+                <h3>Length: {{yGardenMax}} ft</h3>
                 <mat-slider 
                   #yGarden
                   thumbLabel
@@ -41,9 +41,11 @@
               </div>
 
               <!-- slider to choose growthModifier -->
-              <div class="col-6">
-                
-                <h1>Growing conditions: {{growthModifier * 100}} %</h1>
+              <div class="col-4" 
+                matTooltip="Adjust for poor soil conditions or lack of sunlight."
+                matTooltipPosition="above"
+              >
+                <h3>Growing conditions: {{growthModifier * 100}}%</h3>
                 <mat-slider 
                   #yGarden
                   thumbLabel
