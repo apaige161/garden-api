@@ -20,6 +20,9 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   plantSubscription: Subscription;
   addAWeekModified: boolean = false;
 
+  growthModifier: number = 1;
+  hideGrowthModifier: boolean = true;
+
   constructor( 
     @Inject(MAT_DIALOG_DATA) 
     public data: {_id: string}, 
@@ -31,8 +34,12 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.matDialogRef.close();
   }
 
-  toggleShowDatePicker() {
+  toggleHideDatePicker() {
     this.hideDatePicker = !this.hideDatePicker;
+  }
+
+  toggleHideGrowthModifier() {
+    this.hideGrowthModifier = !this.hideGrowthModifier;
   }
 
   getSinglePlant(id: string) {
@@ -40,7 +47,6 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   }
 
   saveNewDate() {
-
     if(this.newDate != this.singlePlant.datePlanted && this.newDate) {
       this.singlePlant.datePlanted = this.newDate;
 
@@ -62,9 +68,17 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
         
       )
     }
-    
+  }
 
-    
+  saveNewGrowthModifier() {
+    //send updated GrowthModifier -> service -> database to be stored
+
+    //update growthModifier
+    this.plantService.updateOnePlantGrowthModifier(
+      this.singlePlant._id,
+      this.singlePlant.growthModifier,
+    )
+
   }
 
   /**************************************************************************************

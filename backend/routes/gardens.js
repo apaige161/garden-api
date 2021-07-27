@@ -134,6 +134,30 @@ router.put('/:plantId', async (req, res) => {
     }
 });
 
+/*************************************************************************************************************************
+ * 
+ * update harvest growthModifier specific plant by ID
+ * 
+ *************************************************************************************************************************/
+ router.put('/changeGrowthModifier/:plantId', async (req, res) => {
+    try{
+        //use model and update by ID targeting the _id param
+        //the first param of updateOne is to find the object, 
+        //second is what to change it to
+        const updatedPlant = await Garden.updateOne(
+            {_id: req.params.plantId}, 
+            {$set: 
+                { 
+                    growthModifier: req.body.growthModifier
+                }
+        });
+        console.log(updatedPlant);
+        res.json(updatedPlant);
+    } catch(err) {
+        res.json({message: err});
+    }
+});
+
 /***************************************************************************************************************************
  * 
  * submit plant

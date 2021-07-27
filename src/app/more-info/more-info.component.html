@@ -1,5 +1,4 @@
 
-<!-- center this -->
 <div *ngIf="singlePlant">
 
     <mat-dialog-title>
@@ -20,8 +19,7 @@
 
         <div *ngIf="hideDatePicker">
             <h4>
-                
-                <button class="pl-3" mat-raised-button (click)="toggleShowDatePicker()" color="primary" >Edit</button>
+                <button class="pl-3" mat-raised-button (click)="toggleHideDatePicker()" color="primary" >Edit</button>
             </h4>
         </div>
         
@@ -35,7 +33,21 @@
             </mat-form-field>
         </div>
 
+        
         <h4>Growth conditions: {{singlePlant.growthModifier * 100}} %</h4>
+        <!-- Show and hide growth conditions slider -->
+        <div *ngIf="hideGrowthModifier">
+            <button mat-raised-button (click)="toggleHideGrowthModifier()" color="primary" class="mb-3">Change Growth Conditions Modifier</button>
+        </div>
+        
+        <div *ngIf="!hideGrowthModifier">
+            <mat-slider 
+                thumbLabel
+                tickInterval=".1"
+                [(ngModel)]="singlePlant.growthModifier"  min=".5" max="1" step=".1"
+            ></mat-slider>
+        </div>
+
         <h4>Days left until harvest: {{singlePlant.daysLeftToHarvest}}</h4>
         <h4>Days to harvest (from seed): {{singlePlant.daysToHarvest}}</h4>
         <h4>Harvest on this date: {{ singlePlant.dateToHarvest | date: 'shortDate'}}</h4>
@@ -48,9 +60,8 @@
 
 
 <mat-dialog-actions>
-    <button mat-raised-button  color="primary" >Change Growth Conditions Modifier</button>
-    <button class="ml" mat-raised-button  color="primary" >Replace</button>
-    <button class="ml" mat-raised-button color="warn" (click)="closeInfo()" (click)="saveNewDate()">Close</button>
+    <button class="ml" mat-raised-button  color="primary">Replace</button>
+    <button class="ml" mat-raised-button color="warn" (click)="closeInfo()" (click)="saveNewDate()" (click)="saveNewGrowthModifier()">Close</button>
 </mat-dialog-actions>
 
 

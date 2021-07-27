@@ -234,6 +234,24 @@ export class PlantServerService {
     })
   }
 
+  //get one plant
+  updateOnePlantGrowthModifier( id: string,  growthModifier: number ) {
+  
+    let postData: any;
+
+    //create object to send
+    postData = {
+      id: id,
+      growthModifier: growthModifier
+      
+    }
+
+    //send to backend
+    this.http.put(this.url + "/changeGrowthModifier/" + id, postData).subscribe( result => {
+      console.log(result);
+    })
+  }
+
 }
 
 

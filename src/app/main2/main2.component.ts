@@ -19,12 +19,11 @@ import { PlantDataService } from '../services/plant-data.service';
 export class Main2Component implements OnInit {
 
   /**
+   * 
    * App allows user to: 
    *  select the size of their raised bed
    *  stage plants to put into a raised bed
    *  save up to 4 arrays(columns) into a single saved garden bed
-   * 
-   * 
    * 
    */
 
