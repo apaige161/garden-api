@@ -28,13 +28,27 @@ import { MoreInfoComponent } from '../more-info/more-info.component';
 })
 export class GardensComponent implements OnInit {
 
+
   //holds all plants
-  plants: SinglePlant[];
+  plants: SinglePlant[] = [];
+
+  userEmail: string;
+
+  SearchGarden = '';
+  gardenNames = [];
+  singleGardenNames = [];
+  Garden = '';
+  
+  getCurrentUser() {
+    return this.userEmail = localStorage.getItem("userEmail");
+  }
 
   constructor(private plantService: PlantServerService, private http: HttpClient, private matDialog: MatDialog) { 
 
+    //get user
+    this.getCurrentUser()
+    //get user's gardens
     this.allPlantsinit();
-
     
   }
 
@@ -49,10 +63,8 @@ export class GardensComponent implements OnInit {
   * 
   **************************************************************************************************/
 
-    Garden;
-    SearchGarden = '';
-    gardenNames = [];
-    singleGardenNames = [];
+    
+    
 
     SortByParam = 'garden';
     SortDirection = 'asc'
@@ -62,7 +74,11 @@ export class GardensComponent implements OnInit {
 
     //filter button logic
     onGardenFilter() {
+      
       this.SearchGarden = this.Garden;
+
+      
+
     }
     
     onGardenFilterClear() {
@@ -81,18 +97,32 @@ export class GardensComponent implements OnInit {
 
   /*************************************************************************************************************************
   * 
-  * Get all plants
+  * Get all plants --for current user
   *   -set data
   * 
+  *   --currently gets all plant data and filters on the front end, filter on server side
+  * 
   **************************************************************************************************************************/
+
+  
 
    allPlantsinit() {
     this.plantService.getPlants()
       .subscribe(data =>  {
-        //set data
-        this.plants = data
+
+        //console.log(data);
+
+        //get only user data, not all data
+        data.forEach(plant => {
+          if(plant.owner === this.userEmail) {
+            //console.log(plant);
+            this.plants.push(plant);
+            //console.log(this.plants);
+          }
+        })
 
         //console.log(this.plants);
+        
 
         this.getEachDatePlanted(this.plants);
 
@@ -142,13 +172,15 @@ export class GardensComponent implements OnInit {
     this.allPlantsinit();
   }
 
-  //get each garden name
+  //get each garden name for current user
   //leave this here!
   getEachGardenNameOnce(){
 
     //push all garden names to array
     this.plants.forEach(item => {
+
       this.gardenNames.push(item.garden)
+
     });
     
   }
@@ -162,12 +194,12 @@ export class GardensComponent implements OnInit {
 
     //convert back to an array
     this.singleGardenNames = [...uniqueSet];
+
   }
 
   /**************************************************************************************
   * 
   * harvest progress logic
-  *   TODO: fix negative values on progressToHarvest
   *  
   **************************************************************************************/
 
@@ -217,7 +249,7 @@ export class GardensComponent implements OnInit {
   color = 'accent';
 
 
-  //change progress bar color 
+  //change progress bar color
 
   
 

@@ -3,6 +3,7 @@
 
 export interface SinglePlant {
     _id: string;
+    owner: string;
     plant: string;
     plantType: string;
     garden: string;
@@ -21,4 +22,5 @@ export interface SinglePlant {
     yGarden: number;
     col: number;
 }
+
 

@@ -16,3 +16,4 @@ export interface FullPlant {
     zone: string,
     col: number,
 }
+
