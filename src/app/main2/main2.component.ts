@@ -75,6 +75,10 @@ export class Main2Component implements OnInit {
   favoritePlantType: string = 'vegatables'
   plantTypes: string[] = ['vegatables', 'herbs', 'flowers'];
 
+  favoriteSeason: string = 'spring';
+  seasons: string[] = ['spring', 'summer', 'fall', 'winter'];
+  //season: string = '';
+
   //arrays where plants can be stored
   fullPlant: FullPlant[] = [];
   
@@ -112,7 +116,7 @@ export class Main2Component implements OnInit {
   /*** Add validation to not allow saving unnamed gardens **/
 
   // true = disabled
-  saveDisable: boolean = false;
+  saveDisable: boolean = true;
 
   
 

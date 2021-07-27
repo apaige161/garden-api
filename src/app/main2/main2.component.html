@@ -1,6 +1,7 @@
 
 <div class="">
 
+
   <div class="col-lg-12">
 
     <!-- main banner -->
@@ -78,7 +79,7 @@
           <!-- plant list -->
           <div class="col-12 plant-list">
 
-            <!-- Option list -->
+            <!-- Plant type option list -->
             <mat-radio-group
               aria-labelledby="radio-group-label"
               class="radio-group"
@@ -88,8 +89,18 @@
               </mat-radio-button>
             </mat-radio-group>
 
+            <!-- Plant season option list -->
+            <mat-radio-group
+              aria-labelledby="radio-group-label"
+              class="radio-group"
+              [(ngModel)]="favoriteSeason">
+              <mat-radio-button class="radio-button" *ngFor="let season of seasons" [value]="season">
+                {{season | titlecase}}
+              </mat-radio-button>
+            </mat-radio-group>
+
             <!-- Veggies -->
-            <div class="row" *ngIf="favoritePlantType === 'vegatables'">
+            <div class="row" *ngIf="favoritePlantType === 'vegatables' ">
               <div class="col-4 " *ngFor="let item of vegatablesArr; index as i">
                 <button mat-raised-button color="primary" class="mb-3"
                   (click)="this.totalPossiblePlants()"
@@ -101,7 +112,10 @@
                   (click)="canSave()"
                   [disabled]="disableAddPlants"
                 >
-                  {{item.plant | titlecase}}
+                  <div *ngIf="item.season.includes(favoriteSeason)">
+                    {{item.plant | titlecase}}
+                  </div>
+                  
                 </button>
               </div>
             </div>
@@ -119,7 +133,9 @@
                   (click)="canSave()"
                   [disabled]="disableAddPlants"
                 >
-                  {{item.plant | titlecase}}
+                  <div *ngIf="item.season.includes(favoriteSeason)">
+                    {{item.plant | titlecase}}
+                  </div>
                 </button>
               </div>
             </div>
@@ -137,7 +153,9 @@
                   (click)="canSave()"
                   [disabled]="disableAddPlants"
                 >
-                  {{item.plant | titlecase}}
+                  <div *ngIf="item.season.includes(favoriteSeason)">
+                    {{item.plant | titlecase}}
+                  </div>
                 </button>
               </div>
             </div>

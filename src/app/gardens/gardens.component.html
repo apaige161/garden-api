@@ -11,7 +11,7 @@
         <div class="col-12" *ngIf="plants != []">
 
           <form>
-            <h4>Choose a Garden</h4>
+            <h1>Choose a Garden</h1>
             <mat-form-field appearance="fill">
               <mat-label>Garden</mat-label>
               <mat-select [(ngModel)]="Garden" name="gardens" (click)="getEachGardenNameOnce()" (click)="removeDuplicates(gardenNames)">
@@ -23,24 +23,15 @@
           </form>
 
           <div>
-            <h4>
+            <h1>
               Create a New Garden
-            </h4>
+            </h1>
             <a mat-raised-button color="accent" routerLink="/createGarden">New Garden</a>
           </div>
 
         </div>
       </div>
-        
-      <!-- center this -->
-      <div class="col-12 text-center" *ngIf="plants == []">
-        <div>
-          <h4>
-            Create a New Garden
-          </h4>
-          <a mat-raised-button color="primary" routerLink="/createGarden">New Garden</a>
-        </div>
-      </div>
+
 
     </div>
   </div>
@@ -63,7 +54,7 @@
   <div class="col-12" >
     <div *ngIf="Garden" class="garden-info">
       <h1>Garden Name: {{Garden | titlecase}}</h1>
-      <button mat-raised-button color="accent" (click)="deleteGarden(Garden)">Delete Garden</button>
+      <button mat-raised-button color="warn" (click)="deleteGarden(Garden)">Delete Garden</button>
     </div>
     
   </div>
