@@ -28,21 +28,12 @@
             </h1>
             <a mat-raised-button color="accent" routerLink="/createGarden">New Garden</a>
           </div>
-
+          
         </div>
       </div>
-
-
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
 
 
 <!-- get back saved data -->
@@ -50,16 +41,30 @@
 <!-- 4 column layout for saved gardens -->
 
 
-<div class="row saved-garden-grid pt-4" id="print-section">
-  <div class="col-12" >
+<div class="row saved-garden-grid pt-4 " id="print-section">
+  <div class="col-12 " >
     <div *ngIf="Garden" class="garden-info">
       <h1>Garden Name: {{Garden | titlecase}}</h1>
-      <button mat-raised-button color="warn" (click)="deleteGarden(Garden)">Delete Garden</button>
+
+      <div class="action print-ignore">
+        <button mat-raised-button color="primary">Post Garden</button>
+        <button
+            class="btn btn-success"
+            printSectionId="print-section"
+            printTitle="{{Garden}}"
+            ngxPrint
+            styleSheetFile="../../../assets/print.css">
+            Print Garden Layout
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteGarden(Garden)">Delete Garden</button>
+      </div>
+      
+      
     </div>
-    
   </div>
+
   <!-- col 1 only-->
-  <div *ngIf="Garden" class="saved-garden-column" style="background-color:#aaa;" >
+  <div ngxPrint *ngIf="Garden" class="saved-garden-column" style="background-color:#aaa;" >
     <div *ngFor="let plant of plants
       | filter: Garden :'garden'
       | sort: ['col'] : ['garden']
@@ -70,9 +75,9 @@
         <mat-card-header class="card-header">
           <mat-card-title>{{plant.plant | titlecase}}</mat-card-title>
           <mat-card-subtitle>x {{plant.perFoot}}</mat-card-subtitle>
-          <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
+          <button class="print-ignore" mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="print-ignore">
           <!-- displays green bar if ready to harvest -->
           <div *ngIf="plant.progressToHarvest == 100">
             <mat-progress-bar
@@ -109,9 +114,9 @@
         <mat-card-header class="card-header">
           <mat-card-title>{{plant.plant | titlecase}}</mat-card-title>
           <mat-card-subtitle>x {{plant.perFoot}}</mat-card-subtitle>
-          <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
+          <button class="print-ignore" mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="print-ignore">
           <!-- displays green bar if ready to harvest -->
           <div *ngIf="plant.progressToHarvest == 100">
             <mat-progress-bar
@@ -147,9 +152,9 @@
         <mat-card-header class="card-header">
           <mat-card-title>{{plant.plant | titlecase}}</mat-card-title>
           <mat-card-subtitle>x {{plant.perFoot}}</mat-card-subtitle>
-          <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
+          <button class="print-ignore" mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="print-ignore">
           <!-- displays green bar if ready to harvest -->
           <div *ngIf="plant.progressToHarvest == 100">
             <mat-progress-bar
@@ -185,9 +190,9 @@
         <mat-card-header class="card-header">
           <mat-card-title>{{plant.plant | titlecase}}</mat-card-title>
           <mat-card-subtitle>x {{plant.perFoot}}</mat-card-subtitle>
-          <button mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
+          <button class="print-ignore" mat-raised-button color="primary" (click)="openMoreInfo(plant._id)">More Info</button>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="print-ignore">
           <!-- displays green bar if ready to harvest -->
           <div *ngIf="plant.progressToHarvest == 100">
             <mat-progress-bar
@@ -213,18 +218,3 @@
   
 </div><!-- 4 column layout for saved gardens-->
 
-<div class="col-lg-12 col-md-12" *ngIf="Garden">
-  <div class="jumbotron text-center">
-
-      <hr class="my-4">
-      <p>If the print preview shows uneven rows or any weird behavior, set the print margins to none.</p>
-      <p>Print margins will be under "more settings" >> "margins" select none </p>
-      <button
-          class="btn btn-success"
-          [useExistingCss]="true"
-          printSectionId="print-section"
-          ngxPrint>
-          Print Garden Layout
-      </button>
-  </div>
-</div>

@@ -1,0 +1,14 @@
+@media print {
+    .print-ignore {
+        display: none;
+    }
+    .card-container {
+        display: flex;
+        color:crimson;
+    }
+
+}
+
+@page {
+    margin: 0.5cm;
+}

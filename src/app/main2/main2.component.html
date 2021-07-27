@@ -79,25 +79,28 @@
           <!-- plant list -->
           <div class="col-12 plant-list">
 
-            <!-- Plant type option list -->
-            <mat-radio-group
-              aria-labelledby="radio-group-label"
-              class="radio-group"
-              [(ngModel)]="favoritePlantType">
-              <mat-radio-button class="radio-button" *ngFor="let types of plantTypes" [value]="types">
-                {{types | titlecase}}
-              </mat-radio-button>
-            </mat-radio-group>
+            <div class="row">
+              <!-- Plant type option list -->
+              <mat-radio-group
+                aria-labelledby="radio-group-label"
+                class="radio-group"
+                [(ngModel)]="favoritePlantType">
+                <mat-radio-button class="radio-button" *ngFor="let types of plantTypes" [value]="types">
+                  {{types | titlecase}}
+                </mat-radio-button>
+              </mat-radio-group>
 
-            <!-- Plant season option list -->
-            <mat-radio-group
-              aria-labelledby="radio-group-label"
-              class="radio-group"
-              [(ngModel)]="favoriteSeason">
-              <mat-radio-button class="radio-button" *ngFor="let season of seasons" [value]="season">
-                {{season | titlecase}}
-              </mat-radio-button>
-            </mat-radio-group>
+              <!-- Plant season option list -->
+              <mat-radio-group
+                aria-labelledby="radio-group-label"
+                class="radio-group"
+                [(ngModel)]="favoriteSeason">
+                <mat-radio-button class="radio-button" *ngFor="let season of seasons" [value]="season">
+                  {{season | titlecase}}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            
 
             <!-- Veggies -->
             <div class="row" *ngIf="favoritePlantType === 'vegatables' ">
