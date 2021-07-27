@@ -1,11 +1,17 @@
-import { DatePipe } from '@angular/common';
+
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { SinglePlant } from '../models/single-plant';
 import { PlantServerService } from '../services/plant-server.service';
 import { addDays, differenceInDays, startOfDay  } from 'date-fns'
+import { EditPlantComponent } from '../edit-plant/edit-plant.component';
+import { PlantDataService } from '../services/plant-data.service';
+import { FullPlant } from '../models/full-plant';
+
+
 
 @Component({
   selector: 'app-more-info',
@@ -23,12 +29,27 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   growthModifier: number = 1;
   hideGrowthModifier: boolean = true;
 
+  editPlant: boolean = false;
+
+  //radio button properties
+  favoritePlantType: string = 'vegatables'
+  plantTypes: string[] = ['vegatables', 'herbs', 'flowers'];
+
+  favoriteSeason: string = 'spring';
+  seasons: string[] = ['spring', 'summer', 'fall', 'winter'];
+
   constructor( 
     @Inject(MAT_DIALOG_DATA) 
     public data: {_id: string}, 
     private matDialogRef: MatDialogRef<MoreInfoComponent>,
+    private plantData: PlantDataService,
     private plantService: PlantServerService
   ) { }
+
+  //arrays to hold the plant objects
+  vegatablesArr: FullPlant[] = this.plantData.vegatables;
+  herbsArr: FullPlant[] = this.plantData.herbs;
+  flowersArr: FullPlant[] = this.plantData.flowers;
 
   closeInfo() {
     this.matDialogRef.close();
@@ -42,6 +63,15 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.hideGrowthModifier = !this.hideGrowthModifier;
   }
 
+  toggleEditPlant() {
+    this.editPlant = true;
+  }
+
+  /************************************************
+   * 
+   * Update plant
+   * 
+   ************************************************/
   getSinglePlant(id: string) {
     return this.plantService.getOnePlant(id)
   }
@@ -71,13 +101,16 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   }
 
   saveNewGrowthModifier() {
-    //send updated GrowthModifier -> service -> database to be stored
-
+    //send updated GrowthModifier -> service -> backend route -> database to be stored
     //update growthModifier
     this.plantService.updateOnePlantGrowthModifier(
       this.singlePlant._id,
       this.singlePlant.growthModifier,
     )
+  }
+
+  replacePlant() {
+    //send updated plant properties -> service -> backend route -> database
 
   }
 
@@ -145,7 +178,20 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   color: ThemePalette = 'primary';
   value: number = 0; //out of 100
   diameter = 50;
-  
+
+  /** 
+  //get plant data into here
+  openEditPlant(plantId: string) {
+    let dialogRef = this.matDialog.open(EditPlantComponent, {
+      data: {
+        _id: plantId
+      },
+      width: "500px",
+      height: "600px",
+      disableClose: true
+    });
+  }
+  */
 
   ngOnInit() {
 

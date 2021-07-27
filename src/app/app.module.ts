@@ -13,17 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatTableModule } from'@angular/material/table';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatRadioModule } from '@angular/material/radio';
+
 
 
 import { NgxPrintModule } from 'ngx-print';
@@ -73,20 +63,9 @@ import { DateFnsModule } from 'ngx-date-fns';
     PostsModule,
     NgxPrintModule,
     DragDropModule,
-    MatProgressBarModule,
-    MatSliderModule,
-    MatTableModule,
-    MatGridListModule,
     FontAwesomeModule,
     FormsModule,
     NgbModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatDialogModule,
-    MatRadioModule,
     DateFnsModule.forRoot(),
   ],
   providers: 

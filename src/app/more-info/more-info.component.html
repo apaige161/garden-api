@@ -2,55 +2,132 @@
 <div *ngIf="singlePlant">
 
     <mat-dialog-title>
-        <h1>{{ singlePlant.plant | titlecase}}</h1>
-        <mat-progress-bar
-            class="progress-bar-margin"
-            mode="determinate" 
-            [value]="singlePlant.progressToHarvest">
-        </mat-progress-bar>
+        <h1>
+            {{ singlePlant.plant | titlecase}}
+            <button
+                *ngIf="!editPlant"
+                (click)="toggleEditPlant()"
+                class="ml"
+                mat-raised-button  
+                color="primary">
+                Replace
+            </button>
+        </h1>
     </mat-dialog-title>
 
     <mat-dialog-content>
+        <div *ngIf="!editPlant">
+            <mat-progress-bar
+            class="progress-bar-margin"
+            mode="determinate" 
+            [value]="singlePlant.progressToHarvest">
+            </mat-progress-bar>
+            <h4>Planting Season: {{ singlePlant.season | titlecase}}</h4>
+            <h4>Number Per Foot: {{ singlePlant.perFoot }}</h4>
+            <h4>Plant type: {{ singlePlant.plantType | titlecase}}</h4>
+            <h4>Date Planted: {{ singlePlant.datePlanted | date : 'shortDate'}} </h4>
+            <div *ngIf="hideDatePicker">
+                <h4>
+                    <button class="pl-3" mat-raised-button (click)="toggleHideDatePicker()" color="primary" >Edit</button>
+                </h4>
+            </div>
+            <div *ngIf="!hideDatePicker">
+                <h4>Update date planted</h4>
+                
+                <mat-form-field>
+                    <input matInput [matDatepicker]="myDatePicker" [(ngModel)]="newDate">
+                    <mat-datepicker-toggle [for]="myDatePicker" matSuffix ></mat-datepicker-toggle>
+                    <mat-datepicker #myDatePicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <h4>Growing Conditions: {{singlePlant.growthModifier * 100}} %</h4>
+            <!-- Show and hide growth conditions slider -->
+            <div *ngIf="hideGrowthModifier">
+                <button mat-raised-button (click)="toggleHideGrowthModifier()" color="primary" class="mb-3">Change Growth Conditions Modifier</button>
+            </div>
+            <div *ngIf="!hideGrowthModifier">
+                <mat-slider 
+                    thumbLabel
+                    tickInterval=".1"
+                    [(ngModel)]="singlePlant.growthModifier"  min=".5" max="1" step=".1"
+                ></mat-slider>
+            </div>
+            <h4>Days left until harvest: {{singlePlant.daysLeftToHarvest}}</h4>
+            <h4>Days to harvest (from seed): {{singlePlant.daysToHarvest}}</h4>
+            <h4>Harvest on this date: {{ singlePlant.dateToHarvest | date: 'shortDate'}}</h4>
+        </div>
 
-        <h4>Planting Season: {{ singlePlant.season | titlecase}}</h4>
-        <h4>Number Per Foot: {{ singlePlant.perFoot }}</h4>
-        <h4>Plant type: {{ singlePlant.plantType | titlecase}}</h4>
-        <h4>Date Planted: {{ singlePlant.datePlanted | date : 'shortDate'}} </h4>
+        <div *ngIf="editPlant">
+            <h3>Pick a new plant to replace the current one</h3>
+            <!-- create drop downs to pick a new plant-->
+            <div class="row">
+                <h4>Growing Conditions: {{singlePlant.growthModifier * 100}} %</h4>
+                <mat-slider 
+                    thumbLabel
+                    tickInterval=".1"
+                    [(ngModel)]="singlePlant.growthModifier"  min=".5" max="1" step=".1"
+                ></mat-slider>
+            </div>
+            <div class="row radio-buttons">
+                <!-- Plant type option list -->
+                <mat-radio-group
+                  aria-labelledby="radio-group-label"
+                  class="radio-group "
+                  [(ngModel)]="favoritePlantType">
+                  <mat-radio-button class="radio-button radio-buttons" *ngFor="let types of plantTypes" [value]="types">
+                    {{types | titlecase}}
+                  </mat-radio-button>
+                </mat-radio-group>
+  
+                <!-- Plant season option list -->
+                <mat-radio-group
+                  aria-labelledby="radio-group-label"
+                  class="radio-group"
+                  [(ngModel)]="favoriteSeason">
+                  <mat-radio-button class="radio-button radio-buttons" *ngFor="let season of seasons" [value]="season">
+                    {{season | titlecase}}
+                  </mat-radio-button>
+                </mat-radio-group>
+            </div>
 
-        <div *ngIf="hideDatePicker">
-            <h4>
-                <button class="pl-3" mat-raised-button (click)="toggleHideDatePicker()" color="primary" >Edit</button>
-            </h4>
+            <!-- Veggies -->
+            <div class="row" *ngIf="favoritePlantType === 'vegatables' ">
+                <mat-form-field appearance="fill">
+                <mat-label>Replacement Plant</mat-label>
+                <mat-select [(ngModel)]="singlePlant">
+                    <mat-option *ngFor="let veggie of vegatablesArr" [value]="veggie">
+                        {{veggie.plant | titlecase}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- Herbs -->
+            <div class="row" *ngIf="favoritePlantType === 'herbs' ">
+                <mat-form-field appearance="fill">
+                <mat-label>Replacement Plant</mat-label>
+                <mat-select [(ngModel)]="singlePlant">
+                    <mat-option *ngFor="let herb of herbsArr" [value]="herb">
+                        {{herb.plant | titlecase}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- Flowers -->
+            <div class="row" *ngIf="favoritePlantType === 'flowers' ">
+                <mat-form-field appearance="fill">
+                <mat-label>Replacement Plant</mat-label>
+                <mat-select [(ngModel)]="singlePlant">
+                    <mat-option *ngFor="let flower of flowersArr" [value]="flower">
+                        {{flower.plant | titlecase}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+
         </div>
         
-        <div *ngIf="!hideDatePicker">
-            <h4>Update date planted</h4>
-            
-            <mat-form-field>
-                <input matInput [matDatepicker]="myDatePicker" [(ngModel)]="newDate">
-                <mat-datepicker-toggle [for]="myDatePicker" matSuffix ></mat-datepicker-toggle>
-                <mat-datepicker #myDatePicker></mat-datepicker>
-            </mat-form-field>
-        </div>
-
-        
-        <h4>Growth conditions: {{singlePlant.growthModifier * 100}} %</h4>
-        <!-- Show and hide growth conditions slider -->
-        <div *ngIf="hideGrowthModifier">
-            <button mat-raised-button (click)="toggleHideGrowthModifier()" color="primary" class="mb-3">Change Growth Conditions Modifier</button>
-        </div>
-        
-        <div *ngIf="!hideGrowthModifier">
-            <mat-slider 
-                thumbLabel
-                tickInterval=".1"
-                [(ngModel)]="singlePlant.growthModifier"  min=".5" max="1" step=".1"
-            ></mat-slider>
-        </div>
-
-        <h4>Days left until harvest: {{singlePlant.daysLeftToHarvest}}</h4>
-        <h4>Days to harvest (from seed): {{singlePlant.daysToHarvest}}</h4>
-        <h4>Harvest on this date: {{ singlePlant.dateToHarvest | date: 'shortDate'}}</h4>
 
     </mat-dialog-content>
     
@@ -60,8 +137,35 @@
 
 
 <mat-dialog-actions>
-    <button class="ml" mat-raised-button  color="primary">Replace</button>
-    <button class="ml" mat-raised-button color="warn" (click)="closeInfo()" (click)="saveNewDate()" (click)="saveNewGrowthModifier()">Close</button>
+    <div *ngIf="!editPlant" class="text-center">
+        <button 
+            class="ml" 
+            mat-raised-button 
+            color="warn" 
+            (click)="closeInfo()" 
+            (click)="saveNewDate()" 
+            (click)="saveNewGrowthModifier()">
+            Close
+        </button>
+    </div>
+
+    <div *ngIf="editPlant" class="text-center">
+        <button 
+            class="ml" 
+            mat-raised-button 
+            color="primary"
+            (click)="closeInfo()">
+            Save
+        </button>
+        <button 
+            class="ml" 
+            mat-raised-button 
+            color="warn"
+            (click)="closeInfo()" >
+            Cancel
+        </button>
+    </div>
+    
 </mat-dialog-actions>
 
 

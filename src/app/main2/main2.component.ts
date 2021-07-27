@@ -76,7 +76,7 @@ export class Main2Component implements OnInit {
 
   favoriteSeason: string = 'spring';
   seasons: string[] = ['spring', 'summer', 'fall', 'winter'];
-  //season: string = '';
+
 
   //arrays where plants can be stored
   fullPlant: FullPlant[] = [];

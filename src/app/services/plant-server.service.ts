@@ -107,7 +107,7 @@ export class PlantServerService {
       //return as a promise
       this.http.post(this.url, this.postData)
         .subscribe(data => {
-        console.log(data);
+        //console.log(data);
     })
   }
 
@@ -142,7 +142,7 @@ export class PlantServerService {
       //return as a promise
       this.http.post(this.url, this.postData)
         .subscribe(data => {
-        console.log(data);
+        //console.log(data);
     })
   }
 
@@ -212,7 +212,7 @@ export class PlantServerService {
 
     //send to backend
     this.http.put(this.url + "/" + id, postData).subscribe( result => {
-      console.log(result);
+      //console.log(result);
     })
   }
 
@@ -230,7 +230,7 @@ export class PlantServerService {
 
     //send to backend
     this.http.put(this.url + "/changeDateHarvested/" + id, postData).subscribe( result => {
-      console.log(result);
+      //console.log(result);
     })
   }
 
@@ -248,7 +248,7 @@ export class PlantServerService {
 
     //send to backend
     this.http.put(this.url + "/changeGrowthModifier/" + id, postData).subscribe( result => {
-      console.log(result);
+      //console.log(result);
     })
   }
 

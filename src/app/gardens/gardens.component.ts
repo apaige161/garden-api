@@ -17,7 +17,7 @@ import { SinglePlant } from 'src/app/models/single-plant';
 import { addDays, differenceInDays, startOfDay  } from 'date-fns'
 
 import { MatDialog } from '@angular/material/dialog';
-import { EditPlantComponent } from '../edit-plant/edit-plant.component';
+
 import { MoreInfoComponent } from '../more-info/more-info.component';
 
 
@@ -273,17 +273,7 @@ export class GardensComponent implements OnInit {
     });
   }
 
-  //get plant data into here
-  openEditPlant(plantId: string) {
-    let dialogRef = this.matDialog.open(EditPlantComponent, {
-      data: {
-        _id: plantId
-      },
-      width: "500px",
-      height: "500px",
-      disableClose: true
-    });
-  }
+  
 
 
 
