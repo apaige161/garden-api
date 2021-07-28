@@ -198,7 +198,7 @@ export class PlantServerService {
   * 
   ********************************************************************************************/
 
-  //get one plant
+  //get one plant date planted
   updateOnePlantPlanted( id: string, datePlanted: Date) {
   
     let postData: any;
@@ -211,12 +211,44 @@ export class PlantServerService {
     }
 
     //send to backend
-    this.http.put(this.url + "/" + id, postData).subscribe( result => {
+    this.http.put(this.url + "/changeDatePlanted/" + id, postData).subscribe( result => {
       //console.log(result);
     })
   }
 
-  //get one plant
+  //update plant name + type + season + perFoot + growthModifier + daysToHarvest + datePlanted
+  updatePlant( 
+    id: string, 
+    plant: string, 
+    plantType: string, 
+    season: string, 
+    perFoot: number,
+    growthModifier: number,
+    daysToHarvest: number,
+    datePlanted: Date) {
+
+      let postData: any;
+      postData = {
+        id: id,
+        plant: plant,
+        plantType: plantType,
+        season: season,
+        perFoot: perFoot,
+        growthModifier: growthModifier,
+        daysToHarvest: daysToHarvest,
+        datePlanted: datePlanted,
+      }
+
+      console.log(postData.plant);
+
+      //send to backend
+      this.http.put(this.url + "/updatePlant/" + id, postData).subscribe( result => {
+        //console.log(result);
+    })
+
+  }
+
+  //update one plant -harvest date
   updateOnePlantHarvested( id: string,  dateToHarvest: Date ) {
   
     let postData: any;
@@ -234,7 +266,7 @@ export class PlantServerService {
     })
   }
 
-  //get one plant
+  //update one plant -growth modifier
   updateOnePlantGrowthModifier( id: string,  growthModifier: number ) {
   
     let postData: any;

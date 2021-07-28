@@ -90,7 +90,39 @@ router.delete('/:plantId', async (req, res) => {
  * update date planted specific plant by ID
  * 
  *************************************************************************************************************************/
-router.put('/:plantId', async (req, res) => {
+
+//update pant name + plantType
+ router.put('/updatePlant/:plantId', async (req, res) => {
+    
+    //use model and update by ID targeting the _id param
+    //the first param of updateOne is to find the object, 
+    //second is what to change it to
+
+    try{
+        //use model and update by ID targeting the _id param
+        //the first param of updateOne is to find the object, 
+        //second is what to change it to
+        const updatedPlant = await Garden.updateOne(
+            {_id: req.params.plantId}, 
+            {$set: 
+                { 
+                    plant: req.body.plant,
+                    plantType: req.body.plantType,
+                    season: req.body.season,
+                    perFoot: req.body.perFoot,
+                    growthModifier: req.body.growthModifier,
+                    daysToHarvest: req.body.daysToHarvest,
+                    datePlanted: req.body.datePlanted
+                }
+        });
+        console.log(updatedPlant);
+        res.json(updatedPlant);
+    } catch(err) {
+        res.json({message: err});
+    }
+});
+
+router.put('/changeDatePlanted/:plantId', async (req, res) => {
     try{
         //use model and update by ID targeting the _id param
         //the first param of updateOne is to find the object, 

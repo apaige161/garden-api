@@ -13,6 +13,7 @@ const BACKEND_URL = environment.apiUrl + "/posts/";
 })
 export class PostService {
 
+
   private posts: Post[] = [];
 
   //pass an array of posts as an event emitter

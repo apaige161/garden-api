@@ -220,6 +220,7 @@ export class GardensComponent implements OnInit {
       plant.dateToHarvest = new Date();
       plant.dateToHarvest = startOfDay(plant.dateToHarvest);
       plant.dateToHarvest = addDays(plant.datePlanted, plant.daysToHarvest);
+      plant.dateToHarvest = addDays(plant.dateToHarvest, 1);
 
       //calculate how many days are left until dateToHarvest
       //how many days are between today and expected harvest date

@@ -74,7 +74,11 @@
                   aria-labelledby="radio-group-label"
                   class="radio-group "
                   [(ngModel)]="favoritePlantType">
-                  <mat-radio-button class="radio-button radio-buttons" *ngFor="let types of plantTypes" [value]="types">
+                  <mat-radio-button 
+                    class="radio-button radio-buttons" 
+                    *ngFor="let types of plantTypes" 
+                    [value]="types"
+                    (click)="resetSeasonSelector()">
                     {{types | titlecase}}
                   </mat-radio-button>
                 </mat-radio-group>
@@ -84,7 +88,11 @@
                   aria-labelledby="radio-group-label"
                   class="radio-group"
                   [(ngModel)]="favoriteSeason">
-                  <mat-radio-button class="radio-button radio-buttons" *ngFor="let season of seasons" [value]="season">
+                  <mat-radio-button 
+                    class="radio-button radio-buttons" 
+                    *ngFor="let season of seasons" 
+                    [value]="season"
+                    (click)="resetSeasonSelector()">
                     {{season | titlecase}}
                   </mat-radio-button>
                 </mat-radio-group>
@@ -94,9 +102,14 @@
             <div class="row" *ngIf="favoritePlantType === 'vegatables' ">
                 <mat-form-field appearance="fill">
                 <mat-label>Replacement Plant</mat-label>
-                <mat-select [(ngModel)]="singlePlant">
-                    <mat-option *ngFor="let veggie of vegatablesArr" [value]="veggie">
-                        {{veggie.plant | titlecase}}
+                <mat-select [(ngModel)]="singlePlant" (click)="getSelectedSeason(vegatablesArr, favoriteSeason)">
+                    <mat-option *ngFor="let veggie of filteredArr" [value]="veggie">
+                        <!-- only display if correct planting season -->
+                        <div *ngIf="veggie.season.includes(favoriteSeason)" (click)="saveId()">
+                            <!-- get rid of empty indexes in array -->
+                            {{veggie.plant | titlecase}}
+                        </div>
+                        
                     </mat-option>
                 </mat-select>
                 </mat-form-field>
@@ -106,9 +119,13 @@
             <div class="row" *ngIf="favoritePlantType === 'herbs' ">
                 <mat-form-field appearance="fill">
                 <mat-label>Replacement Plant</mat-label>
-                <mat-select [(ngModel)]="singlePlant">
-                    <mat-option *ngFor="let herb of herbsArr" [value]="herb">
-                        {{herb.plant | titlecase}}
+                <mat-select [(ngModel)]="singlePlant" (click)="getSelectedSeason(herbsArr, favoriteSeason)">
+                    <mat-option *ngFor="let herb of filteredArr" [value]="herb" >
+                        <!-- only display if correct planting season -->
+                        <div *ngIf="herb.season.includes(favoriteSeason)" (click)="saveId()">
+                            <!-- get rid of empty indexes in array -->
+                            {{herb.plant | titlecase}}
+                        </div>
                     </mat-option>
                 </mat-select>
                 </mat-form-field>
@@ -118,9 +135,13 @@
             <div class="row" *ngIf="favoritePlantType === 'flowers' ">
                 <mat-form-field appearance="fill">
                 <mat-label>Replacement Plant</mat-label>
-                <mat-select [(ngModel)]="singlePlant">
-                    <mat-option *ngFor="let flower of flowersArr" [value]="flower">
-                        {{flower.plant | titlecase}}
+                <mat-select [(ngModel)]="singlePlant" (click)="getSelectedSeason(flowersArr, favoriteSeason)">
+                    <mat-option *ngFor="let flower of filteredArr" [value]="flower">
+                        <!-- only display if correct planting season -->
+                        <div *ngIf="flower.season.includes(favoriteSeason)" (click)="saveId()">
+                            <!-- get rid of empty indexes in array -->
+                            {{flower.plant | titlecase}}
+                        </div>
                     </mat-option>
                 </mat-select>
                 </mat-form-field>
@@ -154,7 +175,8 @@
             class="ml" 
             mat-raised-button 
             color="primary"
-            (click)="closeInfo()">
+            (click)="closeInfo()"
+            (click)="replacePlant()">
             Save
         </button>
         <button 

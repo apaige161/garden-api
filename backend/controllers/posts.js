@@ -48,6 +48,7 @@ exports.updatePost = (req, res, next) => {
         creator: req.userData.userId,
         
     });
+    
 
     //targets by id and sends the request to replace the current object with the new post object
     //add an additional check to confirm correct user by Id

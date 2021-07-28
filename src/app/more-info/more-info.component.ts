@@ -55,6 +55,11 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.matDialogRef.close();
   }
 
+  /************************************************
+  * 
+  * show/hide functions
+  * 
+  ************************************************/
   toggleHideDatePicker() {
     this.hideDatePicker = !this.hideDatePicker;
   }
@@ -68,10 +73,33 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   }
 
   /************************************************
-   * 
-   * Update plant
-   * 
-   ************************************************/
+  * 
+  * return only the items with season that are passed in
+  *   -goal is to remove the empty spaces
+  * 
+  ************************************************/
+
+   filteredArr = [];
+
+   getSelectedSeason(arr:any, season) {
+     
+     arr.forEach(plant => {
+       if(plant.season.includes(season)) {
+         this.filteredArr.push(plant)
+       }
+     });
+
+   }
+
+   resetSeasonSelector() {
+     this.filteredArr = []
+   }
+
+  /************************************************
+  * 
+  * Update plant parts
+  * 
+  ************************************************/
   getSinglePlant(id: string) {
     return this.plantService.getOnePlant(id)
   }
@@ -90,7 +118,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
         this.singlePlant.datePlanted,
       )
 
-      console.log("Should update dateToHarvest to: " + this.singlePlant.dateToHarvest)
+      //console.log("Should update dateToHarvest to: " + this.singlePlant.dateToHarvest)
       //update when harvest time
       this.plantService.updateOnePlantHarvested(
         this.singlePlant._id,
@@ -103,15 +131,44 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   saveNewGrowthModifier() {
     //send updated GrowthModifier -> service -> backend route -> database to be stored
     //update growthModifier
+    //console.log("Replacing growth modifier... " + this.singlePlant._id);
     this.plantService.updateOnePlantGrowthModifier(
       this.singlePlant._id,
       this.singlePlant.growthModifier,
     )
   }
 
-  replacePlant() {
-    //send updated plant properties -> service -> backend route -> database
+  /************************************************
+  * 
+  * Replace plant
+  *   -leaves same Id, x/y/col attributes
+  * 
+  ************************************************/
 
+  idToSave = ''
+  today = new Date();
+
+  //for whatever reason replacePlant will not accept _.id so leave this here
+  saveId() {
+    this.idToSave = this.singlePlant._id;
+    //console.log("Replacing plant name by ID... " + this.idToSave);
+
+  }
+
+  replacePlant() {
+    //send updated GrowthModifier -> service -> backend route -> database to be stored
+    //update plant name + plantType + season + perFoot + growthModifier + daysToHarvest + datePlanted
+    this.plantService.updatePlant(
+      this.idToSave,
+      this.singlePlant.plant,
+      this.singlePlant.plantType,
+      this.singlePlant.season,
+      this.singlePlant.perFoot,
+      this.singlePlant.growthModifier,
+      this.singlePlant.daysToHarvest,
+      this.today,
+
+    )
   }
 
   /**************************************************************************************
@@ -130,13 +187,13 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
 
     //set
 
-    console.log("updating harvest date");
+    //console.log("updating harvest date");
     //save to DB
     this.plantService.updateOnePlantHarvested(
       plant._id,
       plant.dateToHarvest
     )
-    console.log("updated harvest date to: " + plant.dateToHarvest);
+    //console.log("updated harvest date to: " + plant.dateToHarvest);
 
     this.addAWeekModified = true;
   }
@@ -156,6 +213,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     plant.dateToHarvest = new Date();
     plant.dateToHarvest = startOfDay(plant.dateToHarvest);
     plant.dateToHarvest = addDays(plant.datePlanted, plant.daysToHarvest);
+    plant.dateToHarvest = addDays(plant.dateToHarvest, 1);
 
     //calculate how many days are left until dateToHarvest
     //how many days are between today and expected harvest date
