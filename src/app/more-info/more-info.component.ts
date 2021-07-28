@@ -221,7 +221,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
 
     //calculate how many days are left and return a whole number to pass to spinner
     //calculate % out of 100 based on how many days are left to harvest
-    plant.progressToHarvest = Math.round(( 1 - (plant.daysLeftToHarvest / plant.daysToHarvest)) * 100);
+    plant.progressToHarvest = Math.floor(( 1 - (plant.daysLeftToHarvest / plant.daysToHarvest)) * 100);
 
     if(plant.daysLeftToHarvest <= 0) {
       plant.progressToHarvest = 100;
@@ -229,6 +229,11 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
       plant.daysLeftToHarvest = 0;
     }
 
+    if(plant.plant == "empty") {
+      plant.progressToHarvest = 0;
+      plant.dateToHarvest = today;
+      plant.daysLeftToHarvest = 0;
+    }
 
   }
 

@@ -212,7 +212,7 @@ export class GardensComponent implements OnInit {
     plantArr.forEach(plant => {
 
       //parse JSON date into date -- JSON returns a string
-      plant.datePlanted = new Date( plant.datePlanted );
+      plant.datePlanted = new Date(plant.datePlanted);
       plant.datePlanted = startOfDay(plant.datePlanted);
 
       //add number of days to planting date, factor in growth conditions
@@ -228,7 +228,7 @@ export class GardensComponent implements OnInit {
 
       //calculate how many days are left and return a whole number to pass to spinner
       //calculate % out of 100 based on how many days are left to harvest
-      plant.progressToHarvest = Math.round(( 1 - (plant.daysLeftToHarvest / plant.daysToHarvest)) * 100);
+      plant.progressToHarvest = Math.floor(( 1 - (plant.daysLeftToHarvest / plant.daysToHarvest)) * 100);
 
       if(plant.daysLeftToHarvest <= 0) {
         plant.progressToHarvest = 100;
@@ -269,7 +269,7 @@ export class GardensComponent implements OnInit {
         _id: plantId
       },
       width: "500px",
-      height: "600px",
+      height: "700px",
       disableClose: true
     });
   }
