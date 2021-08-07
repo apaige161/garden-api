@@ -2,30 +2,32 @@
 <div *ngIf="singlePlant">
 
     <mat-dialog-title>
-        <h1>
-            {{ singlePlant.plant | titlecase}}
-            <button
-                *ngIf="!editPlant"
-                (click)="toggleEditPlant()"
-                class="ml"
-                mat-raised-button  
-                color="primary">
-                Replace
-            </button>
-            <button
-                *ngIf="!editPlant"
-                (click)="toggleEditPlant()"
-                (click)="harvestPlant(singlePlant)"
-                class="ml"
-                mat-raised-button  
-                color="primary">
-                (Harvest) and Replace?
-            </button>
-        </h1>
+        <div *ngIf="!editPlant && !harvestPlantBool">
+            <h1>
+                {{ singlePlant.plant | titlecase}}
+                <button
+                    (click)="toggleEditPlant()"
+                    class="ml"
+                    mat-raised-button  
+                    color="primary">
+                    Replace
+                </button>
+    
+                <!-- update "(click)="harvestPlant(singlePlant, quality[0])" to take in a user input (dropdown?) of quality-->
+                <button
+                    (click)="toggleHavestOptions()"
+                    class="ml"
+                    mat-raised-button  
+                    color="primary">
+                    (Harvest)
+                </button>
+            </h1>
+        </div>
+        
     </mat-dialog-title>
 
     <mat-dialog-content>
-        <div *ngIf="!editPlant">
+        <div *ngIf="!editPlant && !harvestPlantBool">
             <mat-progress-bar
             class="progress-bar-margin"
             mode="determinate" 
@@ -67,6 +69,13 @@
         </div>
 
         <div *ngIf="editPlant">
+            <button
+                (click)="toggleEditPlant()"
+                class="ml"
+                mat-raised-button  
+                color="primary">
+                Back
+            </button>
             <h3>Pick a new plant to replace the current one</h3>
             <!-- create drop downs to pick a new plant-->
             <div class="row">
@@ -157,6 +166,19 @@
             </div>
 
         </div>
+
+        <div *ngIf="harvestPlantBool">
+            <button
+                (click)="toggleHavestOptions()"
+                class="ml"
+                mat-raised-button
+                color="primary">
+                Back
+            </button>
+            <h1>Harvest Options:</h1>
+            <h3>Harvesting: {{singlePlant.perFoot}} {{singlePlant.plant}}(s/es)</h3>
+            <h3>Options/buttons/forms go here</h3>
+        </div>
         
 
     </mat-dialog-content>
@@ -167,7 +189,8 @@
 
 
 <mat-dialog-actions>
-    <div *ngIf="!editPlant" class="text-center">
+
+    <div *ngIf="!editPlant && !harvestPlantBool" class="text-center">
         <button 
             class="ml" 
             mat-raised-button 
@@ -179,7 +202,9 @@
         </button>
     </div>
 
-    <div *ngIf="editPlant" class="text-center">
+    <!-- BUG: can save before selecting a plant to replace with -->
+    <div *ngIf="editPlant " class="text-center">
+        <h2></h2>
         <button 
             class="ml" 
             mat-raised-button 
@@ -194,6 +219,17 @@
             color="warn"
             (click)="closeInfo()" >
             Cancel
+        </button>
+    </div>
+
+    <div *ngIf="harvestPlantBool">
+        <button
+            (click)="toggleHavestOptions()"
+            (click)="harvestPlant(singlePlant)"
+            class="ml"
+            mat-raised-button
+            color="primary">
+            Harvest
         </button>
     </div>
     

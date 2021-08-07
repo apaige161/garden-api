@@ -100,7 +100,7 @@ export class GardensComponent implements OnInit {
   * Get all plants --for current user
   *   -set data
   * 
-  *   --currently gets all plant data and filters on the front end, filter on server side
+  *   --currently gets all plant data and filters on the front end, TODO: filter on server side
   * 
   **************************************************************************************************************************/
 
@@ -109,8 +109,6 @@ export class GardensComponent implements OnInit {
    allPlantsinit() {
     this.plantService.getPlants()
       .subscribe(data =>  {
-
-        //console.log(data);
 
         //get only user data, not all data
         data.forEach(plant => {
@@ -121,13 +119,9 @@ export class GardensComponent implements OnInit {
           }
         })
 
-        //console.log(this.plants);
-        
-
         this.getEachDatePlanted(this.plants);
 
       })
-      
   }
 
 

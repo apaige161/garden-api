@@ -30,6 +30,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   hideGrowthModifier: boolean = true;
 
   editPlant: boolean = false;
+  harvestPlantBool: boolean = false;
 
   //radio button properties
   favoritePlantType: string = 'vegatables'
@@ -69,7 +70,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   }
 
   toggleEditPlant() {
-    this.editPlant = true;
+    this.editPlant = !this.editPlant;
   }
 
   /************************************************
@@ -141,6 +142,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   /*********************************************************************************************
   * 
   * Replace plant
+  *   TODO:***BUG: can save before selecting a plant to replace with
   *   -leaves same Id, x/y/col attributes
   * 
   ***********************************************************************************************/
@@ -175,6 +177,11 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   * Harvest plant
   *   -if plant has multiple harvests is this the last one?????????
   *   -does plant have more than one harvest?????
+  *     -make an option to replace after harvest
+  *       -if no option is selected replace with 'empty'
+  *   -do i store how many total pounds or ounces, quantity(if multiHarvest = true), quality?????
+  * 
+  *   TODO: Quality [dropdown or radio buttons]?
   * 
   *   Create new object for harvested objects ^
   *   Send data to service -> node -> mongoDb
@@ -184,11 +191,34 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   * 
   ***********************************************************************************************/
 
+  //quality choice list
+  qualityPicker: string[] = [
+    "poor",
+    "fair",
+    "good",
+    "better",
+    "best"
+  ];
+
+  toggleHavestOptions() {
+    this.harvestPlantBool = !this.harvestPlantBool;
+  }
+
+  qualityOfHarvest: string = "good";
+
+  //TODO: quantity may be set by user if multiHarvest=true
+  quantity: number = 1;
+
   harvestPlant(plantToHarvest) {
 
     const harvestData = {
+      owner: plantToHarvest.owner,
+      date: this.today,
       plant: plantToHarvest.plant,
+      quality: this.qualityOfHarvest,
       perFoot: plantToHarvest.perFoot,
+      //quantity may be set by user if multiHarvest=true
+      quantity: this.quantity,
       plantType: plantToHarvest.plantType
     }
 
