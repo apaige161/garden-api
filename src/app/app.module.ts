@@ -36,6 +36,7 @@ import { MoreInfoComponent } from './more-info/more-info.component';
 import { EditPlantComponent } from './edit-plant/edit-plant.component';
 
 import { DateFnsModule } from 'ngx-date-fns';
+import { HarvestComponent } from './harvest/harvest.component';
 
 //services
 //import { PostService } from './services/post.service';
@@ -52,7 +53,7 @@ import { DateFnsModule } from 'ngx-date-fns';
     FilterPipe,
     SortPipe,
     MoreInfoComponent, 
-    EditPlantComponent
+    EditPlantComponent, HarvestComponent
   ],
   imports: [
     BrowserModule,

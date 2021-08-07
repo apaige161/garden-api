@@ -13,6 +13,7 @@ import { Main2Component } from "./main2/main2.component";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { GardensComponent } from './gardens/gardens.component';
+import { HarvestComponent } from "./harvest/harvest.component";
 
 const routes: Routes = [
 
@@ -33,10 +34,13 @@ const routes: Routes = [
     { path: "auth", loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule) },
 
     //create new garden
-    { path: "createGarden", component: Main2Component },
+    { path: "createGarden", component: Main2Component, canActivate: [AuthGuard] },
 
     //user gardens
-    { path: "gardens", component: GardensComponent },
+    { path: "gardens", component: GardensComponent, canActivate: [AuthGuard] },
+
+    //user harvest
+    { path: "harvest", component: HarvestComponent ,canActivate: [AuthGuard] },
     
 ]
 

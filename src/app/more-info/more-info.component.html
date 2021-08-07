@@ -12,6 +12,15 @@
                 color="primary">
                 Replace
             </button>
+            <button
+                *ngIf="!editPlant"
+                (click)="toggleEditPlant()"
+                (click)="harvestPlant(singlePlant)"
+                class="ml"
+                mat-raised-button  
+                color="primary">
+                (Harvest) and Replace?
+            </button>
         </h1>
     </mat-dialog-title>
 

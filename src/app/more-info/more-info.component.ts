@@ -138,12 +138,12 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     )
   }
 
-  /************************************************
+  /*********************************************************************************************
   * 
   * Replace plant
   *   -leaves same Id, x/y/col attributes
   * 
-  ************************************************/
+  ***********************************************************************************************/
 
   idToSave = ''
   today = new Date();
@@ -167,8 +167,35 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
       this.singlePlant.growthModifier,
       this.singlePlant.daysToHarvest,
       this.today,
-
     )
+  }
+
+  /*********************************************************************************************
+  * 
+  * Harvest plant
+  *   -if plant has multiple harvests is this the last one?????????
+  *   -does plant have more than one harvest?????
+  * 
+  *   Create new object for harvested objects ^
+  *   Send data to service -> node -> mongoDb
+  * 
+  *   get how many plants were harvested (perFoot)
+  *   send plant type
+  * 
+  ***********************************************************************************************/
+
+  harvestPlant(plantToHarvest) {
+
+    const harvestData = {
+      plant: plantToHarvest.plant,
+      perFoot: plantToHarvest.perFoot,
+      plantType: plantToHarvest.plantType
+    }
+
+    
+    console.log("Harvested Data: ");
+    console.log(harvestData);
+
   }
 
   /**************************************************************************************
@@ -242,28 +269,12 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   value: number = 0; //out of 100
   diameter = 50;
 
-  /** 
-  //get plant data into here
-  openEditPlant(plantId: string) {
-    let dialogRef = this.matDialog.open(EditPlantComponent, {
-      data: {
-        _id: plantId
-      },
-      width: "500px",
-      height: "600px",
-      disableClose: true
-    });
-  }
-  */
 
   ngOnInit() {
 
     this.plantSubscription = this.getSinglePlant(this.data._id).subscribe(plant => {
-      //console.log(plant);
       this.singlePlant = plant
-      //console.log(this.singlePlant);
       this.getPlantProgress(this.singlePlant);
-      console.log(this.singlePlant);
     });
 
     
