@@ -25,6 +25,7 @@ export class PlantServerService {
     season: "",
     zone: "",
     perFoot: 0,
+    multiHarvest: null,
     growthModifier: 1,
     daysToHarvest: 0,
     datePlanted: this.today,
@@ -79,6 +80,7 @@ export class PlantServerService {
     plantingSeason: string, 
     plantZone: string,
     perFoot: number,
+    multiHarvest: boolean,
     growthModifier: number,
     daysToHarvest: number,
     datePlanted: any,
@@ -95,6 +97,7 @@ export class PlantServerService {
       this.postData.season = plantingSeason;
       this.postData.zone = plantZone;
       this.postData.perFoot = perFoot;
+      this.postData.multiHarvest = multiHarvest
       this.postData.growthModifier = growthModifier;
       this.postData.daysToHarvest = daysToHarvest;
       this.postData.datePlanted = datePlanted;

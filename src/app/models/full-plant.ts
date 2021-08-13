@@ -7,6 +7,7 @@ export interface FullPlant {
     season: string,
     perFoot: number,
 
+    multiHarvest: boolean,
     growthModifier: number;
     daysToHarvest: number;
     datePlanted: Date;

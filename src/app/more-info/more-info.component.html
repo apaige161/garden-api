@@ -36,6 +36,7 @@
             <h4>Planting Season: {{ singlePlant.season | titlecase}}</h4>
             <h4>Number Per Foot: {{ singlePlant.perFoot }}</h4>
             <h4>Plant type: {{ singlePlant.plantType | titlecase}}</h4>
+            <h4>Multiple Harvests: {{ singlePlant.multiHarvest | yesNo }}</h4>
             <h4>Date Planted: {{ singlePlant.datePlanted | date : 'shortDate'}} </h4>
             <div *ngIf="hideDatePicker">
                 <h4>

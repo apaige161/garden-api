@@ -209,6 +209,9 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   //TODO: quantity may be set by user if multiHarvest=true
   quantity: number = 1;
 
+  //TODO: multiHarvest check - turn this into a globally accesable pipe
+  
+
   harvestPlant(plantToHarvest) {
 
     const harvestData = {
@@ -225,6 +228,9 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     
     console.log("Harvested Data: ");
     console.log(harvestData);
+
+    //send harvestData to service
+
 
   }
 
@@ -306,8 +312,6 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
       this.singlePlant = plant
       this.getPlantProgress(this.singlePlant);
     });
-
-    
 
     
 
