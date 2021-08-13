@@ -10,6 +10,9 @@ export class HarvestComponent implements OnInit {
   /****************************************************************************************
    * 
    * TODO: build out form for user to harvest
+   *  - **OPTIONAL 1 to 5 star rating for quality of harvest?
+   * 
+   * TODO: create a new model on front and backend for harvested data
    * 
    * 
    * Fetch harvested plants from database for user only

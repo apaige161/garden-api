@@ -1,6 +1,7 @@
 
 <div *ngIf="singlePlant">
 
+    <!-- Plant Title -->
     <mat-dialog-title>
         <div *ngIf="!editPlant && !harvestPlantBool">
             <h1>
@@ -26,7 +27,10 @@
         
     </mat-dialog-title>
 
+    <!-- Plant Data -->
     <mat-dialog-content>
+
+        <!-- Displays in normal state-->
         <div *ngIf="!editPlant && !harvestPlantBool">
             <mat-progress-bar
             class="progress-bar-margin"
@@ -69,6 +73,7 @@
             <h4>Harvest on this date: {{ singlePlant.dateToHarvest | date: 'shortDate'}}</h4>
         </div>
 
+        <!-- Displays in Edit state -->
         <div *ngIf="editPlant">
             <button
                 (click)="toggleEditPlant()"
@@ -168,6 +173,7 @@
 
         </div>
 
+        <!-- Displays in Harvest state -->
         <div *ngIf="harvestPlantBool">
             <button
                 (click)="toggleHavestOptions()"
@@ -177,8 +183,41 @@
                 Back
             </button>
             <h1>Harvest Options:</h1>
-            <h3>Harvesting: {{singlePlant.perFoot}} {{singlePlant.plant}}(s/es)</h3>
-            <h3>Options/buttons/forms go here</h3>
+            <h3>Harvesting: {{singlePlant.perFoot}} {{singlePlant.plant | titlecase}}</h3>
+            <div>
+                <!-- TODO: make these buttons inline -->
+                <!-- TODO: make this a dynamic form with validation -->
+                <!-- Last harvest options -->
+                <div *ngIf="singlePlant.multiHarvest" id="harvestOptions">
+                    <h3>Multiple Harests: {{singlePlant.multiHarvest | yesNo}}</h3>
+                    <h3>Is this the last Harvest?</h3>
+                    <button
+                        mat-raised-button
+                        color="primary">
+                        No
+                    </button>
+                    <button
+                        class="ml"
+                        mat-raised-button
+                        color="primary">
+                        Yes
+                    </button>
+                </div>
+                <!-- Quality options, drop down -->
+                <div id="qualityOptions">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let qaulity of qualityPicker">{{qaulity}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <!-- How many items (estimate) options, text input? -->
+                <div id="quantityOptions">
+
+                </div>
+
+            </div>
         </div>
         
 
@@ -191,6 +230,7 @@
 
 <mat-dialog-actions>
 
+    <!-- Displays in normal state-->
     <div *ngIf="!editPlant && !harvestPlantBool" class="text-center">
         <button 
             class="ml" 
@@ -203,6 +243,7 @@
         </button>
     </div>
 
+    <!-- Displays in Edit state -->
     <!-- BUG: can save before selecting a plant to replace with -->
     <div *ngIf="editPlant " class="text-center">
         <h2></h2>
@@ -223,13 +264,14 @@
         </button>
     </div>
 
+    <!-- Displays in Harvest state -->
     <div *ngIf="harvestPlantBool">
         <button
             (click)="toggleHavestOptions()"
             (click)="harvestPlant(singlePlant)"
             class="ml"
             mat-raised-button
-            color="primary">
+            color="accent">
             Harvest
         </button>
     </div>
