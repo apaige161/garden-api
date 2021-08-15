@@ -10,6 +10,7 @@ import { addDays, differenceInDays, startOfDay  } from 'date-fns'
 import { EditPlantComponent } from '../edit-plant/edit-plant.component';
 import { PlantDataService } from '../services/plant-data.service';
 import { FullPlant } from '../models/full-plant';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -39,13 +40,24 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   favoriteSeason: string = 'spring';
   seasons: string[] = ['spring', 'summer', 'fall', 'winter'];
 
+  //star rating properties
+  rating: number = 0;
+  starCount: number = 5;
+  ratingArr: boolean[] = [] //true = solid star, false = empty star
+
   constructor( 
     @Inject(MAT_DIALOG_DATA) 
     public data: {_id: string}, 
     private matDialogRef: MatDialogRef<MoreInfoComponent>,
     private plantData: PlantDataService,
     private plantService: PlantServerService
-  ) { }
+  ) { 
+
+    //initialize star rating arr
+    //fill array with false values = all stars with be blank
+    this.ratingArr = Array(this.starCount).fill(false);
+
+  }
 
   //arrays to hold the plant objects
   vegatablesArr: FullPlant[] = this.plantData.vegatables;
@@ -157,12 +169,19 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
 
   }
 
-  replacePlant() {
-    //send updated GrowthModifier -> service -> backend route -> database to be stored
+  replacePlant(newPlant: string) {
+    //send update -> service -> backend route -> database to be stored
     //update plant name + plantType + season + perFoot + growthModifier + daysToHarvest + datePlanted
+
+    if(newPlant == 'empty') {
+      this.singlePlant.plantType = "vegatable";
+      this.singlePlant.perFoot = 1;
+      this.singlePlant.daysToHarvest = 0;
+    }
+
     this.plantService.updatePlant(
       this.idToSave,
-      this.singlePlant.plant,
+      newPlant,
       this.singlePlant.plantType,
       this.singlePlant.season,
       this.singlePlant.perFoot,
@@ -171,6 +190,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
       this.today,
     )
   }
+
 
   /*********************************************************************************************
   * 
@@ -181,7 +201,8 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   *       -if no option is selected replace with 'empty'
   *   -do i store how many total pounds or ounces, quantity(if multiHarvest = true), quality?????
   * 
-  *   TODO: Quality [dropdown or radio buttons]?
+  * TODO: interface for outgoing data
+  * 
   * 
   *   Create new object for harvested objects ^
   *   Send data to service -> node -> mongoDb
@@ -191,35 +212,43 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   * 
   ***********************************************************************************************/
 
-  //quality choice list
-  qualityPicker: string[] = [
-    "poor",
-    "fair",
-    "good",
-    "better",
-    "best"
-  ];
 
+  //used to manage state
   toggleHavestOptions() {
     this.harvestPlantBool = !this.harvestPlantBool;
   }
 
-  qualityOfHarvest: string = "good";
+  //access quailty of harvest by this.rating
+  //Rating by stars
+  faStar = faStar;
+
+  //determine what stars are solid/empty
+  returnStar(i: number) {
+    if(this.rating >= i + 1) {
+      return 'star'
+    } else {
+      return 'star_border'
+    }
+  }
+
+  starClick(i: number) {
+    this.rating = i + 1;
+  }
+
 
   //TODO: quantity may be set by user if multiHarvest=true
-  quantity: number = 1;
 
-  //TODO: multiHarvest check - turn this into a globally accesable pipe
+  quantity: number;
   
 
+  //non-mutating
   harvestPlant(plantToHarvest) {
 
     const harvestData = {
       owner: plantToHarvest.owner,
       date: this.today,
       plant: plantToHarvest.plant,
-      quality: this.qualityOfHarvest,
-      perFoot: plantToHarvest.perFoot,
+      quality: this.rating,
       //quantity may be set by user if multiHarvest=true
       quantity: this.quantity,
       plantType: plantToHarvest.plantType
@@ -312,6 +341,8 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
       this.singlePlant = plant
       this.getPlantProgress(this.singlePlant);
     });
+
+    
 
     
 

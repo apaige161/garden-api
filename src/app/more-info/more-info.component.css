@@ -9,3 +9,8 @@
 .radio-buttons {
     margin: 10px;
 }
+
+
+input, label {
+    display:block;
+}

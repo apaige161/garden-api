@@ -73,7 +73,7 @@
             <h4>Harvest on this date: {{ singlePlant.dateToHarvest | date: 'shortDate'}}</h4>
         </div>
 
-        <!-- Displays in Edit state -->
+        <!-- Displays in Replace state -->
         <div *ngIf="editPlant">
             <button
                 (click)="toggleEditPlant()"
@@ -182,11 +182,19 @@
                 color="primary">
                 Back
             </button>
-            <h1>Harvest Options:</h1>
-            <h3>Harvesting: {{singlePlant.perFoot}} {{singlePlant.plant | titlecase}}</h3>
+            <h1>Harvesting: {{singlePlant.plant | titlecase}}</h1>
             <div>
-                <!-- TODO: make these buttons inline -->
+
                 <!-- TODO: make this a dynamic form with validation -->
+
+                <!-- Choose how mush was harvested-->
+                <div>
+                    <label>Amount Harvested</label>
+                    <input type="number" required [(ngModel)]="quantity" >
+                </div>
+                
+                
+
                 <!-- Last harvest options -->
                 <div *ngIf="singlePlant.multiHarvest" id="harvestOptions">
                     <h3>Multiple Harests: {{singlePlant.multiHarvest | yesNo}}</h3>
@@ -203,15 +211,20 @@
                         Yes
                     </button>
                 </div>
-                <!-- Quality options, drop down -->
-                <div id="qualityOptions">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Select</mat-label>
-                        <mat-select>
-                          <mat-option *ngFor="let qaulity of qualityPicker">{{qaulity}}</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                </div>
+
+                <!-- Star rating -->
+                <button 
+                    mat-icon-button color="accent" 
+                    *ngFor="let r of ratingArr; index as i"
+                    (click)="starClick(i)">
+
+                    <mat-icon>
+                        {{ returnStar(i) }}
+                    </mat-icon>
+                
+                </button>
+
+
                 <!-- How many items (estimate) options, text input? -->
                 <div id="quantityOptions">
 
@@ -251,8 +264,8 @@
             class="ml" 
             mat-raised-button 
             color="primary"
-            (click)="closeInfo()"
-            (click)="replacePlant()">
+            (click)="replacePlant(singlePlant.plant)"
+            (click)="closeInfo()">
             Save
         </button>
         <button 
@@ -268,7 +281,10 @@
     <div *ngIf="harvestPlantBool">
         <button
             (click)="toggleHavestOptions()"
+            (click)="saveId()"
             (click)="harvestPlant(singlePlant)"
+            (click)="replacePlant('empty')"
+            (click)="closeInfo()"
             class="ml"
             mat-raised-button
             color="accent">
