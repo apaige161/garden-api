@@ -17,10 +17,11 @@
                 <!-- update "(click)="harvestPlant(singlePlant, quality[0])" to take in a user input (dropdown?) of quality-->
                 <button
                     (click)="toggleHavestOptions()"
+                    (click)="setHarvestParams()"
                     class="ml"
                     mat-raised-button  
                     color="primary">
-                    (Harvest)
+                    Harvest
                 </button>
             </h1>
         </div>
@@ -185,50 +186,50 @@
             <h1>Harvesting: {{singlePlant.plant | titlecase}}</h1>
             <div>
 
-                <!-- TODO: make this a dynamic form with validation -->
+                <!-- TODO: make this a templlate driven form with validation -->
 
-                <!-- Choose how mush was harvested-->
-                <div>
-                    <label>Amount Harvested</label>
-                    <input type="number" required [(ngModel)]="quantity" >
+                <!-- Quantity-->
+                <div class="form-group">
+                    <label for="quantity-numb">Amount Harvested</label>
+                    <input 
+                        type="number" 
+                        class="form-control ng-untouched ng-pristine ng-valid" 
+                        id="quantity-numb"
+                        required
+                        [(ngModel)]="quantity"
+                        placeholder="{{singlePlant.perFoot}}"
+                        name="quantity-numb">
                 </div>
-                
-                
 
-                <!-- Last harvest options -->
-                <div *ngIf="singlePlant.multiHarvest" id="harvestOptions">
-                    <h3>Multiple Harests: {{singlePlant.multiHarvest | yesNo}}</h3>
-                    <h3>Is this the last Harvest?</h3>
-                    <button
-                        mat-raised-button
-                        color="primary">
-                        No
-                    </button>
-                    <button
-                        class="ml"
-                        mat-raised-button
-                        color="primary">
-                        Yes
-                    </button>
+                <!-- Last harvest true/false -->
+                <div class="form-group" *ngIf="singlePlant.multiHarvest">
+                    <label for="lastHarv">Last Harvest of this plant</label>
+                    <select 
+                        class="form-control ng-untouched ng-pristine ng-valid"  
+                        id="lastHarv"
+                        required
+                        [(ngModel)]="lastHarvest" 
+                        name="lastHarvest-bool">
+                        <option [value]="true">Yes</option>
+                        <option [value]="false">No</option>
+                    </select>
                 </div>
 
                 <!-- Star rating -->
-                <button 
-                    mat-icon-button color="accent" 
-                    *ngFor="let r of ratingArr; index as i"
-                    (click)="starClick(i)">
-
-                    <mat-icon>
-                        {{ returnStar(i) }}
-                    </mat-icon>
-                
-                </button>
-
-
-                <!-- How many items (estimate) options, text input? -->
-                <div id="quantityOptions">
-
+                <!-- TODO: margin-top, center-->
+                <div>
+                    <h2>Rate Your Crop</h2>
+                    <h3>Quality, Size, Amount, etc...</h3>
+                    <button 
+                        mat-icon-button color="accent" 
+                        *ngFor="let r of ratingArr; index as i"
+                        (click)="starClick(i)">
+                        <mat-icon>
+                            {{ returnStar(i) }}
+                        </mat-icon>
+                    </button>
                 </div>
+                
 
             </div>
         </div>
@@ -278,18 +279,37 @@
     </div>
 
     <!-- Displays in Harvest state -->
+
+    <!-- This one replaces the plant with an empty plot-->
     <div *ngIf="harvestPlantBool">
-        <button
-            (click)="toggleHavestOptions()"
-            (click)="saveId()"
-            (click)="harvestPlant(singlePlant)"
-            (click)="replacePlant('empty')"
-            (click)="closeInfo()"
-            class="ml"
-            mat-raised-button
-            color="accent">
-            Harvest
-        </button>
+
+        <div *ngIf="lastHarvest">
+            <button
+                (click)="toggleHavestOptions()"
+                (click)="saveId()"
+                (click)="harvestPlant(singlePlant)"
+                (click)="replacePlant('empty')"
+                (click)="closeInfo()"
+                class="ml"
+                mat-raised-button
+                color="accent">
+                Harvest and Replace with Empty
+            </button>
+        </div>
+
+        <!-- This one does not replace the plant with anything-->
+        <div *ngIf="!lastHarvest">
+            <button
+                (click)="toggleHavestOptions()"
+                (click)="harvestPlant(singlePlant)"
+                (click)="closeInfo()"
+                class="ml"
+                mat-raised-button
+                color="accent">
+                Harvest and Keep Plant
+            </button>
+        </div>
+
     </div>
     
 </mat-dialog-actions>

@@ -11,6 +11,9 @@ import { EditPlantComponent } from '../edit-plant/edit-plant.component';
 import { PlantDataService } from '../services/plant-data.service';
 import { FullPlant } from '../models/full-plant';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Harvest } from '../models/harvest';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -22,6 +25,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 export class MoreInfoComponent implements OnInit, OnDestroy {
 
   singlePlant: any;
+  
   newDate: Date;
   hideDatePicker: boolean = true;
   plantSubscription: Subscription;
@@ -41,7 +45,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   seasons: string[] = ['spring', 'summer', 'fall', 'winter'];
 
   //star rating properties
-  rating: number = 0;
+  rating: number = 5;
   starCount: number = 5;
   ratingArr: boolean[] = [] //true = solid star, false = empty star
 
@@ -56,6 +60,8 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     //initialize star rating arr
     //fill array with false values = all stars with be blank
     this.ratingArr = Array(this.starCount).fill(false);
+
+    
 
   }
 
@@ -201,7 +207,9 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   *       -if no option is selected replace with 'empty'
   *   -do i store how many total pounds or ounces, quantity(if multiHarvest = true), quality?????
   * 
-  * TODO: interface for outgoing data
+  * TODO: BUG: dynamically display the different harvest buttons
+  *   -harvest and keep plant, havest and replace with empty
+  * TODO: if not last harvest then keep the current plant
   * 
   * 
   *   Create new object for harvested objects ^
@@ -212,10 +220,22 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   * 
   ***********************************************************************************************/
 
+  //how many will be harvested
+  
+  lastHarvest: boolean;
+  quantity: number;
 
   //used to manage state
   toggleHavestOptions() {
     this.harvestPlantBool = !this.harvestPlantBool;
+  }
+
+  setHarvestParams() {
+    if(this.singlePlant.multiHarvest) {
+      this.lastHarvest = false;
+    } else {
+      this.lastHarvest = true;
+    }
   }
 
   //access quailty of harvest by this.rating
@@ -235,33 +255,33 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.rating = i + 1;
   }
 
-
-  //TODO: quantity may be set by user if multiHarvest=true
-
-  quantity: number;
   
 
   //non-mutating
   harvestPlant(plantToHarvest) {
 
-    const harvestData = {
+    this.quantity = this.singlePlant.perFoot;
+
+    const harvestData: Harvest = {
       owner: plantToHarvest.owner,
       date: this.today,
       plant: plantToHarvest.plant,
       quality: this.rating,
       //quantity may be set by user if multiHarvest=true
       quantity: this.quantity,
+      garden: plantToHarvest.garden,
       plantType: plantToHarvest.plantType
     }
 
-    
-    console.log("Harvested Data: ");
     console.log(harvestData);
 
     //send harvestData to service
 
 
   }
+
+  //form controls
+
 
   /**************************************************************************************
   * 
@@ -340,8 +360,10 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.plantSubscription = this.getSinglePlant(this.data._id).subscribe(plant => {
       this.singlePlant = plant
       this.getPlantProgress(this.singlePlant);
+      
     });
 
+    
     
 
     
