@@ -60,7 +60,6 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     //initialize star rating arr
     //fill array with false values = all stars with be blank
     this.ratingArr = Array(this.starCount).fill(false);
-
     
 
   }
@@ -201,15 +200,14 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   /*********************************************************************************************
   * 
   * Harvest plant
-  *   -if plant has multiple harvests is this the last one?????????
-  *   -does plant have more than one harvest?????
-  *     -make an option to replace after harvest
+  *     -TODO: make an option to replace after harvest
   *       -if no option is selected replace with 'empty'
-  *   -do i store how many total pounds or ounces, quantity(if multiHarvest = true), quality?????
   * 
   * TODO: BUG: dynamically display the different harvest buttons
   *   -harvest and keep plant, havest and replace with empty
-  * TODO: if not last harvest then keep the current plant
+  * TODO: BUG: displays a harvest button when the plant is "empty"
+  * TODO: BUG: can save before selecting a plant to replace with
+  * 
   * 
   * 
   *   Create new object for harvested objects ^
@@ -224,11 +222,13 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   
   lastHarvest: boolean;
   quantity: number;
+  
 
   //used to manage state
   toggleHavestOptions() {
     this.harvestPlantBool = !this.harvestPlantBool;
   }
+
 
   setHarvestParams() {
     if(this.singlePlant.multiHarvest) {
@@ -363,7 +363,6 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
       
     });
 
-    
     
 
     

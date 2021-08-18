@@ -6,6 +6,7 @@
         <div *ngIf="!editPlant && !harvestPlantBool">
             <h1>
                 {{ singlePlant.plant | titlecase}}
+
                 <button
                     (click)="toggleEditPlant()"
                     class="ml"
@@ -13,8 +14,7 @@
                     color="primary">
                     Replace
                 </button>
-    
-                <!-- update "(click)="harvestPlant(singlePlant, quality[0])" to take in a user input (dropdown?) of quality-->
+
                 <button
                     (click)="toggleHavestOptions()"
                     (click)="setHarvestParams()"
@@ -23,6 +23,7 @@
                     color="primary">
                     Harvest
                 </button>
+                
             </h1>
         </div>
         
@@ -175,7 +176,7 @@
         </div>
 
         <!-- Displays in Harvest state -->
-        <div *ngIf="harvestPlantBool">
+        <div *ngIf="harvestPlantBool ">
             <button
                 (click)="toggleHavestOptions()"
                 class="ml"
@@ -183,7 +184,10 @@
                 color="primary">
                 Back
             </button>
-            <h1>Harvesting: {{singlePlant.plant | titlecase}}</h1>
+            <div class="top-margin">
+                <h1>Harvesting: {{singlePlant.plant | titlecase}}</h1>
+            </div>
+            
             <div>
 
                 <!-- TODO: make this a templlate driven form with validation -->
@@ -192,7 +196,9 @@
                 <div class="form-group">
                     <label for="quantity-numb">Amount Harvested</label>
                     <input 
-                        type="number" 
+                        type="number"
+                        min="0"
+                        step="1"
                         class="form-control ng-untouched ng-pristine ng-valid" 
                         id="quantity-numb"
                         required
@@ -202,39 +208,43 @@
                 </div>
 
                 <!-- Last harvest true/false -->
+                <!--
                 <div class="form-group" *ngIf="singlePlant.multiHarvest">
                     <label for="lastHarv">Last Harvest of this plant</label>
                     <select 
                         class="form-control ng-untouched ng-pristine ng-valid"  
-                        id="lastHarv"
+                        id="lastHarvest"
                         required
                         [(ngModel)]="lastHarvest" 
-                        name="lastHarvest-bool">
+                        name="lastHarvest">
                         <option [value]="true">Yes</option>
                         <option [value]="false">No</option>
                     </select>
                 </div>
+                -->
 
                 <!-- Star rating -->
                 <!-- TODO: margin-top, center-->
-                <div>
-                    <h2>Rate Your Crop</h2>
-                    <h3>Quality, Size, Amount, etc...</h3>
-                    <button 
-                        mat-icon-button color="accent" 
-                        *ngFor="let r of ratingArr; index as i"
-                        (click)="starClick(i)">
-                        <mat-icon>
-                            {{ returnStar(i) }}
-                        </mat-icon>
-                    </button>
+                <div class="center top-margin">
+                    <div class="center">
+                        <h2>Rate Your Crop</h2>
+                    </div>
+                    
+                    <div class="center">
+                        <button 
+                            mat-icon-button color="accent" 
+                            *ngFor="let r of ratingArr; index as i"
+                            (click)="starClick(i)">
+                            <mat-icon>
+                                {{ returnStar(i) }}
+                            </mat-icon>
+                        </button>
+                    </div>
+                    
                 </div>
                 
-
             </div>
         </div>
-        
-
     </mat-dialog-content>
     
     
@@ -259,8 +269,7 @@
 
     <!-- Displays in Edit state -->
     <!-- BUG: can save before selecting a plant to replace with -->
-    <div *ngIf="editPlant " class="text-center">
-        <h2></h2>
+    <div *ngIf="editPlant" class="text-center">
         <button 
             class="ml" 
             mat-raised-button 
@@ -280,36 +289,30 @@
 
     <!-- Displays in Harvest state -->
 
-    <!-- This one replaces the plant with an empty plot-->
-    <div *ngIf="harvestPlantBool">
 
-        <div *ngIf="lastHarvest">
+    <div *ngIf="harvestPlantBool" class="harvest-action top-margin">
+        <div class="harvest-action">
+            <!-- This one does not replace the plant with anything-->
             <button
-                (click)="toggleHavestOptions()"
-                (click)="saveId()"
-                (click)="harvestPlant(singlePlant)"
-                (click)="replacePlant('empty')"
-                (click)="closeInfo()"
-                class="ml"
-                mat-raised-button
-                color="accent">
-                Harvest and Replace with Empty
-            </button>
-        </div>
-
-        <!-- This one does not replace the plant with anything-->
-        <div *ngIf="!lastHarvest">
-            <button
-                (click)="toggleHavestOptions()"
                 (click)="harvestPlant(singlePlant)"
                 (click)="closeInfo()"
-                class="ml"
                 mat-raised-button
                 color="accent">
                 Harvest and Keep Plant
             </button>
-        </div>
 
+            <!-- This one replaces the plant with an empty plot-->
+            <button
+                (click)="saveId()"
+                (click)="harvestPlant(singlePlant)"
+                (click)="replacePlant('empty')"
+                (click)="closeInfo()"
+                mat-raised-button
+                color="accent">
+                Harvest and Remove
+            </button>
+        </div>
+        
     </div>
     
 </mat-dialog-actions>

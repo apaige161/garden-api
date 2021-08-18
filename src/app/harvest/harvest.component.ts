@@ -20,7 +20,7 @@ export class HarvestComponent implements OnInit {
    * TODO: when user doesn't have any harvested plants
    *  -display: a page showing that no plants have been harvested yet, go plant some shit
    * 
-   * TODO: be able to sort by year
+   * TODO: be able to sort by year, plantType
    * 
    * 
    * 
