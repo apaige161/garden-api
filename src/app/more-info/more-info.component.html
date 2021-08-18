@@ -208,20 +208,20 @@
                 </div>
 
                 <!-- Last harvest true/false -->
-                <!--
+                
                 <div class="form-group" *ngIf="singlePlant.multiHarvest">
                     <label for="lastHarv">Last Harvest of this plant</label>
                     <select 
                         class="form-control ng-untouched ng-pristine ng-valid"  
-                        id="lastHarvest"
+                        id="lastHarvest-name"
                         required
                         [(ngModel)]="lastHarvest" 
-                        name="lastHarvest">
+                        name="lastHarvest-name">
                         <option [value]="true">Yes</option>
                         <option [value]="false">No</option>
                     </select>
                 </div>
-                -->
+                
 
                 <!-- Star rating -->
                 <!-- TODO: margin-top, center-->
@@ -291,9 +291,10 @@
 
 
     <div *ngIf="harvestPlantBool" class="harvest-action top-margin">
-        <div class="harvest-action">
+        <div class="harvest-action" >
             <!-- This one does not replace the plant with anything-->
             <button
+                *ngIf="!lastHarvest"
                 (click)="harvestPlant(singlePlant)"
                 (click)="closeInfo()"
                 mat-raised-button
@@ -303,6 +304,7 @@
 
             <!-- This one replaces the plant with an empty plot-->
             <button
+                *ngIf="lastHarvest"
                 (click)="saveId()"
                 (click)="harvestPlant(singlePlant)"
                 (click)="replacePlant('empty')"
