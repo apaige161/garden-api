@@ -178,6 +178,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     //send update -> service -> backend route -> database to be stored
     //update plant name + plantType + season + perFoot + growthModifier + daysToHarvest + datePlanted
 
+    //handle empty case
     if(newPlant == 'empty') {
       this.singlePlant.plantType = "vegatable";
       this.singlePlant.perFoot = 1;
@@ -200,12 +201,12 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   /*********************************************************************************************
   * 
   * Harvest plant
-  *     -TODO: make an option to replace after harvest
-  *       -if no option is selected replace with 'empty'
   * 
-  * TODO: BUG: dynamically display the different harvest buttons
-  *   -harvest and keep plant, havest and replace with empty
-  * TODO: BUG: displays a harvest button when the plant is "empty"
+  *   Features
+  *     -Only display when there is a plant to harvest
+  *     -Allow multiple harvests or singl/last harvest and then replace with an empty plot
+  *     -User to set amount harvested and rate the harvest 1-5 stars
+  * 
   * TODO: BUG: can save before selecting a plant to replace with
   * 
   * 

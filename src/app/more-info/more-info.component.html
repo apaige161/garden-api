@@ -16,6 +16,7 @@
                 </button>
 
                 <button
+                    *ngIf="singlePlant.plant !== 'empty' "
                     (click)="toggleHavestOptions()"
                     (click)="setHarvestParams()"
                     class="ml"
@@ -176,7 +177,7 @@
         </div>
 
         <!-- Displays in Harvest state -->
-        <div *ngIf="harvestPlantBool ">
+        <div *ngIf="harvestPlantBool">
             <button
                 (click)="toggleHavestOptions()"
                 class="ml"
@@ -225,23 +226,19 @@
 
                 <!-- Star rating -->
                 <!-- TODO: margin-top, center-->
-                <div class="center top-margin">
-                    <div class="center">
-                        <h2>Rate Your Crop</h2>
-                    </div>
-                    
-                    <div class="center">
-                        <button 
-                            mat-icon-button color="accent" 
-                            *ngFor="let r of ratingArr; index as i"
-                            (click)="starClick(i)">
-                            <mat-icon>
-                                {{ returnStar(i) }}
-                            </mat-icon>
-                        </button>
-                    </div>
-                    
+
+                <div class="center">
+                    <h2>Rate Your Crop</h2>
+                    <button 
+                        mat-icon-button color="accent" 
+                        *ngFor="let r of ratingArr; index as i"
+                        (click)="starClick(i)">
+                        <mat-icon>
+                            {{ returnStar(i) }}
+                        </mat-icon>
+                    </button>
                 </div>
+
                 
             </div>
         </div>
@@ -290,7 +287,7 @@
     <!-- Displays in Harvest state -->
 
 
-    <div *ngIf="harvestPlantBool" class="harvest-action top-margin">
+    <div *ngIf="harvestPlantBool" class="harvest-button-parent">
         <div class="harvest-action" >
             <!-- This one does not replace the plant with anything-->
             <button
