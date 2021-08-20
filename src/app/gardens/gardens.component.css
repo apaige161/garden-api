@@ -1,4 +1,5 @@
 
+  
 .utility-container{
 
     width: 100%;
@@ -79,3 +80,7 @@
 .bold {
     font-weight: bold;
 }
+
+.parent{
+    background-image: url('../../assets/img/onion.jpg');
+  }

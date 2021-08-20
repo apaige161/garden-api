@@ -9,6 +9,7 @@
 
                 <button
                     (click)="toggleEditPlant()"
+                    (click)="saveId()"
                     class="ml"
                     mat-raised-button  
                     color="primary">
@@ -19,6 +20,7 @@
                     *ngIf="singlePlant.plant !== 'empty' "
                     (click)="toggleHavestOptions()"
                     (click)="setHarvestParams()"
+                    (click)="saveId()"
                     class="ml"
                     mat-raised-button  
                     color="primary">
@@ -128,11 +130,13 @@
             <!-- Veggies -->
             <div class="row" *ngIf="favoritePlantType === 'vegatables' ">
                 <mat-form-field appearance="fill">
-                <mat-label>Replacement Plant</mat-label>
-                <mat-select [(ngModel)]="singlePlant" (click)="getSelectedSeason(vegatablesArr, favoriteSeason)">
+                <mat-label>{{singlePlant.plant}}</mat-label>
+                <mat-select 
+                    [(ngModel)]="singlePlant" 
+                    (click)="getSelectedSeason(vegatablesArr, favoriteSeason)">
                     <mat-option *ngFor="let veggie of filteredArr" [value]="veggie">
                         <!-- only display if correct planting season -->
-                        <div *ngIf="veggie.season.includes(favoriteSeason)" (click)="saveId()">
+                        <div *ngIf="veggie.season.includes(favoriteSeason)" >
                             <!-- get rid of empty indexes in array -->
                             {{veggie.plant | titlecase}}
                         </div>
@@ -145,11 +149,13 @@
             <!-- Herbs -->
             <div class="row" *ngIf="favoritePlantType === 'herbs' ">
                 <mat-form-field appearance="fill">
-                <mat-label>Replacement Plant</mat-label>
-                <mat-select [(ngModel)]="singlePlant" (click)="getSelectedSeason(herbsArr, favoriteSeason)">
+                <mat-label>{{singlePlant.plant}}</mat-label>
+                <mat-select 
+                    [(ngModel)]="singlePlant" 
+                    (click)="getSelectedSeason(herbsArr, favoriteSeason)">
                     <mat-option *ngFor="let herb of filteredArr" [value]="herb" >
                         <!-- only display if correct planting season -->
-                        <div *ngIf="herb.season.includes(favoriteSeason)" (click)="saveId()">
+                        <div *ngIf="herb.season.includes(favoriteSeason)" >
                             <!-- get rid of empty indexes in array -->
                             {{herb.plant | titlecase}}
                         </div>
@@ -161,11 +167,13 @@
             <!-- Flowers -->
             <div class="row" *ngIf="favoritePlantType === 'flowers' ">
                 <mat-form-field appearance="fill">
-                <mat-label>Replacement Plant</mat-label>
-                <mat-select [(ngModel)]="singlePlant" (click)="getSelectedSeason(flowersArr, favoriteSeason)">
+                <mat-label>{{singlePlant.plant}}</mat-label>
+                <mat-select 
+                [(ngModel)]="singlePlant" 
+                (click)="getSelectedSeason(flowersArr, favoriteSeason)">
                     <mat-option *ngFor="let flower of filteredArr" [value]="flower">
                         <!-- only display if correct planting season -->
-                        <div *ngIf="flower.season.includes(favoriteSeason)" (click)="saveId()">
+                        <div *ngIf="flower.season.includes(favoriteSeason)" >
                             <!-- get rid of empty indexes in array -->
                             {{flower.plant | titlecase}}
                         </div>
@@ -210,7 +218,7 @@
 
                 <!-- Last harvest true/false -->
                 
-                <div class="form-group" *ngIf="singlePlant.multiHarvest">
+                <div class="form-group" *ngIf="singlePlant.multiHarvest" >
                     <label for="lastHarv">Last Harvest of this plant</label>
                     <select 
                         class="form-control ng-untouched ng-pristine ng-valid"  
@@ -218,8 +226,8 @@
                         required
                         [(ngModel)]="lastHarvest" 
                         name="lastHarvest-name">
-                        <option [value]="true">Yes</option>
-                        <option [value]="false">No</option>
+                        <option [ngValue]="true" >Yes</option>
+                        <option [ngValue]="false" >No</option>
                     </select>
                 </div>
                 
@@ -268,6 +276,7 @@
     <!-- BUG: can save before selecting a plant to replace with -->
     <div *ngIf="editPlant" class="text-center">
         <button 
+            *ngIf="singlePlant.plant"
             class="ml" 
             mat-raised-button 
             color="primary"
@@ -289,7 +298,19 @@
 
     <div *ngIf="harvestPlantBool" class="harvest-button-parent">
         <div class="harvest-action" >
+            <!-- This one replaces the plant with an empty plot-->
+            <button
+                *ngIf="lastHarvest"
+                (click)="harvestPlant(singlePlant)"
+                (click)="replacePlant('empty')"
+                (click)="closeInfo()"
+                mat-raised-button
+                color="accent">
+                Harvest and Remove
+            </button>
+
             <!-- This one does not replace the plant with anything-->
+
             <button
                 *ngIf="!lastHarvest"
                 (click)="harvestPlant(singlePlant)"
@@ -299,17 +320,7 @@
                 Harvest and Keep Plant
             </button>
 
-            <!-- This one replaces the plant with an empty plot-->
-            <button
-                *ngIf="lastHarvest"
-                (click)="saveId()"
-                (click)="harvestPlant(singlePlant)"
-                (click)="replacePlant('empty')"
-                (click)="closeInfo()"
-                mat-raised-button
-                color="accent">
-                Harvest and Remove
-            </button>
+            
         </div>
         
     </div>

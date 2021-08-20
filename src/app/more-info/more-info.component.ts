@@ -60,6 +60,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     //initialize star rating arr
     //fill array with false values = all stars with be blank
     this.ratingArr = Array(this.starCount).fill(false);
+
     
 
   }
@@ -202,13 +203,15 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   * 
   * Harvest plant
   * 
+  * TODO: BUG: refresh page on dialog close
+  * 
   *   Features
   *     -Only display when there is a plant to harvest
   *     -Allow multiple harvests or singl/last harvest and then replace with an empty plot
   *     -User to set amount harvested and rate the harvest 1-5 stars
   * 
-  * TODO: BUG: can save before selecting a plant to replace with
   * 
+  * TODO: Add backgrouns image, rounded edge transparent white backgrouns under all elements
   * 
   * 
   *   Create new object for harvested objects ^
@@ -222,7 +225,9 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   //how many will be harvested
   
   lastHarvest: boolean;
+
   quantity: number;
+
   
 
   //used to manage state
@@ -292,6 +297,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   *  
   **************************************************************************************/
 
+  //TODO: BUG: does not currently work
   addOneWeek(plant) {
 
     //add 7 days

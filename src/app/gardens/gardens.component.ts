@@ -19,6 +19,7 @@ import { addDays, differenceInDays, startOfDay  } from 'date-fns'
 import { MatDialog } from '@angular/material/dialog';
 
 import { MoreInfoComponent } from '../more-info/more-info.component';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -38,6 +39,8 @@ export class GardensComponent implements OnInit {
   gardenNames = [];
   singleGardenNames = [];
   Garden = '';
+
+  refreshPlants = new BehaviorSubject<boolean>(true);
   
   getCurrentUser() {
     return this.userEmail = localStorage.getItem("userEmail");
@@ -47,9 +50,7 @@ export class GardensComponent implements OnInit {
 
     //get user
     this.getCurrentUser()
-    //get user's gardens
-    this.allPlantsinit();
-    
+
   }
 
 
@@ -119,6 +120,7 @@ export class GardensComponent implements OnInit {
           }
         })
 
+        //get date for plants in array
         this.getEachDatePlanted(this.plants);
 
       })
@@ -258,7 +260,7 @@ export class GardensComponent implements OnInit {
   //get plant data into here
   //pass ID as a param??
   openMoreInfo(plantId: string) {
-    let dialogRef = this.matDialog.open(MoreInfoComponent, {
+    this.matDialog.open(MoreInfoComponent, {
       data: {
         _id: plantId
       },
@@ -266,6 +268,7 @@ export class GardensComponent implements OnInit {
       height: "700px",
       disableClose: true
     });
+    
   }
 
   
@@ -281,9 +284,9 @@ export class GardensComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.allPlantsinit();
-    
-    
+    //get user's gardens
+    this.allPlantsinit();
+
   }
 
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { SinglePlant } from '../models/single-plant';
 import { HttpClient } from '@angular/common/http';
 
@@ -54,6 +54,15 @@ export class PlantServerService {
   }
 
   constructor(private http: HttpClient) {}
+
+  //subject to refresh page when new plants are added
+  /*
+  private _refreshNeeded$ = new Subject<void>();
+
+  get refreshNeeded$() {
+    return this.refreshNeeded$;
+  }
+  */
 
   //get all plants
   getPlants() {
@@ -220,6 +229,7 @@ export class PlantServerService {
   }
 
   //update plant name + type + season + perFoot + growthModifier + daysToHarvest + datePlanted
+  //trigger page refresh with subject
   updatePlant( 
     id: string, 
     plant: string, 
