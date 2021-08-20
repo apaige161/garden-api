@@ -6,5 +6,4 @@ export interface Harvest {
     quantity: number;
     garden: string;
     plantType: string;
-
 }

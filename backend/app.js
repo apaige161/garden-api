@@ -11,6 +11,9 @@ const gardensRoute = require('./routes/gardens');
 //CRUD as a whole garden
 const userGardenRoute = require('./routes/userGarden');
 
+//harvest
+const harvestRoute = require('./routes/harvests');
+
 const app = express();
 
 
@@ -70,6 +73,8 @@ app.use('/api/gardens', gardensRoute);
 
 //attempt to send an array of plants instead of one at a time
 app.use('/api/userGarden', userGardenRoute);
+
+app.use('/api/harvest', harvestRoute);
 
 
 module.exports = app;

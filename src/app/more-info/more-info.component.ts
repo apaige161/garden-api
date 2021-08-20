@@ -13,6 +13,7 @@ import { FullPlant } from '../models/full-plant';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Harvest } from '../models/harvest';
 import { FormsModule } from '@angular/forms';
+import { HarvestService } from '../services/harvest.service';
 
 
 
@@ -54,7 +55,8 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     public data: {_id: string}, 
     private matDialogRef: MatDialogRef<MoreInfoComponent>,
     private plantData: PlantDataService,
-    private plantService: PlantServerService
+    private plantService: PlantServerService,
+    private plantHarvest: HarvestService
   ) { 
 
     //initialize star rating arr
@@ -282,6 +284,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     console.log(harvestData);
 
     //send harvestData to service
+    this.plantHarvest.newPlantToHarvest(harvestData);
 
 
   }

@@ -1,9 +1,6 @@
 <h1>Harvest Component</h1>
 
 <h3>My Havest</h3>
-<ul>
-    <li>Carrots x 40</li>
-    <li>Pepper x 40</li>
-    <li>Carrots x 10</li>
-    <li>Radish x 16</li>
+<ul *ngFor="let plant of harvest">
+    <li>{{plant.plant}}</li>
 </ul>

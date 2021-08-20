@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Harvest } from '../models/harvest';
+import { HarvestService } from '../services/harvest.service';
 
 @Component({
   selector: 'app-harvest',
@@ -39,11 +42,16 @@ export class HarvestComponent implements OnInit {
    * 
    ****************************************************************************************/
 
+  harvestSubscription: Subscription;
+  harvest: Harvest[];
 
 
-  constructor() { }
+  constructor(private plantHarvest: HarvestService) { }
 
   ngOnInit(): void {
+    this.harvestSubscription = this.plantHarvest.getHarvest().subscribe(harvest => {
+      this.harvest = harvest;
+    })
   }
 
 }
