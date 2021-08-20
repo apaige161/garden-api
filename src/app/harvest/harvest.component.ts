@@ -30,13 +30,6 @@ export class HarvestComponent implements OnInit {
    * 
    * 
    * 
-   * const harvestData = {
-      owner: string,
-      date: date,
-      plant: string,
-      perFoot: number,
-      plantType: string,
-    }
    * 
    * 
    * 
