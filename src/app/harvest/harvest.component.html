@@ -1,27 +1,69 @@
 <h1>Harvest Component</h1>
 
-<h3>My Havest</h3>
-<ul *ngFor="let plant of harvest">
-    <li>{{plant.plant}} X {{plant.quantity}}</li>
-    <li>Date Harvested: {{ plant.date | date : 'shortDate'}}</li>
-    <!-- display star rating -->
-    <li>
-        <mat-icon color="accent">
-            {{ returnStar(0, plant.quality) }}
-        </mat-icon>
-        <mat-icon color="accent">
-            {{ returnStar(1, plant.quality) }}
-        </mat-icon>
-        <mat-icon color="accent">
-            {{ returnStar(2, plant.quality) }}
-        </mat-icon>
-        <mat-icon color="accent">
-            {{ returnStar(3, plant.quality) }}
-        </mat-icon>
-        <mat-icon color="accent">
-            {{ returnStar(4, plant.quality) }}
-        </mat-icon>
+<div *ngIf="harvest">
+    <h1>My Harvest</h1>
+    <!-- Plant list -->
+    <div id="plant-list" class="row">
+        <div *ngFor="let plant of harvest" class="col-6">
+
+            <div class="row ">
+                <div class="col-3 text-center">
+                    <h3>{{plant.plant}} X {{plant.quantity}}</h3>
+                    <h3>Date Harvested: {{ plant.date | date : 'shortDate'}}</h3>
+                </div>
+                
+                <!-- display star rating -->
+                <div class="col-3 text-center">
+                    <mat-icon color="accent">
+                        {{ returnStar(0, plant.quality) }}
+                    </mat-icon>
+                    <mat-icon color="accent">
+                        {{ returnStar(1, plant.quality) }}
+                    </mat-icon>
+                    <mat-icon color="accent">
+                        {{ returnStar(2, plant.quality) }}
+                    </mat-icon>
+                    <mat-icon color="accent">
+                        {{ returnStar(3, plant.quality) }}
+                    </mat-icon>
+                    <mat-icon color="accent">
+                        {{ returnStar(4, plant.quality) }}
+                    </mat-icon>
+                </div>
+            </div>
+        </div> <!-- end col-6 -->
+
+        <div id="calculation-inner-wrapper" class="col-12 mt-3">
+            <div id="average-quality" class="text-center">
+                <h1>Average Quality</h1>
+                <h3>{{averageQuality | number : '1.2-2'}}</h3>
+            </div>
+            <!-- Total number of each plant harvested -->
+            <div id="number-harvested" class="text-center">
+                <h1>Total number harvested</h1>
+                <h4>List of plants</h4>
+                <ul *ngFor="let plant of nameArr; index as i">
+                    <li>{{plant}}: {{totalsArr[i]}}</li>
+                </ul>
+            </div>
+        </div> <!-- end col-6 -->
+
+    </div>
+
+    <!-- Calculations -->
+    <div id="calculation-outer-wrapper" class="row">
         
-    </li>
+    </div>
     
-</ul>
+</div>
+
+<div *ngIf="!harvest">
+    <div>
+        <h1>
+            No Harvests were found
+        </h1>
+    </div>
+</div>
+
+
+

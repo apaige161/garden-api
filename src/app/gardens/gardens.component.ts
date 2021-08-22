@@ -49,7 +49,7 @@ export class GardensComponent implements OnInit {
   constructor(private plantService: PlantServerService, private http: HttpClient, private matDialog: MatDialog) { 
 
     //get user
-    this.getCurrentUser()
+    this.getCurrentUser();
 
   }
 

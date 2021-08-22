@@ -13,23 +13,17 @@ export class HarvestComponent implements OnInit {
 
   /****************************************************************************************
    * 
+   * TODO: organize data in cards
    * 
-   * TODO: create a new model on backend for harvested data
    * 
-   * 
-   * Fetch harvested plants from database for user only
-   *  -TODO: filter on client side for now
+   * Fetch harvested plants from database for user only (1/2 DONE)
+   *  -DONE: filter on client side (only user data) for now
    *  -TODO: filter on backend
    * 
-   * TODO: when user doesn't have any harvested plants
-   *  -display: a page showing that no plants have been harvested yet, go plant some shit
    * 
    * TODO: be able to sort by year, plantType
    * 
-   * 
-   * TODO: set star values to show correct rating on each item
-   * 
-   * 
+   * TODO: Delete button for harvest object
    * 
    * 
    * 
@@ -37,30 +31,84 @@ export class HarvestComponent implements OnInit {
    ****************************************************************************************/
 
   harvestSubscription: Subscription;
-  harvest: Harvest[];
+  harvest: Harvest[] = [];
 
-  rating: number;
-  ratingArr: boolean[] = [] //true = solid star, false = empty star
-  starCount: number = 5;
+  totalQuality: number = 0;
+  averageQuality:number = 0;
+
+  userEmail: string;
+
+  getCurrentUser() {
+    return this.userEmail = localStorage.getItem("userEmail");
+  }
 
 
   constructor(private plantHarvest: HarvestService) {
-    //initialize star rating arr
-    //fill array with false values = all stars with be blank
-    this.ratingArr = Array(this.starCount).fill(false);
-   }
-
-  ngOnInit(): void {
-    this.harvestSubscription = this.plantHarvest.getHarvest().subscribe(harvest => {
-      this.harvest = harvest;
-    })
+    //get user
+    this.getCurrentUser();
   }
 
-  //access quailty of harvest by this.rating
-  //Rating by stars
-  faStar = faStar;
+  ngOnInit(): void {
 
-  getRating() {
+    this.harvestSubscription = this.plantHarvest.getHarvest()
+      .subscribe(data => {
+        data.forEach(harvestedPlant => {
+          //user filter
+          if(harvestedPlant.owner === this.userEmail) {
+            //push each user plant to harvest[]
+            this.harvest.push(harvestedPlant)
+          }
+        })
+
+      //run calculation methods on init
+      this.averageRating();
+      this.totalPerPlantName();
+      });
+
+  }
+
+  averageRating(){
+    let numOfPlants:number = 0;
+    this.harvest.forEach(plant => {
+      this.totalQuality += plant.quality;
+      numOfPlants++
+    });
+    this.averageQuality = this.totalQuality / numOfPlants;
+  }
+
+  nameArr = []; //[plant name]
+  totalsArr = []; //[plant number harvested]
+  //updatedTotalsName = [];
+
+  //new object to hold values
+  
+
+  
+  totalPerPlantName(){
+    
+    this.harvest.forEach(plant => {
+
+      //get each plant harvested, once
+      if(this.nameArr.includes(plant.plant)) {
+        //add quantity to array in correct index
+        let index = this.nameArr.indexOf(plant.plant);
+        //console.log(this.totalsArr[index]);
+        this.totalsArr[index] += plant.quantity;
+        //console.log("this is the value plus new value:" + this.totalsArr[index]);
+
+      } else {
+        this.nameArr.push(plant.plant);
+        //console.log("adding first quantity to array");
+        this.totalsArr.push(plant.quantity);
+        
+      }
+
+
+      
+      
+      
+    })
+
 
   }
 
