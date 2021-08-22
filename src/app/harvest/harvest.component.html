@@ -2,5 +2,26 @@
 
 <h3>My Havest</h3>
 <ul *ngFor="let plant of harvest">
-    <li>{{plant.plant}}</li>
+    <li>{{plant.plant}} X {{plant.quantity}}</li>
+    <li>Date Harvested: {{ plant.date | date : 'shortDate'}}</li>
+    <!-- display star rating -->
+    <li>
+        <mat-icon color="accent">
+            {{ returnStar(0, plant.quality) }}
+        </mat-icon>
+        <mat-icon color="accent">
+            {{ returnStar(1, plant.quality) }}
+        </mat-icon>
+        <mat-icon color="accent">
+            {{ returnStar(2, plant.quality) }}
+        </mat-icon>
+        <mat-icon color="accent">
+            {{ returnStar(3, plant.quality) }}
+        </mat-icon>
+        <mat-icon color="accent">
+            {{ returnStar(4, plant.quality) }}
+        </mat-icon>
+        
+    </li>
+    
 </ul>

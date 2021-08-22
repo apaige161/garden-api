@@ -228,6 +228,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   
   lastHarvest: boolean;
 
+  
   quantity: number;
 
   
