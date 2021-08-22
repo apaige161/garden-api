@@ -1,16 +1,42 @@
-<h1>Harvest Component</h1>
+<h1>My Harvest</h1>
 
 <div *ngIf="harvest">
-    <h1>My Harvest</h1>
+    <div class="row">
+        <div class="col-12">
+            <div id="average-quality" class="text-center">
+                <h1>Average Quality</h1>
+                <h3>{{averageQuality | number : '1.2-2'}} / 5</h3>
+            </div>
+        </div>
+    </div>
+    
     <!-- Plant list -->
     <div id="plant-list" class="row">
         <div *ngFor="let plant of harvest" class="col-6">
 
             <div class="row ">
-                <div class="col-3 text-center">
-                    <h3>{{plant.plant}} X {{plant.quantity}}</h3>
-                    <h3>Date Harvested: {{ plant.date | date : 'shortDate'}}</h3>
+
+                <div class="col-1 text-center">
+                    <button mat-icon-button color="primary">
+                        <mat-icon>
+                            {{'edit'}}
+                        </mat-icon>
+                    </button>
                 </div>
+                <div class="col-1 text-center">
+                    <button mat-icon-button color="warn">
+                        <mat-icon>
+                            {{'delete'}}
+                        </mat-icon>
+                    </button>
+                </div>
+
+                <!-- display plant name -->
+                <div class="col-3 text-center">
+                    <h3>{{plant.plant | titlecase}} X {{plant.quantity}}</h3>
+                </div>
+
+                
                 
                 <!-- display star rating -->
                 <div class="col-3 text-center">
@@ -30,14 +56,21 @@
                         {{ returnStar(4, plant.quality) }}
                     </mat-icon>
                 </div>
+
+                <!-- display date harvested-->
+                <div class="col-3 text-center">
+                    <h3>Date Harvested: {{ plant.date | date : 'shortDate'}}</h3>
+                </div>
+
+                
             </div>
         </div> <!-- end col-6 -->
+    </div>
 
+    <!-- Calculations -->
+    <div id="calculation-outer-wrapper" class="row">
         <div id="calculation-inner-wrapper" class="col-12 mt-3">
-            <div id="average-quality" class="text-center">
-                <h1>Average Quality</h1>
-                <h3>{{averageQuality | number : '1.2-2'}}</h3>
-            </div>
+            
             <!-- Total number of each plant harvested -->
             <div id="number-harvested" class="text-center">
                 <h1>Total number harvested</h1>
@@ -46,13 +79,7 @@
                     <li>{{plant}}: {{totalsArr[i]}}</li>
                 </ul>
             </div>
-        </div> <!-- end col-6 -->
-
-    </div>
-
-    <!-- Calculations -->
-    <div id="calculation-outer-wrapper" class="row">
-        
+        </div> 
     </div>
     
 </div>

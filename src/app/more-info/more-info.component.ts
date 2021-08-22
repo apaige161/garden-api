@@ -206,6 +206,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   * Harvest plant
   * 
   * TODO: BUG: refresh page on dialog close
+  * TODO: BUG: not sending/getting correct quantity on harvest page
   * 
   *   Features
   *     -Only display when there is a plant to harvest
@@ -227,9 +228,6 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   //how many will be harvested
   
   lastHarvest: boolean;
-
-  
-  quantity: number;
 
   
 
@@ -264,12 +262,10 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.rating = i + 1;
   }
 
-  
+  quantity: number;
 
   //non-mutating
   harvestPlant(plantToHarvest) {
-
-    this.quantity = this.singlePlant.perFoot;
 
     const harvestData: Harvest = {
       owner: plantToHarvest.owner,
@@ -371,7 +367,7 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
     this.plantSubscription = this.getSinglePlant(this.data._id).subscribe(plant => {
       this.singlePlant = plant
       this.getPlantProgress(this.singlePlant);
-      
+      this.quantity = this.singlePlant.perFoot;
     });
 
     

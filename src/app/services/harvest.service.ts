@@ -55,7 +55,7 @@ export class HarvestService {
       //return as a promise
       this.http.post(this.url, this.harvestData)
         .subscribe(data => {
-        //console.log(data);
+        console.log("Service data quantity: " + this.harvestData.quantity);
     })
   }
 
