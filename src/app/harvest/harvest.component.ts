@@ -58,6 +58,10 @@ export class HarvestComponent implements OnInit {
             //push each user plant to harvest[]
             this.harvest.push(harvestedPlant)
           }
+
+          this.harvest.forEach( item => {
+            //console.log(item);
+          })
         })
 
       //run calculation methods on init
@@ -85,9 +89,7 @@ export class HarvestComponent implements OnInit {
 
   
   totalPerPlantName(){
-    
     this.harvest.forEach(plant => {
-
       //get each plant harvested, once
       if(this.nameArr.includes(plant.plant)) {
         //add quantity to array in correct index
@@ -95,21 +97,12 @@ export class HarvestComponent implements OnInit {
         //console.log(this.totalsArr[index]);
         this.totalsArr[index] += plant.quantity;
         //console.log("this is the value plus new value:" + this.totalsArr[index]);
-
       } else {
         this.nameArr.push(plant.plant);
         //console.log("adding first quantity to array");
-        this.totalsArr.push(plant.quantity);
-        
+        this.totalsArr.push(plant.quantity);        
       }
-
-
-      
-      
-      
     })
-
-
   }
 
   //determine what stars are solid/empty
@@ -120,5 +113,20 @@ export class HarvestComponent implements OnInit {
       return 'star_border'
     }
   }
+
+  deleteById(id: string) {
+    //console.log("attempt delete " + id +" from harvest component...")
+    this.plantHarvest.deleteOne(id).subscribe();
+  }
+
+
+
+
+
+
+
+
+
+
 
 }

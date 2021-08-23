@@ -24,7 +24,10 @@
                     </button>
                 </div>
                 <div class="col-1 text-center">
-                    <button mat-icon-button color="warn">
+                    <button 
+                        mat-icon-button 
+                        color="warn"
+                        (click)="deleteById(plant._id)">
                         <mat-icon>
                             {{'delete'}}
                         </mat-icon>

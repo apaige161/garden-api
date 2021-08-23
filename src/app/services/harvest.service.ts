@@ -65,7 +65,8 @@ export class HarvestService {
    * 
    **************************************************************/
 
-   deleteOne(id: string) {
+   deleteOne(id) {
+    //console.log("continue with deletion from service, id: " + id)
     return this.http.delete(this.url+'/'+id)
   }
 
