@@ -1,9 +1,14 @@
-<h1>My Harvest</h1>
+
+
+<div *ngIf="!harvest">
+    <h1>My Harvest</h1>
+</div>
+
 
 <div *ngIf="harvest">
     <div class="row">
         <div class="col-12">
-            <div id="average-quality" class="text-center">
+            <div id="average-quality" class="text-center mt-3">
                 <h1>Average Quality</h1>
                 <h3>{{averageQuality | number : '1.2-2'}} / 5</h3>
             </div>
@@ -12,19 +17,16 @@
     
     <!-- Plant list -->
     <div id="plant-list" class="row">
-        <div *ngFor="let plant of harvest" class="col-6">
+        <div *ngFor="let plant of harvest">
 
-            <div class="row ">
+            <div>
 
-                <div class="col-1 text-center">
-                    <button mat-icon-button color="primary">
-                        <mat-icon>
-                            {{'edit'}}
-                        </mat-icon>
-                    </button>
-                </div>
-                <div class="col-1 text-center">
-                    <button 
+
+                <!-- display plant name -->
+                <div class="col-4 text-center">
+                    <div class="row">
+                        <button 
+                        class="col-2"
                         mat-icon-button 
                         color="warn"
                         (click)="deleteById(plant._id)">
@@ -32,17 +34,15 @@
                             {{'delete'}}
                         </mat-icon>
                     </button>
-                </div>
-
-                <!-- display plant name -->
-                <div class="col-3 text-center">
-                    <h3>{{plant.plant | titlecase}} X {{plant.quantity}}</h3>
+                    <h3 class="col-10">{{plant.plantType | titlecase}}: {{plant.plant | titlecase}} X {{plant.quantity}}</h3>
+                    </div>
+                    
                 </div>
 
                 
                 
                 <!-- display star rating -->
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                     <mat-icon color="accent">
                         {{ returnStar(0, plant.quality) }}
                     </mat-icon>
@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- display date harvested-->
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                     <h3>Date Harvested: {{ plant.date | date : 'shortDate'}}</h3>
                 </div>
 

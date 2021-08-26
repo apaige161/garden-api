@@ -64,7 +64,6 @@ router.get('/', async (req,res) => {
 
 router.delete('/:plantId', async (req, res) => {
     try{
-        console.log("attempting delete from api")
         //use model and remove by ID targeting the _id param
         const removedPlant = await Harvest.deleteOne({_id: req.params.plantId});
         res.json(removedPlant);

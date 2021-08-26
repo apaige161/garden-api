@@ -205,8 +205,10 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   * 
   * Harvest plant
   * 
+  * 
+  * 
   * TODO: BUG: refresh page on dialog close
-  * TODO: BUG: not sending/getting correct quantity on harvest page
+  * 
   * 
   *   Features
   *     -Only display when there is a plant to harvest
@@ -216,12 +218,6 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   * 
   * TODO: Add backgrouns image, rounded edge transparent white backgrouns under all elements
   * 
-  * 
-  *   Create new object for harvested objects ^
-  *   Send data to service -> node -> mongoDb
-  * 
-  *   get how many plants were harvested (perFoot)
-  *   send plant type
   * 
   ***********************************************************************************************/
 
@@ -244,10 +240,6 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
       this.lastHarvest = true;
     }
   }
-
-  //access quailty of harvest by this.rating
-  //Rating by stars
-  faStar = faStar;
 
   //determine what stars are solid/empty
   returnStar(i: number) {

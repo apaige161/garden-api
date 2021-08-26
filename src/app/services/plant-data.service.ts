@@ -274,7 +274,7 @@ export class PlantDataService {
       plant: 'onion',
       plantType: 'vegatable',
       season: 'spring, summer',
-      perFoot: 1,
+      perFoot: 9,
       multiHarvest: false,
       growthModifier: 1,
       daysToHarvest: 140,

@@ -13,18 +13,17 @@ export class HarvestComponent implements OnInit {
 
   /****************************************************************************************
    * 
-   * TODO: organize data in cards
+   * TODO: organize data in cards - space for notes
+   * TODO: Only display totals with average rating next to them, not each harvested square
+   * TODO: be able to sort by year, plantType
+   * TODO: add section to leave notes for the following year
+   *  -ability to leave notes from the harvested page
+   * TODO: organize by plant type
    * 
    * 
    * Fetch harvested plants from database for user only (1/2 DONE)
    *  -DONE: filter on client side (only user data) for now
    *  -TODO: filter on backend
-   * 
-   * 
-   * TODO: be able to sort by year, plantType
-   * 
-   * TODO: Delete button for harvest object
-   * 
    * 
    * 
    * 
@@ -59,9 +58,11 @@ export class HarvestComponent implements OnInit {
             this.harvest.push(harvestedPlant)
           }
 
+          /*
           this.harvest.forEach( item => {
             //console.log(item);
           })
+          */
         })
 
       //run calculation methods on init
@@ -71,6 +72,15 @@ export class HarvestComponent implements OnInit {
 
   }
 
+  /******************************************************************************
+   * 
+   * Rating system
+   * 
+   *  TODO: calculate avg rating per plant name, display within the same card
+   *  TODO: run for loop to reduce html on displaying star rating
+   * 
+   ******************************************************************************/
+  //total rating
   averageRating(){
     let numOfPlants:number = 0;
     this.harvest.forEach(plant => {
@@ -82,12 +92,15 @@ export class HarvestComponent implements OnInit {
 
   nameArr = []; //[plant name]
   totalsArr = []; //[plant number harvested]
-  //updatedTotalsName = [];
-
-  //new object to hold values
   
 
-  
+  /******************************************************************************
+   * 
+   * Totals
+   * 
+   ******************************************************************************/
+
+  //get total number of plants per plant name
   totalPerPlantName(){
     this.harvest.forEach(plant => {
       //get each plant harvested, once
@@ -113,6 +126,12 @@ export class HarvestComponent implements OnInit {
       return 'star_border'
     }
   }
+
+  /*********************************************************************************
+   * 
+   * Operations
+   * 
+   **********************************************************************************/
 
   deleteById(id: string) {
     //console.log("attempt delete " + id +" from harvest component...")
