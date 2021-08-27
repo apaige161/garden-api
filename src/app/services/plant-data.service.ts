@@ -230,7 +230,7 @@ export class PlantDataService {
       plantType: 'vegatable',
       season: 'spring, summer, fall, winter',
       perFoot: 1,
-      multiHarvest: true,
+      multiHarvest: false,
       growthModifier: 1,
       daysToHarvest: 49,
       datePlanted: null,

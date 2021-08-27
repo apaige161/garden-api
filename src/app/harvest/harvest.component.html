@@ -1,88 +1,44 @@
 
-
-<div *ngIf="!harvest">
-    <h1>My Harvest</h1>
-</div>
-
-
 <div *ngIf="harvest">
     <div class="row">
         <div class="col-12">
             <div id="average-quality" class="text-center mt-3">
                 <h1>Average Quality</h1>
                 <h3>{{averageQuality | number : '1.2-2'}} / 5</h3>
+                <button (click)="plantTotals()">
+                    Plant totals func
+                </button>
             </div>
         </div>
     </div>
+
+    <div class="card-container" *ngFor="let plant of nameArr; index as i">
+        <mat-card class="plant-card">
+            <mat-card-header>
+              <mat-card-title>{{plant}}</mat-card-title>
+              <mat-card-subtitle>{{totalsArr[i]}}</mat-card-subtitle>
+            </mat-card-header>
     
-    <!-- Plant list -->
-    <div id="plant-list" class="row">
-        <div *ngFor="let plant of harvest">
-
-            <div>
-
-
-                <!-- display plant name -->
-                <div class="col-4 text-center">
-                    <div class="row">
-                        <button 
-                        class="col-2"
-                        mat-icon-button 
-                        color="warn"
-                        (click)="deleteById(plant._id)">
-                        <mat-icon>
-                            {{'delete'}}
-                        </mat-icon>
-                    </button>
-                    <h3 class="col-10">{{plant.plantType | titlecase}}: {{plant.plant | titlecase}} X {{plant.quantity}}</h3>
-                    </div>
-                    
-                </div>
-
-                
-                
-                <!-- display star rating -->
-                <div class="col-4 text-center">
+            <mat-card-content>
+                <div>
                     <mat-icon color="accent">
-                        {{ returnStar(0, plant.quality) }}
+                        {{ returnStar(0, qualityArr[i]) }}
                     </mat-icon>
                     <mat-icon color="accent">
-                        {{ returnStar(1, plant.quality) }}
+                        {{ returnStar(1, qualityArr[i]) }}
                     </mat-icon>
                     <mat-icon color="accent">
-                        {{ returnStar(2, plant.quality) }}
+                        {{ returnStar(2, qualityArr[i]) }}
                     </mat-icon>
                     <mat-icon color="accent">
-                        {{ returnStar(3, plant.quality) }}
+                        {{ returnStar(3, qualityArr[i]) }}
                     </mat-icon>
                     <mat-icon color="accent">
-                        {{ returnStar(4, plant.quality) }}
+                        {{ returnStar(4, qualityArr[i]) }}
                     </mat-icon>
                 </div>
-
-                <!-- display date harvested-->
-                <div class="col-4 text-center">
-                    <h3>Date Harvested: {{ plant.date | date : 'shortDate'}}</h3>
-                </div>
-
-                
-            </div>
-        </div> <!-- end col-6 -->
-    </div>
-
-    <!-- Calculations -->
-    <div id="calculation-outer-wrapper" class="row">
-        <div id="calculation-inner-wrapper" class="col-12 mt-3">
-            
-            <!-- Total number of each plant harvested -->
-            <div id="number-harvested" class="text-center">
-                <h1>Total number harvested</h1>
-                <h4>List of plants</h4>
-                <ul *ngFor="let plant of nameArr; index as i">
-                    <li>{{plant}}: {{totalsArr[i]}}</li>
-                </ul>
-            </div>
-        </div> 
+            </mat-card-content>
+        </mat-card>
     </div>
     
 </div>

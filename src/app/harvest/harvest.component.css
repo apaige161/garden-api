@@ -9,3 +9,8 @@ ul {
       margin-top: 5%;
       border-bottom: 3px dotted black;
   }
+
+  .plant-card {
+    max-width: 400px;
+    margin: 10px;
+  }
