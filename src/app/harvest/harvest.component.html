@@ -1,5 +1,5 @@
 
-<div *ngIf="harvest">
+<div *ngIf="harvest.length > 0">
     <div class="row">
         <div class="col-12">
             <div id="average-quality" class="text-center mt-3">
@@ -11,34 +11,70 @@
     <div class="card-container" *ngFor="let plant of nameArr; index as i">
         <mat-card class="plant-card">
             <mat-card-header>
-              <mat-card-title>{{plant}}</mat-card-title>
-              <mat-card-subtitle>{{totalsArr[i]}}</mat-card-subtitle>
+                <mat-card-title>
+                    <div id="card-title-container">
+                        <!--move to top left -->
+                        <div id="card-title">
+                            {{plant | titlecase}}
+                        </div>
+                        <!-- move to top right -->
+                        <div id="card-stars">
+                            <mat-icon color="accent">
+                                {{ returnStar(0, qualityArr[i]) }}
+                            </mat-icon>
+                            <mat-icon color="accent">
+                                {{ returnStar(1, qualityArr[i]) }}
+                            </mat-icon>
+                            <mat-icon color="accent">
+                                {{ returnStar(2, qualityArr[i]) }}
+                            </mat-icon>
+                            <mat-icon color="accent">
+                                {{ returnStar(3, qualityArr[i]) }}
+                            </mat-icon>
+                            <mat-icon color="accent">
+                                {{ returnStar(4, qualityArr[i]) }}
+                            </mat-icon>
+                        </div>
+                    </div>
+                </mat-card-title>
             </mat-card-header>
     
             <mat-card-content>
-                <div>
-                    <mat-icon color="accent">
-                        {{ returnStar(0, qualityArr[i]) }}
-                    </mat-icon>
-                    <mat-icon color="accent">
-                        {{ returnStar(1, qualityArr[i]) }}
-                    </mat-icon>
-                    <mat-icon color="accent">
-                        {{ returnStar(2, qualityArr[i]) }}
-                    </mat-icon>
-                    <mat-icon color="accent">
-                        {{ returnStar(3, qualityArr[i]) }}
-                    </mat-icon>
-                    <mat-icon color="accent">
-                        {{ returnStar(4, qualityArr[i]) }}
-                    </mat-icon>
+            
+                <div id="card-total">
+                    Total harvested: {{totalsArr[i]}}</div>
+                <div id="date">
+                    Last harvest: {{dateArr[i] | date : 'shortDate'}}
+                </div>
+
+                <!-- notes section -->
+                <div id="card-notes">
+                    <h3>Optional notes</h3>
+                    <mat-form-field class="example-form-field" appearance="fill">
+                        <mat-label>Notes</mat-label>
+                        <input matInput type="text" [(ngModel)]="value">
+                        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                      </mat-form-field>
+                </div>
+                <div id="delete">
+                    <button 
+                        class="col-2"
+                        mat-icon-button 
+                        color="warn"
+                        (click)="deleteById(idArr[i])">
+                        <mat-icon>
+                            {{'delete'}}
+                        </mat-icon>
+                    </button>
                 </div>
             </mat-card-content>
         </mat-card>
     </div>
 </div>
 
-<div *ngIf="!harvest">
+<div *ngIf="harvest.length === 0">
     <div>
         <h1>
             No Harvests were found

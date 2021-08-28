@@ -1,16 +1,9 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
+#card-title-container {
+    width: 100%;
+    justify-content: space-around;
+}
 
-
-  #plant-list {
-      margin-top: 5%;
-      border-bottom: 3px dotted black;
-  }
-
-  .plant-card {
-    max-width: 400px;
-    margin: 10px;
-  }
+.plant-card {
+max-width: 400px;
+margin: 10px;
+}

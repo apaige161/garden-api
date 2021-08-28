@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { Harvest } from '../models/harvest';
 import { HarvestService } from '../services/harvest.service';
@@ -13,24 +12,33 @@ export class HarvestComponent implements OnInit {
 
   /****************************************************************************************
    * 
-   * TODO: organize data in cards - space for notes
-   * TODO: Only display totals with average rating next to them, not each harvested square
-   * TODO: be able to sort by year, plantType
+   * --High priority--
+   * -TODO: add these arrays together for a new object -or add them back into another Harvest object and add 
+   * -TODO: create new model to hold optional notes string value
+   * -TODO: add to backend to save
+   * 
+   * blocked by ^^
+   * TODO: be able to sort by plantType
    * TODO: add section to leave notes for the following year
    *  -ability to leave notes from the harvested page
    * TODO: organize by plant type
    * 
    * 
+   * --Low priority--
    * Fetch harvested plants from database for user only (1/2 DONE)
    *  -DONE: filter on client side (only user data) for now
    *  -TODO: filter on backend
    * 
    * 
    * 
+   * 
+   * 
+   * 
+   * 
    ****************************************************************************************/
 
   harvestSubscription: Subscription;
-  harvest: Harvest[] = [];
+  harvest = [];
 
   totalQuality: number = 0;
   averageQuality:number = 0;
@@ -75,10 +83,7 @@ export class HarvestComponent implements OnInit {
 
   /******************************************************************************
    * 
-   * Rating system
-   * 
-   *  TODO: calculate avg rating per plant name, display within the same card
-   *  TODO: run for loop to reduce html on displaying star rating
+   * Rating system for all harvests
    * 
    ******************************************************************************/
   //total rating
@@ -97,13 +102,16 @@ export class HarvestComponent implements OnInit {
    * Totals
    * 
    *  -if plant name exists add perfoot to current value
-   *  -TODO: add date to harvested card
+   *  
+   *    
    * 
    ******************************************************************************/
 
   nameArr = []; //[plant name]
   totalsArr = []; //[plant number harvested]
-  qualityArr = [];
+  qualityArr = []; //[average quality]
+  dateArr = []; //[dates harvested]
+  idArr = []; //[id]
   count = 0
   sum = 0;
 
@@ -145,17 +153,14 @@ export class HarvestComponent implements OnInit {
         
         this.totalsArr[index] += plant.quantity;
 
-        //TODO: get the average quality
         //find how many times this index has the same plant value
         this.findOccurences(this.harvest, plant.plant) 
         console.log(plant.plant + " has " + this.count + " number of occurences");
 
-        //let avg = ( total number of stars / number of occurences )
+        //get average
         this.findSum(this.harvest, plant.plant);
-
         let avg = Math.round(this.sum / this.count);
-        console.log("Average quality of " + plant.plant + " is " + avg);
-
+        //set average
         this.qualityArr[index] = avg;
 
         //reset counter and sum
@@ -169,6 +174,8 @@ export class HarvestComponent implements OnInit {
         this.nameArr.push(plant.plant);
         this.totalsArr.push(plant.quantity);
         this.qualityArr.push(plant.quality);
+        this.dateArr.push(plant.date);
+        this.idArr.push(plant._id);
       }
     })
   }
@@ -190,13 +197,22 @@ export class HarvestComponent implements OnInit {
    **********************************************************************************/
 
   deleteById(id: string) {
-    //console.log("attempt delete " + id +" from harvest component...")
+    console.log("attempt delete " + id +" from harvest component...")
     this.plantHarvest.deleteOne(id).subscribe();
   }
 
 
 
+  /*********************************************************************************
+   * 
+   * Adding notes
+   *  -Do this after new objects are created
+   *  -TODO: create new model to hold optional notes string value
+   *  -TODO: be able to add notes to the plants harvested
+   * 
+   **********************************************************************************/
 
+  value = 'Clear me';
 
 
 
