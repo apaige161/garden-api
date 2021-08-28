@@ -5,13 +5,9 @@
             <div id="average-quality" class="text-center mt-3">
                 <h1>Average Quality</h1>
                 <h3>{{averageQuality | number : '1.2-2'}} / 5</h3>
-                <button (click)="plantTotals()">
-                    Plant totals func
-                </button>
             </div>
         </div>
     </div>
-
     <div class="card-container" *ngFor="let plant of nameArr; index as i">
         <mat-card class="plant-card">
             <mat-card-header>
@@ -40,7 +36,6 @@
             </mat-card-content>
         </mat-card>
     </div>
-    
 </div>
 
 <div *ngIf="!harvest">

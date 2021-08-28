@@ -92,59 +92,52 @@ export class HarvestComponent implements OnInit {
   }
 
   
-
-  //displayArr: Harvest[] = []
-  nameArr = []; //[plant name]
-  totalsArr = []; //[plant number harvested]
-  qualityArr = [];
-
-  tempArr = [];
-
-  plantTotals() {
-    for(let i = 0; i < this.harvest.length; i++) {
-      for(let x = 1; x < this.harvest.length; x++) {
-        if(this.harvest[i].plant == this.harvest[x].plant) {
-          //find index and add quantity
-          let newIndex = this.harvest.indexOf(this.harvest[i]);
-          this.harvest[newIndex].quantity += this.harvest[i].quantity;
-          console.log(this.harvest[i].plant + " was already in the array, " + this.harvest[i].quantity + " Is the new value")
-        } else {
-          //push to arr
-          this.tempArr.push(this.harvest[i]);
-        }
-      }
-    }
-    console.log(this.tempArr);
-  }
-
-
-
   /******************************************************************************
    * 
    * Totals
    * 
    *  -if plant name exists add perfoot to current value
-   *  -TODO: get the average quality
+   *  -TODO: add date to harvested card
    * 
    ******************************************************************************/
+
+  nameArr = []; //[plant name]
+  totalsArr = []; //[plant number harvested]
+  qualityArr = [];
   count = 0
+  sum = 0;
+
+  //occurenceInedexesArr = []
+  //add indexes of each occurence here, then reset occurences to empty arr
   
 
   //will only work for function below
   findOccurences(arr, value) {
     arr.forEach(element => {
+      //count number of times a given value is in an array
       if(element.plant == value) {
         this.count++
       }
     });
   }
 
-  
+  //find sum of quality for a plant
+  findSum(arr, plantName) {
+    arr.forEach(element => {
+      //count number of times a given value is in an array
+      if(element.plant == plantName) {
+        this.sum += element.quality
+      }
+    });
+    console.log("The sum of quality for " + plantName + " is " + this.sum);
+  }
 
+  
   totalPerPlantName(){
     
     //loop through each plant
     this.harvest.forEach(plant => {
+
       //get each plant harvested, once
       if(this.nameArr.includes(plant.plant)) {
         //add quantity to array in correct index
@@ -156,21 +149,28 @@ export class HarvestComponent implements OnInit {
         //find how many times this index has the same plant value
         this.findOccurences(this.harvest, plant.plant) 
         console.log(plant.plant + " has " + this.count + " number of occurences");
-        this.qualityArr[index] = plant.quantity;
 
+        //let avg = ( total number of stars / number of occurences )
+        this.findSum(this.harvest, plant.plant);
 
-        //reset counter
+        let avg = Math.round(this.sum / this.count);
+        console.log("Average quality of " + plant.plant + " is " + avg);
+
+        this.qualityArr[index] = avg;
+
+        //reset counter and sum
         this.count = 0;
+        this.sum = 0;
+      
         
-      } else {
+      } else { //no previous value found with the name being looped over
 
-        //push values
+        //push values - should have same indexes
         this.nameArr.push(plant.plant);
         this.totalsArr.push(plant.quantity);
         this.qualityArr.push(plant.quality);
       }
     })
-
   }
 
 
