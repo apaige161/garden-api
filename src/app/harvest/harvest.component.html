@@ -8,14 +8,14 @@
             </div>
         </div>
     </div>
-    <div class="card-container" *ngFor="let plant of nameArr; index as i">
+    <div class="card-container" *ngFor="let plant of newPlantArr; index as i">
         <mat-card class="plant-card">
             <mat-card-header>
                 <mat-card-title>
                     <div id="card-title-container">
                         <!--move to top left -->
                         <div id="card-title">
-                            {{plant | titlecase}}
+                            {{plant.plantName | titlecase}}
                         </div>
                         <!-- move to top right -->
                         <div id="card-stars">
@@ -42,21 +42,19 @@
             <mat-card-content>
             
                 <div id="card-total">
-                    Total harvested: {{totalsArr[i]}}</div>
+                    Total harvested: {{plant.quantity}}</div>
                 <div id="date">
-                    Last harvest: {{dateArr[i] | date : 'shortDate'}}
+                    Last harvest: {{plant.lastHarvested | date : 'shortDate'}}
                 </div>
 
+                <!-- may have to put each plant's comments into its own array-->
                 <!-- notes section -->
-                <div id="card-notes">
-                    <h3>Optional notes</h3>
-                    <mat-form-field class="example-form-field" appearance="fill">
-                        <mat-label>Notes</mat-label>
-                        <input matInput type="text" [(ngModel)]="value">
-                        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                          <mat-icon>close</mat-icon>
-                        </button>
-                      </mat-form-field>
+                <div  id="card-notes">
+                    <div >
+                        <p>
+                            {{plant.notes}}
+                        </p>
+                    </div>
                 </div>
                 <div id="delete">
                     <button 

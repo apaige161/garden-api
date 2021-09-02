@@ -43,7 +43,9 @@ router.get('/', async (req,res) => {
         quality: req.body.quality,
         quantity: req.body.quantity,
         garden: req.body.garden,
-        plantType : req.body.plantType,
+        plantType: req.body.plantType,
+        notes:req.body.notes,
+        transformed: req.body.transformed,
 
     });
 

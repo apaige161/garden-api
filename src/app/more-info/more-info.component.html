@@ -226,8 +226,8 @@
                         required
                         [(ngModel)]="lastHarvest" 
                         name="lastHarvest-name">
-                        <option [ngValue]="true" >Yes</option>
-                        <option [ngValue]="false" >No</option>
+                        <option [ngValue]="true">Yes</option>
+                        <option [ngValue]="false">No</option>
                     </select>
                 </div>
                 
@@ -245,6 +245,22 @@
                             {{ returnStar(i) }}
                         </mat-icon>
                     </button>
+                </div>
+
+                <form class="input-form">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Leave an optional note</mat-label>
+                        <textarea 
+                            matInput 
+                            placeholder="Ex. Needed more fertilizer..."
+                            [(ngModel)]="harvestNotes"
+                            name="harvestNotes">
+                        </textarea>
+                      </mat-form-field>
+                </form>
+
+                <div>
+                    Harvest notes: {{harvestNotes}}
                 </div>
 
                 
@@ -296,11 +312,12 @@
     <!-- Displays in Harvest state -->
 
 
-    <div *ngIf="harvestPlantBool" class="harvest-button-parent">
+    <div *ngIf="harvestPlantBool" class="harvest-button-parent ">
         <div class="harvest-action" >
             <!-- This one replaces the plant with an empty plot-->
             <button
                 *ngIf="lastHarvest"
+                class="center"
                 (click)="harvestPlant(singlePlant)"
                 (click)="replacePlant('empty')"
                 (click)="closeInfo()"
@@ -313,6 +330,7 @@
 
             <button
                 *ngIf="!lastHarvest"
+                class="center"
                 (click)="harvestPlant(singlePlant)"
                 (click)="closeInfo()"
                 mat-raised-button

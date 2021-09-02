@@ -13,7 +13,7 @@ export class HarvestService {
 
   url = 'http://localhost:3000/api/harvest';
 
-  harvestData = {
+  harvestData: Harvest = {
     owner: "",
     date: this.today,
     plant: "",
@@ -21,6 +21,8 @@ export class HarvestService {
     quantity: null,
     garden: "",
     plantType: "",
+    notes: "",
+    transformed: false,
   }
 
   constructor(private http: HttpClient) { }
@@ -51,11 +53,12 @@ export class HarvestService {
       this.harvestData.quantity = harvest.quantity;
       this.harvestData.garden = harvest.garden;
       this.harvestData.plantType = harvest.plantType;
+      this.harvestData.notes = harvest.notes;
 
       //return as a promise
       this.http.post(this.url, this.harvestData)
         .subscribe(data => {
-        console.log("Service data quantity: " + this.harvestData.quantity);
+        console.log("Service data notes: " + this.harvestData.notes);
     })
   }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
 import { Subscription } from 'rxjs';
+import { AfterHarvest } from '../models/after-harvest';
 import { Harvest } from '../models/harvest';
 import { HarvestService } from '../services/harvest.service';
 
@@ -13,9 +15,9 @@ export class HarvestComponent implements OnInit {
   /****************************************************************************************
    * 
    * --High priority--
-   * -TODO: add these arrays together for a new object -or add them back into another Harvest object and add 
-   * -TODO: create new model to hold optional notes string value
-   * -TODO: add to backend to save
+   * -TODO: create 2D array, 1D to hold all the plant's comments, 2D to keep each comment seperate from the next
+   *    -do the same for a list of dates harvested, only display the last date unles prompted
+   * -TODO: user should be able to edit the notes
    * 
    * blocked by ^^
    * TODO: be able to sort by plantType
@@ -38,7 +40,11 @@ export class HarvestComponent implements OnInit {
    ****************************************************************************************/
 
   harvestSubscription: Subscription;
+  //get harvest data
   harvest = [];
+
+
+  //transform data into objects
 
   totalQuality: number = 0;
   averageQuality:number = 0;
@@ -66,17 +72,16 @@ export class HarvestComponent implements OnInit {
             this.harvest.push(harvestedPlant)
           }
 
-          /*
+          
           this.harvest.forEach( item => {
             //console.log(item);
           })
-          */
+          
         })
 
       //run calculation methods on init
       this.averageRating();
       this.totalPerPlantName();
-
       });
 
   }
@@ -112,8 +117,19 @@ export class HarvestComponent implements OnInit {
   qualityArr = []; //[average quality]
   dateArr = []; //[dates harvested]
   idArr = []; //[id]
+  notesArr = []; //[combined notes]
   count = 0
   sum = 0;
+
+
+  newPlantArr = [];
+
+  getPlantArrVals() {
+    this.newPlantArr.forEach( thing => {
+      console.log(thing);
+    })
+  }
+
 
   //occurenceInedexesArr = []
   //add indexes of each occurence here, then reset occurences to empty arr
@@ -137,17 +153,18 @@ export class HarvestComponent implements OnInit {
         this.sum += element.quality
       }
     });
-    console.log("The sum of quality for " + plantName + " is " + this.sum);
+    //console.log("The sum of quality for " + plantName + " is " + this.sum);
   }
 
   
   totalPerPlantName(){
-    
+
     //loop through each plant
     this.harvest.forEach(plant => {
 
       //get each plant harvested, once
       if(this.nameArr.includes(plant.plant)) {
+
         //add quantity to array in correct index
         let index = this.nameArr.indexOf(plant.plant);
         
@@ -155,7 +172,7 @@ export class HarvestComponent implements OnInit {
 
         //find how many times this index has the same plant value
         this.findOccurences(this.harvest, plant.plant) 
-        console.log(plant.plant + " has " + this.count + " number of occurences");
+        //console.log(plant.plant + " has " + this.count + " number of occurences");
 
         //get average
         this.findSum(this.harvest, plant.plant);
@@ -166,9 +183,53 @@ export class HarvestComponent implements OnInit {
         //reset counter and sum
         this.count = 0;
         this.sum = 0;
-      
-        
+
+        //add notes to plant data
+        //TODO: format date
+        if(plant.notes) {
+          //console.log("adding note  to index " + index)
+          this.notesArr[index] += plant.notes
+        }
+
+
+        //add these values to the newPlantArr object
+        this.newPlantArr.forEach(element => {
+          if(element.plantName === plant.plant) {
+            
+            //add number
+            element.quantity += plant.quantity;
+
+            //get average
+            element.quality = avg;
+
+            //add notes
+            element.notes += " " + plant.notes;
+
+            //add recent date
+            element.lastHarvested = plant.date;
+          }
+        })
+
+
+
       } else { //no previous value found with the name being looped over
+
+        //create an object
+        let newPlant = {
+          plantName: plant.plant,
+          lastHarvested: plant.date,
+          quality: plant.quality,
+          quantity: plant.quantity,
+          plantType: plant.plantType,
+          notes: plant.notes,
+        }
+
+        //add to arr
+        this.newPlantArr.push(newPlant);
+        
+        
+
+        //plant.transformed = true;
 
         //push values - should have same indexes
         this.nameArr.push(plant.plant);
@@ -176,6 +237,15 @@ export class HarvestComponent implements OnInit {
         this.qualityArr.push(plant.quality);
         this.dateArr.push(plant.date);
         this.idArr.push(plant._id);
+
+        //may not have any notes
+        if(plant.notes) {
+          //push notes
+          this.notesArr = [plant.notes] ;
+        } else {
+          //push empty string
+          this.notesArr = [""];
+        }
       }
     })
   }
@@ -201,22 +271,45 @@ export class HarvestComponent implements OnInit {
     this.plantHarvest.deleteOne(id).subscribe();
   }
 
+/*
+  harvestedArr: AfterHarvest[] = [];
 
 
-  /*********************************************************************************
-   * 
-   * Adding notes
-   *  -Do this after new objects are created
-   *  -TODO: create new model to hold optional notes string value
-   *  -TODO: be able to add notes to the plants harvested
-   * 
-   **********************************************************************************/
+  transformData() {
+    this.harvest.forEach(plant => {
 
-  value = 'Clear me';
+      console.log("starting to transform data");
+
+      //find duplicate names
 
 
 
 
+      console.log("no match was found, create new object");
+  
+          //object model
+          const newPlant = {
+            owner: plant.owner,
+            date: plant.date,
+            plant: plant.plant,
+            quality: plant.quality,
+            quantity: plant.quantity,
+            garden: plant.garden,
+            plantType: plant.plantType,
+            notes: plant.notes,
+            transformed: plant.transformed,
+          }
+  
+          //add to array
+          const addToArr = Object.create(newPlant)
+          this.harvestedArr.push(addToArr);
+    })
+    this.harvestedArr.forEach(el => {
+      console.log(el);
+    })
+  }
+
+*/
 
 
 

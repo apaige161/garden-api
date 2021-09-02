@@ -222,11 +222,13 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
   ***********************************************************************************************/
 
   //how many will be harvested
-  
   lastHarvest: boolean;
 
-  
+  //notes section
+  harvestNotes: string = "";
 
+  
+ 
   //used to manage state
   toggleHavestOptions() {
     this.harvestPlantBool = !this.harvestPlantBool;
@@ -267,7 +269,9 @@ export class MoreInfoComponent implements OnInit, OnDestroy {
       //quantity may be set by user if multiHarvest=true
       quantity: this.quantity,
       garden: plantToHarvest.garden,
-      plantType: plantToHarvest.plantType
+      plantType: plantToHarvest.plantType,
+      notes: this.harvestNotes,
+      transformed: false,
     }
 
     console.log(harvestData);
