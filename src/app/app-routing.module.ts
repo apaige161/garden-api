@@ -14,11 +14,19 @@ import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { GardensComponent } from './gardens/gardens.component';
 import { HarvestComponent } from "./harvest/harvest.component";
+import { HomeComponent } from "./home/home.component";
+import { AboutComponent } from "./about/about.component";
 
 const routes: Routes = [
 
     //root page
-    { path: '', component: PostListComponent },
+    { path: '', component: HomeComponent },
+
+    //about
+    { path: 'about', component: AboutComponent },
+
+    //posts
+    { path: 'posts', component: PostListComponent },
 
     //create component
     //send user to login page is not logged in

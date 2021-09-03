@@ -1,11 +1,10 @@
 <mat-toolbar color="primary">
 
     <span class="spacer"> 
-        <a routerLink="/">Community Garden</a>
+        <a routerLink="/">Home</a>
     </span>
-    <span *ngIf="userIsAuthenticated" class="spacer"> 
-        <a routerLink="/">{{user | titlecase}}</a>
-    </span>
+
+
     <span class="spacer"></span>
     <ul>
         <li *ngIf="userIsAuthenticated">
@@ -24,12 +23,20 @@
             <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
         </li>
 
+        <li>
+            <a mat-button routerLink="/posts" routerLinkActive="mat-accent">Posts</a>
+        </li>
+
         <li *ngIf="!userIsAuthenticated">
             <a mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
         </li>
 
         <li *ngIf="!userIsAuthenticated">
             <a mat-button routerLink="/auth/signup" routerLinkActive="mat-accent">Signup</a>
+        </li>
+
+        <li>
+            <a mat-button routerLink="/about" routerLinkActive="mat-accent">About</a>
         </li>
 
         <li *ngIf="userIsAuthenticated">

@@ -38,6 +38,8 @@ import { EditPlantComponent } from './edit-plant/edit-plant.component';
 import { DateFnsModule } from 'ngx-date-fns';
 import { HarvestComponent } from './harvest/harvest.component';
 import { YesNoPipe } from './pipes/yes-no.pipe';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 //services
 //import { PostService } from './services/post.service';
@@ -56,7 +58,7 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     MoreInfoComponent, 
     EditPlantComponent, 
     HarvestComponent, 
-    YesNoPipe
+    YesNoPipe, HomeComponent, AboutComponent
   ],
   imports: [
     BrowserModule,
