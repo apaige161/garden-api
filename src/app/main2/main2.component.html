@@ -57,6 +57,7 @@
 
             </div>
           </div>
+
           <!-- Garden name input form -->
           <div class="col-6">
             <h2>Name this garden:</h2>
@@ -76,6 +77,7 @@
             </a>
 
           </div>
+
           <!-- plant list -->
           <div class="col-12 plant-list">
 
@@ -84,7 +86,8 @@
               <mat-radio-group
                 aria-labelledby="radio-group-label"
                 class="radio-group"
-                [(ngModel)]="favoritePlantType">
+                [(ngModel)]="favoritePlantType"
+                >
                 <mat-radio-button class="radio-button" *ngFor="let types of plantTypes" [value]="types">
                   {{types | titlecase}}
                 </mat-radio-button>
@@ -94,7 +97,8 @@
               <mat-radio-group
                 aria-labelledby="radio-group-label"
                 class="radio-group"
-                [(ngModel)]="favoriteSeason">
+                [(ngModel)]="favoriteSeason"
+                >
                 <mat-radio-button class="radio-button" *ngFor="let season of seasons" [value]="season">
                   {{season | titlecase}}
                 </mat-radio-button>
@@ -103,9 +107,10 @@
             
 
             <!-- Veggies -->
-            <div class="row" *ngIf="favoritePlantType === 'vegatables' ">
-              <div class="col-4 " *ngFor="let item of vegatablesArr; index as i">
-                <button mat-raised-button color="primary" class="mb-3"
+            <div class="row">
+              <ng-container class="col-2" *ngFor="let item of vegatablesArr; index as i">
+                <div *ngIf="favoritePlantType === 'vegatables' && item.season.includes(favoriteSeason)">
+                  <button mat-raised-button color="primary" class="mb-1"
                   (click)="this.totalPossiblePlants()"
                   (click)="this.calculateProgress()"
                   (click)="addToGarden(i, 'vegatables')" 
@@ -113,20 +118,20 @@
                   (click)="addToProgressBar()"
                   (click)="disableGardenMax()"
                   (click)="canSave()"
-                  [disabled]="disableAddPlants"
-                >
-                  <div *ngIf="item.season.includes(favoriteSeason)">
-                    {{item.plant | titlecase}}
-                  </div>
-                  
-                </button>
-              </div>
+                  [disabled]="disableAddPlants">
+                    <div >
+                      {{item.plant | titlecase}}
+                    </div>
+                  </button>
+                </div>
+              </ng-container>
             </div>
-
+            
             <!-- Herbs -->
-            <div class="row" *ngIf="favoritePlantType === 'herbs'">
-              <div class="col-4 " *ngFor="let item of herbsArr; index as i">
-                <button mat-raised-button color="primary" class="mb-3"
+            <div class="row">
+              <ng-container class="col-4 " *ngFor="let item of herbsArr; index as i">
+                <div *ngIf="favoritePlantType === 'herbs' && item.season.includes(favoriteSeason)">
+                  <button mat-raised-button color="primary" class="mb-1"
                   (click)="this.totalPossiblePlants()"
                   (click)="this.calculateProgress()"
                   (click)="addToGarden(i, 'herbs')" 
@@ -134,19 +139,20 @@
                   (click)="addToProgressBar()"
                   (click)="disableGardenMax()"
                   (click)="canSave()"
-                  [disabled]="disableAddPlants"
-                >
-                  <div *ngIf="item.season.includes(favoriteSeason)">
-                    {{item.plant | titlecase}}
-                  </div>
-                </button>
-              </div>
+                  [disabled]="disableAddPlants">
+                    <div >
+                      {{item.plant | titlecase}}
+                    </div>
+                  </button>
+                </div>
+              </ng-container>
             </div>
 
             <!-- Flowers -->
-            <div class="row" *ngIf="favoritePlantType === 'flowers'">
-              <div class="col-4 " *ngFor="let item of flowersArr; index as i">
-                <button mat-raised-button color="primary" class="mb-3"
+            <div class="row">
+              <ng-container class="col-4 " *ngFor="let item of flowersArr; index as i">
+                <div *ngIf="favoritePlantType === 'flowers' && item.season.includes(favoriteSeason)">
+                  <button mat-raised-button color="primary" class="mb-1"
                   (click)="this.totalPossiblePlants()"
                   (click)="this.calculateProgress()"
                   (click)="addToGarden(i, 'flowers')" 
@@ -154,21 +160,19 @@
                   (click)="addToProgressBar()"
                   (click)="disableGardenMax()"
                   (click)="canSave()"
-                  [disabled]="disableAddPlants"
-                >
-                  <div *ngIf="item.season.includes(favoriteSeason)">
-                    {{item.plant | titlecase}}
-                  </div>
-                </button>
-              </div>
+                  [disabled]="disableAddPlants">
+                    <div >
+                      {{item.plant | titlecase}}
+                    </div>
+                  </button>
+                </div>
+              </ng-container>
             </div>
 
           </div><!-- plant list -->
 
         </div>
       
-
-
         <!-- Creates a garden bed -->
         <div class="row raised-bed">
           
@@ -315,6 +319,7 @@
               </div>
             </mat-grid-tile>
           </mat-grid-list>
+
         </div><!-- end of plant columns -->
       </div>
 

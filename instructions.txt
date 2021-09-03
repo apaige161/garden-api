@@ -1,3 +1,8 @@
 >ng serve
 
 >npm run start-server
+
+
+API pointer is in environments folder
+
+env is in nodemon.json

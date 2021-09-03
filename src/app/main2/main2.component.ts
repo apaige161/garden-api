@@ -187,13 +187,6 @@ export class Main2Component implements OnInit {
     this.yGardenDisable = false;
   }
 
-  /*
-  subtractFromSpaceAvailable(num: number) {
-    this.spaceAvailable = (this.spaceAvailable - this.factor) * num;
-    //this.totalPossiblePlants();
-  }
-  */
-
   
   calculateProgress() {
 
@@ -463,10 +456,7 @@ export class Main2Component implements OnInit {
   singleGardenNames = [];
 
   SortByParam = 'garden';
-  SortDirection = 'asc'
-
-  
-
+  SortDirection = 'asc';
 
   
   //filter button logic
@@ -558,14 +548,7 @@ export class Main2Component implements OnInit {
   
       });
     }
-  
-  
-    
-    
-  
-  
-     
-  
+
   /**************************************************************************************
   * 
   * END harvest progress spinner logic
