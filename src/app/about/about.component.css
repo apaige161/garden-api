@@ -1,0 +1,38 @@
+
+.founder-card {
+    max-height: 100%;
+    max-width: 400px;
+}
+
+.header-image {
+    background-image: url('../../assets/img/Alex.jpg');
+    background-size: cover;
+}
+
+.full-width {
+    width: 100%;
+}
+
+
+.goals-container {
+    display: flex; /* or inline-flex */
+    align-items: center;
+}
+
+.center {
+    display: flex; /* or inline-flex */
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 75px;
+}
+
+
+.images{
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 300px;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 25px;
+}
