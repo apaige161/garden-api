@@ -1,12 +1,10 @@
 
-<div class="main-container">
+<div class="main-container row">
   <div class="col-lg-12">
 
-    <!-- main banner -->
-    <div class="row">
-
+      <!-- main banner -->
       <!-- user to select size and see plants added -->
-      <div class="radio col-lg-12 "> <!-- new garden input -->
+      <div class="radio "> <!-- new garden input -->
 
         <!-- size sliders and name row -->
         <div class="row top-container">
@@ -107,7 +105,7 @@
             <!-- Veggies -->
             <div class="row">
               <ng-container class="col-2" *ngFor="let item of vegatablesArr; index as i">
-                <div *ngIf="favoritePlantType === 'vegatables' && item.season.includes(favoriteSeason)">
+                <div *ngIf="favoritePlantType === 'vegatables' && item.season.includes(favoriteSeason)" class="col-3">
                   <button mat-raised-button color="primary" class="mb-1"
                   (click)="this.totalPossiblePlants()"
                   (click)="this.calculateProgress()"
@@ -192,9 +190,8 @@
           -->
 
           <mat-grid-list [cols]="xGardenMax" rowHeight="1:1" >
-
+            <!-- displays only when col 1 is displayed -->
             <mat-grid-tile>
-              <!-- displays only when col 1 is displayed -->
               <div class="col-3 raised-bed-col" >
                 <icon-seedling></icon-seedling>
                 <div 
@@ -224,8 +221,8 @@
               </div>
             </mat-grid-tile>
 
+            <!-- displays only when col 2 is displayed -->
             <mat-grid-tile *ngIf="xGardenMax >= 2">
-              <!-- displays only when col 2 is displayed -->
               <div class="col-3 raised-bed-col" >
                 <icon-seedling></icon-seedling>
                 <div 
@@ -255,8 +252,8 @@
               </div>
             </mat-grid-tile>
 
+            <!-- displays only when col 3 is displayed -->
             <mat-grid-tile *ngIf="xGardenMax >= 3">
-              <!-- displays only when col 3 is displayed -->
               <div class="col-3 raised-bed-col" >
                 <icon-seedling></icon-seedling>
                 <div 
@@ -286,8 +283,8 @@
               </div>
             </mat-grid-tile>
 
+            <!-- displays only when col 4 is displayed -->
             <mat-grid-tile *ngIf="xGardenMax >= 4">
-              <!-- displays only when col 4 is displayed -->
               <div class="col-3 raised-bed-col" >
                 <icon-seedling></icon-seedling>
                 <div 
@@ -320,8 +317,6 @@
 
         </div><!-- end of plant columns -->
       </div>
-
-    </div><!-- end of main banner -->
 
   </div>
 
