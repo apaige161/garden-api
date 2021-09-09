@@ -1,83 +1,85 @@
-
-<div *ngIf="harvest.length > 0">
-    <div class="row">
-        <div class="col-12">
-            <div id="average-quality" class="text-center mt-3">
-                <h1>Average Quality</h1>
-                <h3>{{averageQuality | number : '1.2-2'}} / 5</h3>
+<div class="main-container">
+    <div *ngIf="harvest.length > 0">
+        <div class="row">
+            <div class="col-12">
+                <div id="average-quality" class="text-center mt-3">
+                    <h1>Average Quality</h1>
+                    <h3>{{averageQuality | number : '1.2-2'}} / 5</h3>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card-container" *ngFor="let plant of newPlantArr; index as i">
-        <mat-card class="plant-card">
-            <mat-card-header>
-                <mat-card-title>
-                    <div id="card-title-container">
-                        <!--move to top left -->
-                        <div id="card-title">
-                            {{plant.plantName | titlecase}}
+        <div class="card-container" *ngFor="let plant of newPlantArr; index as i">
+            <mat-card class="plant-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <div id="card-title-container">
+                            <!--move to top left -->
+                            <div id="card-title">
+                                {{plant.plantName | titlecase}}
+                            </div>
+                            <!-- move to top right -->
+                            <div id="card-stars">
+                                <mat-icon color="accent">
+                                    {{ returnStar(0, qualityArr[i]) }}
+                                </mat-icon>
+                                <mat-icon color="accent">
+                                    {{ returnStar(1, qualityArr[i]) }}
+                                </mat-icon>
+                                <mat-icon color="accent">
+                                    {{ returnStar(2, qualityArr[i]) }}
+                                </mat-icon>
+                                <mat-icon color="accent">
+                                    {{ returnStar(3, qualityArr[i]) }}
+                                </mat-icon>
+                                <mat-icon color="accent">
+                                    {{ returnStar(4, qualityArr[i]) }}
+                                </mat-icon>
+                            </div>
                         </div>
-                        <!-- move to top right -->
-                        <div id="card-stars">
-                            <mat-icon color="accent">
-                                {{ returnStar(0, qualityArr[i]) }}
-                            </mat-icon>
-                            <mat-icon color="accent">
-                                {{ returnStar(1, qualityArr[i]) }}
-                            </mat-icon>
-                            <mat-icon color="accent">
-                                {{ returnStar(2, qualityArr[i]) }}
-                            </mat-icon>
-                            <mat-icon color="accent">
-                                {{ returnStar(3, qualityArr[i]) }}
-                            </mat-icon>
-                            <mat-icon color="accent">
-                                {{ returnStar(4, qualityArr[i]) }}
-                            </mat-icon>
-                        </div>
+                    </mat-card-title>
+                </mat-card-header>
+        
+                <mat-card-content>
+                
+                    <div id="card-total">
+                        Total harvested: {{plant.quantity}}</div>
+                    <div id="date">
+                        Last harvest: {{plant.lastHarvested | date : 'shortDate'}}
                     </div>
-                </mat-card-title>
-            </mat-card-header>
     
-            <mat-card-content>
-            
-                <div id="card-total">
-                    Total harvested: {{plant.quantity}}</div>
-                <div id="date">
-                    Last harvest: {{plant.lastHarvested | date : 'shortDate'}}
-                </div>
-
-                <!-- may have to put each plant's comments into its own array-->
-                <!-- notes section -->
-                <div  id="card-notes">
-                    <div >
-                        <p>
-                            {{plant.notes}}
-                        </p>
+                    <!-- may have to put each plant's comments into its own array-->
+                    <!-- notes section -->
+                    <div  id="card-notes">
+                        <div >
+                            <p>
+                                {{plant.notes}}
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div id="delete">
-                    <button 
-                        class="col-2"
-                        mat-icon-button 
-                        color="warn"
-                        (click)="deleteById(idArr[i])">
-                        <mat-icon>
-                            {{'delete'}}
-                        </mat-icon>
-                    </button>
-                </div>
-            </mat-card-content>
-        </mat-card>
+                    <div id="delete">
+                        <button 
+                            class="col-2"
+                            mat-icon-button 
+                            color="warn"
+                            (click)="deleteById(idArr[i])">
+                            <mat-icon>
+                                {{'delete'}}
+                            </mat-icon>
+                        </button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
-</div>
-
-<div *ngIf="harvest.length === 0">
-    <div>
-        <h1>
-            No Harvests were found
-        </h1>
+    
+    <div *ngIf="harvest.length === 0">
+        <div>
+            <h1>
+                No Harvests were found
+            </h1>
+        </div>
     </div>
+    
 </div>
 
 

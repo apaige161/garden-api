@@ -40,6 +40,7 @@ import { HarvestComponent } from './harvest/harvest.component';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { FooterComponent } from './footer/footer.component';
 
 //services
 //import { PostService } from './services/post.service';
@@ -58,7 +59,7 @@ import { AboutComponent } from './about/about.component';
     MoreInfoComponent, 
     EditPlantComponent, 
     HarvestComponent, 
-    YesNoPipe, HomeComponent, AboutComponent
+    YesNoPipe, HomeComponent, AboutComponent, FooterComponent
   ],
   imports: [
     BrowserModule,

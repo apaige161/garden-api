@@ -4,4 +4,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Indie Flower', cursive;}
+body { 
+    margin: 0;
+    width: 100%;
+    z-index: 0;
+    
+    /*background image*/
+    background: url("./assets/img/farmTable.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    /*fonts*/
+    font-size: medium;
+    font-family: 'Work Sans', sans-serif; 
+
+}
