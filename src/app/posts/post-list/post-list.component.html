@@ -1,12 +1,18 @@
 
 <div class="main-container">
   <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+  <div *ngIf="userIsAuthenticated" id="new-post">
+    <button mat-button  (click)="onDelete(post.id)" color="primary">
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
+    </button>
+  </div>
+
+  <!-- List of posts -->
   <mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
     <mat-expansion-panel *ngFor="let post of posts" >
-
       <!-- title -->
       <mat-expansion-panel-header>
-        
         <div>
           {{post.title}}
         </div>
@@ -59,6 +65,8 @@
 
 
   <p class="info-text mat-body-1" *ngIf="posts.length === 0 && !isLoading">No Posts added yet</p>
+
+  
 
 </div>
 
