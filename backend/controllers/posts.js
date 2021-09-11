@@ -6,6 +6,7 @@ exports.createPost = (req, res, next) => {
     //populate data to fill post model
     const post = new Post({
         title: req.body.title,
+        ingredients: req.body.ingredients,
         content: req.body.content,
         imagePath: url + "/images/" + req.file.filename,
         //extract user Id from the token in check auth
@@ -43,6 +44,7 @@ exports.updatePost = (req, res, next) => {
     const post = new Post ({
         _id: req.body.id,
         title: req.body.title,
+        ingredients: req.body.ingredients,
         content: req.body.content,
         imagePath: imagePath,
         creator: req.userData.userId,

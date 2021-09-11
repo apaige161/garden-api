@@ -35,21 +35,34 @@
       </div>
   
       <mat-form-field  color="primary">
-        <mat-label>Post</mat-label>
+
+        <mat-label>Ingredients</mat-label>
         <textarea
           matInput
           rows="4"
-          placeholder="Post Content"
-          formControlName="content"
-        >
+          placeholder="Ingredients List"
+          formControlName="ingredients">
+        </textarea>
+        <mat-error *ngIf="form.get('ingredients').invalid">Ingredients List must be at least 10 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Directions</mat-label>
+        <textarea
+          matInput
+          rows="4"
+          placeholder="Directions"
+          formControlName="content">
         </textarea>
         <mat-error *ngIf="form.get('content').invalid">Post must be at least 10 characters</mat-error>
       </mat-form-field>
+
       <button
         mat-raised-button
         color="primary"
         type="submit">Save Post
       </button>
+
     </form>
   
   </mat-card>

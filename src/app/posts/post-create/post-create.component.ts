@@ -24,6 +24,11 @@ export class PostCreateComponent implements OnInit, OnDestroy {
    *  add new values to onSave method
    *  add new values to postData on line ~125
    * 
+   * TODO: update model in service to handle extra params
+   * TODO: update model in backend
+   * 
+   * TODO: error message when user tries to sav without choosing a picture
+   * 
    * 
    * NEED:
    *  Ingrediant list (string for now, array of strings down the road)
@@ -50,8 +55,11 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   //send post to parent
   onSAvePost() {
 
+    console.log("attempt to save post...")
+
     //error handling
     if(this.form.invalid) {
+      console.log("invalid...")
       return;
     }
 
@@ -60,17 +68,21 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     
     //check for edit
     if (this.mode === 'create') {
+      console.log("in create mode");
       //send post to be handled by service
-      this.postService.addPost(this.form.value.title, this.form.value.content, this.form.value.image);
+      this.postService.addPost(this.form.value.title, this.form.value.ingredients, this.form.value.content, this.form.value.image);
     } else {
       //use update post in the post service
       //send new contents to service
+      console.log("sending to post service...")
       this.postService.updatePost(
         this.postId, 
         this.form.value.title, 
+        this.form.value.ingredients,
         this.form.value.content,
-        this.form.value.image
+        this.form.value.image,
       )
+      console.log("sent to post service...")
     }
 
     this.form.reset();
@@ -109,7 +121,11 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     //create form group with validators
     this.form = new FormGroup({
       title: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
+
+      //recipe content
+      ingredients: new FormControl(null, {validators: [Validators.required, Validators.minLength(5)]}),
       content: new FormControl(null, {validators: [Validators.required, Validators.minLength(5)]}),
+
       //only accept images
       image: new FormControl(null, {validators: [Validators.required], asyncValidators: [mimeType]}),
     });
@@ -131,6 +147,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
           this.post = {
             id:postData._id, 
             title: postData.title, 
+            ingredients: postData.ingredients,
             content: postData.content,
             imagePath: postData.imagePath,
             creator: postData.creator,
@@ -141,6 +158,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
           this.form.setValue({
             title: this.post.title, 
             content: this.post.content,
+            ingredients: this.post.ingredients,
             image: this.post.imagePath
           })
         });

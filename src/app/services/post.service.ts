@@ -74,6 +74,7 @@ export class PostService {
     return this.http.get<{ 
       _id: string, 
       title: string, 
+      ingredients: string,
       content:string, 
       imagePath: string,
       creator:string,
@@ -81,10 +82,11 @@ export class PostService {
     }>(BACKEND_URL + id);
   }
 
-  addPost(title: string, content: string, image: File) {
+  addPost(title: string, ingredients: string, content: string, image: File) {
     //send form data to allow for uploading images (blob) and json
     const postData = new FormData();
     postData.append("title", title);
+    postData.append("ingredients", ingredients);
     postData.append("content", content);
     postData.append("image", image, title);
 
@@ -103,7 +105,7 @@ export class PostService {
    * create new post with the same id
    * 
    */
-  updatePost(id: string, title: string, content: string, image: File | string) {
+  updatePost(id: string, title: string, ingredients: string, content: string, image: File | string) {
 
     let postData: Post | FormData;
     
@@ -113,6 +115,7 @@ export class PostService {
       postData = new FormData();
       postData.append("id", id);
       postData.append("title", title);
+      postData.append("ingredients", ingredients);
       postData.append("content", content);
       postData.append("image", image, title);
 
@@ -122,6 +125,7 @@ export class PostService {
       postData = {
         id: id,
         title: title,
+        ingredients: ingredients,
         content: content,
         imagePath: image,
         creator: null,
