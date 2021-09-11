@@ -17,6 +17,22 @@ import { Subscription } from 'rxjs';
 })
 export class PostCreateComponent implements OnInit, OnDestroy {
 
+  /***************************************************************************************
+   * 
+   * To add to create post
+   *  add new form control to the form group
+   *  add new values to onSave method
+   *  add new values to postData on line ~125
+   * 
+   * 
+   * NEED:
+   *  Ingrediant list (string for now, array of strings down the road)
+   *  Instructions
+   *  Time requirement
+   *  
+   * 
+  ***************************************************************************************/
+
   enteredContent = '';
   enteredTitle = '';
   private mode = 'create';
