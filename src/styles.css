@@ -3,7 +3,10 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
-html, body { height: 100%; }
+html, body { 
+    height: 100%;
+    width: 100%;
+ }
 body { 
     margin: 0;
     width: 100%;

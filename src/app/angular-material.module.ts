@@ -19,6 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
     exports: [
@@ -45,6 +46,7 @@ import { MatIconModule } from '@angular/material/icon';
         MatTableModule,
         MatGridListModule,
         MatIconModule,
+        MatMenuModule,
     ]
 })
 export class AngularMaterialModule {}

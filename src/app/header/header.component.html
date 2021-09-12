@@ -1,50 +1,131 @@
-<mat-toolbar color="primary">
 
-    <span class="spacer"> 
-        <a routerLink="/">Home</a>
-    </span>
+<mat-toolbar color="primary" id="sm-scr" >
+    <!-- menu -->
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-btn" aria-label="Example icon-button with a menu">
+        <mat-icon>menu</mat-icon>
+    </button>
 
+    <!-- menu options -->
+    <mat-menu #menu="matMenu">
+        <button 
+            mat-menu-item 
+            routerLink="/"
+            routerLinkActive="mat-accent">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+        <button 
+            mat-menu-item 
+            *ngIf="userIsAuthenticated" 
+            routerLink="/createGarden"
+            routerLinkActive="mat-accent">
+            <mat-icon>add</mat-icon>
+            <span>New Garden</span>
+        </button>
+        <button 
+            mat-menu-item 
+            *ngIf="userIsAuthenticated"
+            routerLink="/gardens"
+            routerLinkActive="mat-accent">
+            <mat-icon>agriculture</mat-icon>
+            <span>My Garden</span>
+        </button>
+        <button 
+            mat-menu-item 
+            *ngIf="userIsAuthenticated"
+            routerLink="/harvest"
+            routerLinkActive="mat-accent">
+            <mat-icon>restaurant</mat-icon>
+            <span>My harvest</span>
+        </button>
+        <button 
+            mat-menu-item 
+            *ngIf="!userIsAuthenticated"
+            routerLink="/auth/login"
+            routerLinkActive="mat-accent">
+            <mat-icon>login</mat-icon>
+            <span>Login</span>
+        </button>
+        <button 
+            mat-menu-item 
+            *ngIf="!userIsAuthenticated"
+            routerLink="/auth/signup"
+            routerLinkActive="mat-accent">
+            <mat-icon>app_registration</mat-icon>
+            <span>Signup</span>
+        </button>
+        <button 
+            mat-menu-item 
+            routerLink="/posts"
+            routerLinkActive="mat-accent">
+            <mat-icon>outdoor_grill</mat-icon>
+            <span>Recipes</span>
+        </button>
+        <button 
+            mat-menu-item 
+            *ngIf="userIsAuthenticated"
+            routerLink="/create"
+            routerLinkActive="mat-accent">
+            <mat-icon>create</mat-icon>
+            <span>New Recipe</span>
+        </button>
+        <button 
+            mat-menu-item 
+            routerLink="/about"
+            routerLinkActive="mat-accent">
+            <mat-icon>person_outline</mat-icon>
+            <span>About</span>
+        </button>
+        <button 
+            mat-menu-item 
+            *ngIf="userIsAuthenticated"
+            (click)="onLogOut()"
+            routerLink="/create"
+            routerLinkActive="mat-accent">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu>
 
-    <span class="spacer"></span>
+    <span class="example-spacer"></span>
+    <span>Urban Grid Garden</span>
+    
+</mat-toolbar>
+
+<mat-toolbar color="primary" id="lg-scr" class="lg-scr .d-none .d-lg-block .d-xl-none">
+    <span>Urban Grid Garden</span>
+    <span class="example-spacer"></span>
+    
     <ul>
+        <li>
+            <a mat-button routerLink="/" >Home</a>
+        </li>
         <li *ngIf="userIsAuthenticated">
             <a mat-button routerLink="/createGarden" routerLinkActive="mat-accent">New Garden</a>
         </li>
-
         <li *ngIf="userIsAuthenticated">
             <a mat-button routerLink="/gardens" routerLinkActive="mat-accent">My Garden</a>
         </li>
-
         <li *ngIf="userIsAuthenticated">
             <a mat-button routerLink="/harvest" routerLinkActive="mat-accent">My Harvest</a>
         </li>
-        
         <li *ngIf="userIsAuthenticated">
             <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Recipe</a>
         </li>
-
         <li>
             <a mat-button routerLink="/posts" routerLinkActive="mat-accent">Recipes</a>
         </li>
-
         <li *ngIf="!userIsAuthenticated">
             <a mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
         </li>
-
         <li *ngIf="!userIsAuthenticated">
             <a mat-button routerLink="/auth/signup" routerLinkActive="mat-accent">Signup</a>
         </li>
-
         <li>
             <a mat-button routerLink="/about" routerLinkActive="mat-accent">About</a>
         </li>
-
         <li *ngIf="userIsAuthenticated">
             <button mat-button (click)="onLogOut()">Logout</button>
         </li>
-
     </ul>
-
 </mat-toolbar>
-
-

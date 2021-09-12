@@ -1,6 +1,19 @@
 
 mat-toolbar{
-    min-height: 8vh;
+    min-height: 5vh;
+    width: 100%;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    padding-right: 5%;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row{
+    width: 100%;
+}
+
+mat-toolbar .mat-icon {
+    font-size: 50px;
 }
 
 ul { 
@@ -16,7 +29,27 @@ a {
     color: white;
 }
 
+
+
 /* push to the right */
 .spacer {
     flex: 1 1 auto;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+/*tablet breakpoint*/
+@media (max-width: 1000px) { 
+    #lg-scr {
+        display: none;
+    }
+}
+
+/*mobile breakpoint*/
+@media (min-width: 1000px) {
+    #sm-scr {
+        display: none;
+    }
 }
