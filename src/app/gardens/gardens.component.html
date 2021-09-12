@@ -39,7 +39,7 @@
   
   <div class="row saved-garden-grid pt-4 " id="print-section">
     <div class="col-12 " >
-      <div *ngIf="Garden" class="garden-info">
+      <div *ngIf="Garden" class="garden-info text-center">
         <h1>Garden Name: {{Garden | titlecase}}</h1>
   
         <div class="action print-ignore">
@@ -70,7 +70,10 @@
         <mat-card *ngIf="plant.col == 1" class="card-container" (click)="openMoreInfo(plant._id)">
           <div class="card-title">
             <div class="center">
-              {{plant.plant | titlecase}} x {{plant.perFoot}}
+              {{plant.plant | titlecase}}
+            </div>
+            <div class="center">
+              x {{plant.perFoot}}
             </div>
           </div>
           <mat-card-content class="print-ignore">
@@ -117,7 +120,10 @@
         <mat-card *ngIf="plant.col == 2" class="card-container" (click)="openMoreInfo(plant._id)">
           <div class="card-title">
             <div class="center">
-              {{plant.plant | titlecase}} x {{plant.perFoot}}
+              {{plant.plant | titlecase}}
+            </div>
+            <div class="center">
+              x {{plant.perFoot}}
             </div>
           </div>
           <mat-card-content class="print-ignore">
@@ -163,7 +169,10 @@
         <mat-card *ngIf="plant.col == 3" class="card-container" (click)="openMoreInfo(plant._id)">
           <div class="card-title">
             <div class="center">
-              {{plant.plant | titlecase}} x {{plant.perFoot}}
+              {{plant.plant | titlecase}}
+            </div>
+            <div class="center">
+              x {{plant.perFoot}}
             </div>
           </div>
           <mat-card-content class="print-ignore">
@@ -209,7 +218,10 @@
         <mat-card *ngIf="plant.col == 4" class="card-container" (click)="openMoreInfo(plant._id)">
           <div class="card-title">
             <div class="center">
-              {{plant.plant | titlecase}} x {{plant.perFoot}}
+              {{plant.plant | titlecase}}
+            </div>
+            <div class="center">
+              x {{plant.perFoot}}
             </div>
           </div>
           <mat-card-content class="print-ignore">

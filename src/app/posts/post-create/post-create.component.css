@@ -3,9 +3,8 @@
   border: 3px solid white;
   box-shadow: 0 0 30px black;
   border-radius: 25px;
-  padding: 5%;
+  padding: 2%;
   margin: 3% 5%;
-  width: auto;
 }
 
 mat-form-field,
@@ -29,4 +28,9 @@ input[type="file"] {
 
 .img-prev img {
   max-height: 100%;
+}
+
+#back-btn {
+  margin: 10px;
+  padding-bottom: 2%;
 }

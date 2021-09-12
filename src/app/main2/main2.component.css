@@ -46,19 +46,14 @@ h3 {
 
 .radio {
   width: 100%;
-  height: 70vh;
+
 
   align-items: center;
   text-align: center;
   color: black;
 }
 
-.raised-bed-col{
-  height: 20vh;
 
-  padding-top: 0%;
-  width: 90%;
-}
 
 .mat-grid-tile .mat-figure {
   justify-content: flex-start !important ;
@@ -144,4 +139,17 @@ h3 {
 
 .radio-button {
   margin: 5px;
+}
+
+#garden-cols {
+  display: flex;
+  justify-content: space-between;
+}
+
+.raised-bed-col{
+  min-height: 50px;
+
+  padding-top: 0%;
+  width: 23%;
+  
 }

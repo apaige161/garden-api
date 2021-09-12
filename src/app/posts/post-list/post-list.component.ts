@@ -56,6 +56,8 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.totalPosts = postData.postCount;
       this.posts = postData.posts;
 
+      console.log(this.posts);
+
       //get username instead of email
       this.posts.forEach(post => {
         post.creatorEmail = this.getUser(post.creatorEmail)

@@ -107,7 +107,6 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     }
     //then read the file
     reader.readAsDataURL(file);
-
   }
 
   ngOnInit() {

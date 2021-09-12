@@ -1,5 +1,20 @@
 
 <div class=main-container>
+
+  
+  <!-- Title -->
+  <div class="text-center">
+    <h1>
+      Yay a new recipe!
+    </h1>
+  </div>
+  <!-- Back button -->
+  <div id="back-btn">
+    <button mat-button color="primary">
+      <a mat-button routerLink="/posts" routerLinkActive="mat-accent">Back</a>
+    </button>
+  </div>
+
   <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <!-- template driven form-->
@@ -57,10 +72,13 @@
         <mat-error *ngIf="form.get('content').invalid">Post must be at least 10 characters</mat-error>
       </mat-form-field>
 
+      
       <button
         mat-raised-button
         color="primary"
-        type="submit">Save Post
+        type="submit"
+        >
+        Save Recipe
       </button>
 
     </form>

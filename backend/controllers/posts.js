@@ -14,6 +14,10 @@ exports.createPost = (req, res, next) => {
         creator: req.userData.userId,
         creatorEmail: req.userData.email
     });
+
+    console.log(post);
+
+
     //save post to DB
     post.save().then(createdPost => {
         //everything returned OK, new resource was created

@@ -42,6 +42,7 @@ export class PostService {
           //get all info about each post
           return {
             title: post.title,
+            ingredients: post.ingredients,
             content: post.content,
             id: post._id,
             imagePath: post.imagePath,

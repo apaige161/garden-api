@@ -104,9 +104,9 @@
             
             <!-- Veggies -->
             <div class="row">
-              <ng-container class="col-2" *ngFor="let item of vegatablesArr; index as i">
-                <div *ngIf="favoritePlantType === 'vegatables' && item.season.includes(favoriteSeason)" class="col-3">
-                  <button mat-raised-button color="primary" class="mb-1"
+              <ng-container class="" *ngFor="let item of vegatablesArr; index as i">
+                <div *ngIf="favoritePlantType === 'vegatables' && item.season.includes(favoriteSeason)" class="col-2">
+                  <button mat-button color="primary" class="mb-1"
                   (click)="this.totalPossiblePlants()"
                   (click)="this.calculateProgress()"
                   (click)="addToGarden(i, 'vegatables')" 
@@ -125,9 +125,9 @@
             
             <!-- Herbs -->
             <div class="row">
-              <ng-container class="col-4 " *ngFor="let item of herbsArr; index as i">
-                <div *ngIf="favoritePlantType === 'herbs' && item.season.includes(favoriteSeason)" class="col-3">
-                  <button mat-raised-button color="primary" class="mb-1"
+              <ng-container class="" *ngFor="let item of herbsArr; index as i">
+                <div *ngIf="favoritePlantType === 'herbs' && item.season.includes(favoriteSeason)" class="col-2">
+                  <button mat-button color="primary" class="mb-1"
                   (click)="this.totalPossiblePlants()"
                   (click)="this.calculateProgress()"
                   (click)="addToGarden(i, 'herbs')" 
@@ -146,9 +146,9 @@
 
             <!-- Flowers -->
             <div class="row">
-              <ng-container class="col-4 " *ngFor="let item of flowersArr; index as i">
-                <div *ngIf="favoritePlantType === 'flowers' && item.season.includes(favoriteSeason)" class="col-3">
-                  <button mat-raised-button color="primary" class="mb-1"
+              <ng-container class="" *ngFor="let item of flowersArr; index as i">
+                <div *ngIf="favoritePlantType === 'flowers' && item.season.includes(favoriteSeason)" class="col-2">
+                  <button mat-button color="primary" class="mb-1"
                   (click)="this.totalPossiblePlants()"
                   (click)="this.calculateProgress()"
                   (click)="addToGarden(i, 'flowers')" 
@@ -183,137 +183,121 @@
             <mat-progress-bar mode="determinate" [value]="progress" min="0"></mat-progress-bar><br>
           </div>
 
-          <!-- 
-            
-            Displays the number of columns based on user input 
-          
-          -->
-
-          <mat-grid-list [cols]="xGardenMax" rowHeight="1:1" >
-            <!-- displays only when col 1 is displayed -->
-            <mat-grid-tile>
-              <div class="col-3 raised-bed-col" >
-                <icon-seedling></icon-seedling>
-                <div 
-                  cdkDropList 
-                  #colOne="cdkDropList"
-                  [cdkDropListData]="firstCol"
-                  class="example-list" 
-                  (cdkDropListDropped)="drop($event)"
-                >
-                  <div class="example-box" 
-                    *ngFor="let item of firstCol" 
-                    cdkDrag
-                    popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
-                    [outsideClick]="true"
-                  >
-                        {{item.plant}}
-                  </div>
-                </div>
-                  <div *ngIf="firstCol.length > 0">
-                    <button 
-                      mat-raised-button color="warn" 
-                      class="mt-1"
-                      (click)="clearColumn(firstCol)" 
-                      (click)="calculateProgress()"
-                    >Remove Column</button>
-                  </div>
+        <div id="garden-cols">
+          <div class="col-3 raised-bed-col" *ngIf="xGardenMax >= 1">
+            <icon-seedling></icon-seedling>
+            <div 
+              cdkDropList 
+              #colOne="cdkDropList"
+              [cdkDropListData]="firstCol"
+              class="example-list" 
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div class="example-box" 
+                *ngFor="let item of firstCol" 
+                cdkDrag
+                popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
+                [outsideClick]="true"
+              >
+                    {{item.plant}}
               </div>
-            </mat-grid-tile>
-
-            <!-- displays only when col 2 is displayed -->
-            <mat-grid-tile *ngIf="xGardenMax >= 2">
-              <div class="col-3 raised-bed-col" >
-                <icon-seedling></icon-seedling>
-                <div 
-                  cdkDropList 
-                  #colTwo="cdkDropList"
-                  [cdkDropListData]="secondCol"
-                  class="example-list" 
-                  (cdkDropListDropped)="drop($event)"
-                >
-                  <div class="example-box" 
-                    *ngFor="let item of secondCol" 
-                    cdkDrag
-                    popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
-                    [outsideClick]="true"
-                  >
-                        {{item.plant}}
-                  </div>
-                </div>
-                  <div *ngIf="secondCol.length > 0">
-                    <button 
-                      mat-raised-button color="warn" 
-                      class="mt-1"
-                      (click)="clearColumn(secondCol)" 
-                      (click)="calculateProgress()"
-                    >Remove Column</button>
-                  </div>
+            </div>
+              <div *ngIf="firstCol.length > 0">
+                <button 
+                  mat-raised-button color="warn" 
+                  class="mt-1"
+                  (click)="clearColumn(firstCol)" 
+                  (click)="calculateProgress()"
+                >Remove Column</button>
               </div>
-            </mat-grid-tile>
+          </div>
 
-            <!-- displays only when col 3 is displayed -->
-            <mat-grid-tile *ngIf="xGardenMax >= 3">
-              <div class="col-3 raised-bed-col" >
-                <icon-seedling></icon-seedling>
-                <div 
-                  cdkDropList 
-                  #colThree="cdkDropList"
-                  [cdkDropListData]="thirdCol"
-                  class="example-list" 
-                  (cdkDropListDropped)="drop($event)"
-                >
-                  <div class="example-box" 
-                    *ngFor="let item of thirdCol" 
-                    cdkDrag
-                    popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
-                    [outsideClick]="true"
-                  >
-                        {{item.plant}}
-                  </div>
-                </div>
-                  <div *ngIf="thirdCol.length > 0">
-                    <button 
-                      mat-raised-button color="warn" 
-                      class="mt-1"
-                      (click)="clearColumn(thirdCol)" 
-                      (click)="calculateProgress()"
-                    >Remove Column</button>
-                  </div>
+          <div class="col-3 raised-bed-col" *ngIf="xGardenMax >= 2">
+            <icon-seedling></icon-seedling>
+            <div 
+              cdkDropList 
+              #colTwo="cdkDropList"
+              [cdkDropListData]="secondCol"
+              class="example-list" 
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div class="example-box" 
+                *ngFor="let item of secondCol" 
+                cdkDrag
+                popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
+                [outsideClick]="true"
+              >
+                    {{item.plant}}
               </div>
-            </mat-grid-tile>
+            </div>
+              <div *ngIf="secondCol.length > 0">
+                <button 
+                  mat-raised-button color="warn" 
+                  class="mt-1"
+                  (click)="clearColumn(secondCol)" 
+                  (click)="calculateProgress()"
+                >Remove Column</button>
+              </div>
+          </div>
 
-            <!-- displays only when col 4 is displayed -->
-            <mat-grid-tile *ngIf="xGardenMax >= 4">
-              <div class="col-3 raised-bed-col" >
-                <icon-seedling></icon-seedling>
-                <div 
-                  cdkDropList 
-                  #colFour="cdkDropList"
-                  [cdkDropListData]="fourthCol"
-                  class="example-list" 
-                  (cdkDropListDropped)="drop($event)"
-                >
-                  <div class="example-box" 
-                    *ngFor="let item of fourthCol" 
-                    cdkDrag
-                    popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
-                    [outsideClick]="true"
-                  >
-                        {{item.plant}}
-                    </div>
-                </div>
-                  <div *ngIf="fourthCol.length > 0">
-                    <button 
-                      mat-raised-button color="warn" 
-                      class="mt-1"
-                      (click)="clearColumn(fourthCol)" 
-                      (click)="calculateProgress()"
-                    >Remove Column</button>
-                  </div>
+          <div class="col-3 raised-bed-col" *ngIf="xGardenMax >= 3">
+            <icon-seedling></icon-seedling>
+            <div 
+              cdkDropList 
+              #colThree="cdkDropList"
+              [cdkDropListData]="thirdCol"
+              class="example-list" 
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div class="example-box" 
+                *ngFor="let item of thirdCol" 
+                cdkDrag
+                popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
+                [outsideClick]="true"
+              >
+                    {{item.plant}}
               </div>
-            </mat-grid-tile>
-          </mat-grid-list>
+            </div>
+              <div *ngIf="thirdCol.length > 0">
+                <button 
+                  mat-raised-button color="warn" 
+                  class="mt-1"
+                  (click)="clearColumn(thirdCol)" 
+                  (click)="calculateProgress()"
+                >Remove Column</button>
+              </div>
+          </div>
+
+          <div class="col-3 raised-bed-col" *ngIf="xGardenMax >= 4">
+            <icon-seedling></icon-seedling>
+            <div 
+              cdkDropList 
+              #colFour="cdkDropList"
+              [cdkDropListData]="fourthCol"
+              class="example-list" 
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div class="example-box" 
+                *ngFor="let item of fourthCol" 
+                cdkDrag
+                popover="Plant {{item.perFoot}} per foot in {{item.season}} col: {{item.col}}"
+                [outsideClick]="true"
+              >
+                    {{item.plant}}
+                </div>
+            </div>
+              <div *ngIf="fourthCol.length > 0">
+                <button 
+                  mat-raised-button color="warn" 
+                  class="mt-1"
+                  (click)="clearColumn(fourthCol)" 
+                  (click)="calculateProgress()"
+                >Remove Column</button>
+              </div>
+          </div>
+
+        </div>
+
 
         </div><!-- end of plant columns -->
       </div>

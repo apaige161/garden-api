@@ -29,31 +29,34 @@
     align-items: center;
     text-align: center;
     justify-content: space-around;
+    height: 100%;
 }
 
 .saved-garden-grid {
-    align-items: center;
-    text-align: center;
+    align-items: stretch;
     justify-content: center;
     min-width: 100%;
     padding-bottom: 0%;
-
+    height: 100%;
 }
 
 .saved-garden-column {
     
-    width: 20%;
-    align-items: center;
+    width: 24%;
+    height: 100%;
+    align-items: stretch;
     text-align: center;
     justify-content: space-around;
 }
 
 .card-container {
+    
     margin-bottom: 10px;
     margin-top: 10px;
     box-shadow: 0 0 5px #964B00;
     background-color: #C46200;
     color: white;
+    
 }
 
 .card-header {
@@ -97,4 +100,8 @@
 
 .bold {
     font-weight: bold;
+}
+
+mat-card {
+    height: 150px;
 }

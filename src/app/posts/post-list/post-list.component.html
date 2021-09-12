@@ -1,6 +1,9 @@
 
 <div class="main-container">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+  <div class="text-center">
+    <h1>Recipe Book</h1>
+  </div>
 
   <div *ngIf="userIsAuthenticated" id="new-post">
     <button mat-button  (click)="onDelete(post.id)" color="primary">
@@ -8,23 +11,17 @@
     </button>
   </div>
 
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+
   <!-- List of posts -->
   <mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
     <mat-expansion-panel *ngFor="let post of posts" >
       <!-- title -->
       <mat-expansion-panel-header>
         <div>
-          {{post.title}}
+          {{post.title}} [Created by: {{post.creatorEmail}}]
         </div>
-        <div *ngIf="post.creatorEmail" class="centered">
-          {{post.creatorEmail}}
-        </div>
-        <!-- creator id-->
-        <div *ngIf="!post.creatorEmail" class="centered">
-          <br>
-          {{post.creator}}
-        </div>
-        
+
       </mat-expansion-panel-header>
 
       <!-- image upload-->
@@ -33,8 +30,13 @@
           <img [src]="post.imagePath" [alt]="post.title">
         </div>
       </div>
+
+      <!-- ingredients -->
+      <h2>Ingredients</h2>
+      <p>{{post.ingredients}}</p>
       
-      <!-- content -->
+      <!-- directions -->
+      <h2>Directions</h2>
       <p>{{post.content}}</p>
 
       <!-- action bar -->
