@@ -1,17 +1,4 @@
-#card-title-container {
-    width: 100%;
-    justify-content: space-around;
-}
 
-.plant-card {
-    max-width: 400px;
-    margin: 10px;
-    
-}
-
-#card-notes {
-    background-color: lightblue;
-}
 
 .main-container {
     background-color: rgba(255, 255, 255, 0.92);
@@ -20,4 +7,35 @@
     border-radius: 25px;
     padding: 5%;
     margin: 3% 5%;
-  }
+}
+
+.card-container {
+    min-width: 175px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.card {
+    width: 32%;
+    margin-bottom: 2%; /* (100-32*3)/2 */
+    position: relative;
+
+    background-color: burlywood;
+    min-width: 340px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: row;
+}
+
+.card-header {
+    width: 100%;
+    justify-content: space-around;
+    min-width: 160px;
+}
+
+
+
+.card-notes {
+    background-color: lightblue;
+} 

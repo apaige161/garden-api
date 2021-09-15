@@ -9,6 +9,7 @@ html, body {
  }
 body { 
     margin: 0;
+    padding: 0;
     width: 100%;
     z-index: 0;
     
@@ -22,5 +23,7 @@ body {
     /*fonts*/
     font-size: medium;
     font-family: 'Work Sans', sans-serif; 
+
+    padding-bottom: 20%;
 
 }

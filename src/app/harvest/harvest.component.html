@@ -8,17 +8,19 @@
                 </div>
             </div>
         </div>
-        <div class="card-container" *ngFor="let plant of newPlantArr; index as i">
-            <mat-card class="plant-card">
+
+
+        <div class="card-container" >
+            <mat-card class="card" *ngFor="let plant of newPlantArr; index as i">
                 <mat-card-header>
                     <mat-card-title>
-                        <div id="card-title-container">
+                        <div class="card-header">
                             <!--move to top left -->
-                            <div id="card-title">
+                            <div class="card-title text-center">
                                 {{plant.plantName | titlecase}}
                             </div>
                             <!-- move to top right -->
-                            <div id="card-stars">
+                            <div class="card-stars text-center">
                                 <mat-icon color="accent">
                                     {{ returnStar(0, qualityArr[i]) }}
                                 </mat-icon>
@@ -35,38 +37,41 @@
                                     {{ returnStar(4, qualityArr[i]) }}
                                 </mat-icon>
                             </div>
+
+                            <div class="delete text-center">
+                                <button 
+                                    class="col-2"
+                                    mat-icon-button 
+                                    color="warn"
+                                    (click)="deleteById(idArr[i])">
+                                    <mat-icon>
+                                        {{'delete'}}
+                                    </mat-icon>
+                                </button>
+                            </div>
+
                         </div>
                     </mat-card-title>
                 </mat-card-header>
         
                 <mat-card-content>
                 
-                    <div id="card-total">
-                        Total harvested: {{plant.quantity}}</div>
-                    <div id="date">
+                    <div class="card-total">
+                        Total harvested: <span class="card-notes">{{plant.quantity}}</span></div>
+                    <div class="date">
                         Last harvest: {{plant.lastHarvested | date : 'shortDate'}}
                     </div>
     
                     <!-- may have to put each plant's comments into its own array-->
                     <!-- notes section -->
-                    <div  id="card-notes">
+                    <div  class="card-notes">
                         <div >
                             <p>
                                 {{plant.notes}}
                             </p>
                         </div>
                     </div>
-                    <div id="delete">
-                        <button 
-                            class="col-2"
-                            mat-icon-button 
-                            color="warn"
-                            (click)="deleteById(idArr[i])">
-                            <mat-icon>
-                                {{'delete'}}
-                            </mat-icon>
-                        </button>
-                    </div>
+                    
                 </mat-card-content>
             </mat-card>
         </div>
