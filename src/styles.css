@@ -27,3 +27,29 @@ body {
     padding-bottom: 20%;
 
 }
+
+#title {
+    font-family: 'Lobster', cursive;
+    font-size: 90px;;
+    margin-bottom: 1%;
+}
+
+.main-container {
+    background-color: rgba(255, 255, 255, 0.92);
+    border: 3px solid white;
+    box-shadow: 0 0 30px black;
+    border-radius: 25px;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin: 3% 5%;
+}
+
+.bold {
+    font-weight: bolder;
+}
+
+.red {
+    color: red;
+}

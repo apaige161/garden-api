@@ -1,3 +1,6 @@
+
+/** Reduce font size **/
+
 .progress-bar-margin {
     margin: 10px 0;
 }
@@ -35,6 +38,8 @@ border-left: 5px solid #a94442; /* red */
 .top-margin {
     margin-top: 15%;
 }
+
+
 
 .harvest-button-parent {
     display: flex;

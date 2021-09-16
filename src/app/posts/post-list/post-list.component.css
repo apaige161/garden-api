@@ -1,13 +1,4 @@
 
-.main-container {
-  background-color: rgba(255, 255, 255, 0.92);
-  border: 3px solid white;
-  box-shadow: 0 0 30px black;
-  border-radius: 25px;
-  padding: 2%;
-  margin: 3% 5%;
-}
-
 
 :host {
   display: block;
@@ -22,10 +13,14 @@ mat-spinner {
   margin: auto;
 }
 
-
-
-.post-image img {
-  width: 100%;
+.images img{
+  height: auto; 
+  width: auto; 
+  max-width: 300px; 
+  max-height: 300px;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 25px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 
@@ -50,4 +45,12 @@ mat-paginator {
 #new-post {
   margin: 10px;
   padding-bottom: 2%;
+}
+
+.top-row {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  padding: 5%;
 }

@@ -1,11 +1,25 @@
 
 mat-toolbar{
-    min-height: 5vh;
+    min-height: 10vh;
     width: 100%;
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
     padding-right: 5%;
+}
+
+#header-title {
+    font-family: 'Lobster', cursive;
+    font-size: 75px;
+    padding-left: 3%;
+    align-items: center;
+}
+
+#header-title-sm {
+    font-family: 'Lobster', cursive;
+    font-size: 75px;
+    padding-left: 5%;
+    align-items: center;
 }
 
 .mat-toolbar-row, .mat-toolbar-single-row{
@@ -24,9 +38,10 @@ ul {
 }
 
 
-a {
+a, a button {
     text-decoration: none;
     color: white;
+    font-size: 20px;
 }
 
 
@@ -41,14 +56,14 @@ a {
   }
 
 /*tablet breakpoint*/
-@media (max-width: 1000px) { 
+@media (max-width: 1400px) { 
     #lg-scr {
         display: none;
     }
 }
 
 /*mobile breakpoint*/
-@media (min-width: 1000px) {
+@media (min-width: 1400px) {
     #sm-scr {
         display: none;
     }

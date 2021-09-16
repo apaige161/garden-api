@@ -1,5 +1,10 @@
 
 <mat-toolbar color="primary" id="sm-scr" >
+
+    <h1 id="header-title-sm">Grid Garden</h1>
+
+    <span class="example-spacer"></span>
+    
     <!-- menu -->
     <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-btn" aria-label="Example icon-button with a menu">
         <mat-icon>menu</mat-icon>
@@ -11,7 +16,7 @@
             mat-menu-item 
             routerLink="/"
             routerLinkActive="mat-accent">
-            <mat-icon>home</mat-icon>
+            <mat-icon>food_bank</mat-icon>
             <span>Home</span>
         </button>
         <button 
@@ -87,16 +92,19 @@
         </button>
     </mat-menu>
 
-    <span class="example-spacer"></span>
-    <span>Urban Grid Garden</span>
+    
+
+    
+
     
 </mat-toolbar>
 
 <mat-toolbar color="primary" id="lg-scr" class="lg-scr .d-none .d-lg-block .d-xl-none">
-    <span>Urban Grid Garden</span>
+
+    <h1 id="header-title">Grid Garden</h1>
     <span class="example-spacer"></span>
     
-    <ul>
+    <ul id="unordered-list">
         <li>
             <a mat-button routerLink="/" >Home</a>
         </li>
@@ -125,7 +133,7 @@
             <a mat-button routerLink="/about" routerLinkActive="mat-accent">About</a>
         </li>
         <li *ngIf="userIsAuthenticated">
-            <button mat-button (click)="onLogOut()">Logout</button>
+            <a><button mat-button (click)="onLogOut()">Logout</button></a>
         </li>
     </ul>
 </mat-toolbar>

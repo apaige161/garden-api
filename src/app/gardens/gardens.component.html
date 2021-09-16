@@ -1,4 +1,9 @@
-<div class="garden-container">
+<div class="main-container">
+  <div class="row">
+    <div class="col-12" >
+        <h1 class="text-center" id="title">Gardens</h1>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <!-- filter and sort -->
@@ -38,24 +43,13 @@
   
   
   <div class="row saved-garden-grid pt-4 " id="print-section">
+
     <div class="col-12 " >
       <div *ngIf="Garden" class="garden-info text-center">
-        <h1>Garden Name: {{Garden | titlecase}}</h1>
-  
-        <div class="action print-ignore">
-          <button mat-raised-button color="primary" routerLink="/create">Post Garden</button>
-          <button
-              class="btn btn-success"
-              printSectionId="print-section"
-              printTitle="{{Garden}}"
-              ngxPrint
-              styleSheetFile="../../../assets/print.css">
-              Print Garden Layout
-          </button>
-          <button mat-raised-button color="warn" (click)="deleteGarden(Garden)">Delete Garden</button>
-        </div>
-        
-        
+        <h4>**Still under construction**</h4>
+        <h4>**Click or tap on a plant for options and more info**</h4>
+        <h4>**(If you have made changes refresh the page and they will appear)**</h4>
+        <button mat-raised-button color="warn" (click)="deleteGarden(Garden)">Delete Garden</button>
       </div>
     </div>
   

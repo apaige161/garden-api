@@ -7,12 +7,3 @@ textarea {
 mat-spinner {
   margin: auto;
 }
-
-.main-container {
-  background-color: rgba(255, 255, 255, 0.92);
-  border: 3px solid white;
-  box-shadow: 0 0 30px black;
-  border-radius: 25px;
-  padding: 5%;
-  margin: 3% 5%;
-}

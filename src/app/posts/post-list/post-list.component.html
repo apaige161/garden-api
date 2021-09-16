@@ -2,7 +2,11 @@
 <div class="main-container">
 
   <div class="text-center">
-    <h1>Recipe Book</h1>
+    <div class="row">
+      <div class="col-12" >
+          <h1 class="text-center" id="title">Recipes</h1>
+      </div>
+  </div>
   </div>
 
   <div *ngIf="userIsAuthenticated" id="new-post">
@@ -21,23 +25,28 @@
         <div>
           {{post.title}} [Created by: {{post.creatorEmail}}]
         </div>
-
       </mat-expansion-panel-header>
 
-      <!-- image upload-->
-      <div class="flex-parent">
-        <div class="post-image">
+
+      <!-- uploaded image -->
+      <div class="row top-row">
+        <div class="images col-4">
           <img [src]="post.imagePath" [alt]="post.title">
+        </div>
+        <div class="col-8">
+          <!-- ingredients -->
+          <h2>Ingredients</h2>
+          <p>{{post.ingredients}}</p>
         </div>
       </div>
 
-      <!-- ingredients -->
-      <h2>Ingredients</h2>
-      <p>{{post.ingredients}}</p>
       
-      <!-- directions -->
-      <h2>Directions</h2>
-      <p>{{post.content}}</p>
+      <div class="row bottom-row">
+        <!-- directions -->
+        <h2>Directions</h2>
+        <p>{{post.content}}</p>
+      </div>
+      
 
       <!-- action bar -->
       <mat-action-row *ngIf="userIsAuthenticated && userId === post.creator">
