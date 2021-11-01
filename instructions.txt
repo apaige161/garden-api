@@ -1,5 +1,6 @@
->ng serve
+>npm start
 
+>cd backend
 >npm run start-server
 
 
