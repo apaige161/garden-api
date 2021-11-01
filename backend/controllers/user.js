@@ -74,7 +74,7 @@ exports.userLogin = (req, res, next) => {
             //change this password later
             const token = jwt.sign(
                 {email: fetchedUser.email, userId: fetchedUser._id}, 
-                process.env.JWT_KEY, 
+                "super_secret_password", 
                 { expiresIn: "1h" }); //expires in 1 hour
 
             //will return the created token
