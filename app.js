@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 const MongoClient = require('mongodb').MongoClient;
 
 //connection string to db
-const uri = "mongodb+srv://alex:" + process.env.MONGO_ATLAS_PASSWORD + "@node-rest.wudka.mongodb.net/node-rest?retryWrites=true&w=majority";
+const uri = "mongodb+srv://alex:" + "NwWxO76KuTLaQfEx" + "@node-rest.wudka.mongodb.net/node-rest?retryWrites=true&w=majority";
 
 //atlas db password -- NwWxO76KuTLaQfEx
 //connect cloud mongoose

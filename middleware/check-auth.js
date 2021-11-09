@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
 
         //verify token
         //goal is to send data back to front end && be able to access decodedToken from routes/posts.js to get user Id
-        const decodedToken = jwt.verify(token, process.env.JWT_KEY);
+        const decodedToken = jwt.verify(token, "super_secret_password");
         
         //create new field
         req.userData = {email: decodedToken.email, userId: decodedToken.userId};
