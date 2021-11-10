@@ -7,3 +7,22 @@
 API pointer is in environments folder
 
 env is in nodemon.json
+
+
+Production
+
+ng build --Prod
+firebase login
+firebase init
+choose "Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub Action deploys" 
+dist
+yes
+no
+no
+firebase deploy
+
+
+
+FIX THESE THINGS
+- recipes 500 -- internal server error
+    - I think it has to do with the image or image path

@@ -56,7 +56,7 @@ export class GardensComponent implements OnInit {
 
   
 
-   readonly url = 'http://localhost:3000/api/gardens';
+   readonly url = 'https://urban-grid-garden-api.herokuapp.com/api/gardens/';
 
   /*************************************************************************************************
    * 
@@ -77,8 +77,6 @@ export class GardensComponent implements OnInit {
     onGardenFilter() {
       
       this.SearchGarden = this.Garden;
-
-      
 
     }
     
@@ -154,6 +152,7 @@ export class GardensComponent implements OnInit {
     })
   }
 
+  // TODO: refactor
   deleteAllPlants(){
 
     console.log("delete all attempt start");

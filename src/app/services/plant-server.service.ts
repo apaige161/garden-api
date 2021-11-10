@@ -14,7 +14,7 @@ export class PlantServerService {
   plants: Observable<SinglePlant[]>;
 
   //inject http 
-  url = 'http://localhost:3000/api/gardens';
+  url = 'https://urban-grid-garden-api.herokuapp.com/api/gardens/';
 
   //data to be posted
   postData = {

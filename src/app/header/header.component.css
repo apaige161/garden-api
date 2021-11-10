@@ -10,14 +10,14 @@ mat-toolbar{
 
 #header-title {
     font-family: 'Lobster', cursive;
-    font-size: 75px;
+    font-size: 40px;
     padding-left: 3%;
     align-items: center;
 }
 
 #header-title-sm {
     font-family: 'Lobster', cursive;
-    font-size: 75px;
+    font-size: 40px;
     padding-left: 5%;
     align-items: center;
 }

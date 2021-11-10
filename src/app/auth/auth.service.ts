@@ -25,7 +25,7 @@ import { AuthData } from './signup/auth-data.model';
 import { SignupAuthData } from './signup/signup/auth-data-signup';
 
 import { environment } from '../../environments/environment';
-const BACKEND_URL = environment.apiUrl + "/user/";
+const BACKEND_URL = "https://urban-grid-garden-api.herokuapp.com/api/user/";
 
 @Injectable({
   providedIn: 'root'
