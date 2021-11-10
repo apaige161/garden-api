@@ -11,7 +11,7 @@ export class HarvestService {
   today = new Date();
   plants: Observable<Harvest[]>;
 
-  url = 'http://localhost:3000/api/harvest';
+  url = 'https://urban-grid-garden-api.herokuapp.com/api/harvest';
 
   harvestData: Harvest = {
     owner: "",

@@ -6,7 +6,10 @@ import { map } from 'rxjs/operators'
 import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment'
-const BACKEND_URL = environment.apiUrl + "/posts/";
+
+//change to this format
+//const BACKEND_URL = environment.apiUrl + "/posts/";
+const BACKEND_URL = "https://urban-grid-garden-api.herokuapp.com/api/posts/";
 
 @Injectable({
   providedIn: 'root'
