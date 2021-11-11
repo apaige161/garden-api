@@ -3,6 +3,7 @@ const Post = require('../models/post');
 
 exports.createPost = (req, res, next) => {
     const url = req.protocol + '://' + req.get("host");
+    console.log(req.get("host") + "requested url");
     //populate data to fill post model
     const post = new Post({
         title: req.body.title,
