@@ -46,7 +46,7 @@ const onListening = () => {
 };
 
 //set port
-const port = normalizePort(process.env.PORT || "8001");
+const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 //create server

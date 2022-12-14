@@ -18,7 +18,7 @@ const postSchema = mongoose.Schema({
     },
     imagePath: {
         type: String,
-        required: true
+        required: false
     },
 
     //who created the post
